@@ -6,6 +6,10 @@
         </a>
         <span flex></span>
         <span flex="5"></span>
+        <md-button ng-click="$ctrl.getNotifications($event)">
+            <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
+            Notifications
+        </md-button>
         <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
             {{$ctrl.getCurrentUser()}}

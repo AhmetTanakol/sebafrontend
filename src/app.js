@@ -20,6 +20,7 @@ import Middlewares from './config/middlewares';
 import AppContent from './components/app-content/app-content';
 import ViewLogin from './components/view-login/view-login';
 import ViewRegister from './components/view-register/view-register';
+import ViewNotifications from './components/view-notifications/view-notifications';
 
 let app = angular.module('app', [
     uiRouter,
@@ -30,7 +31,8 @@ let app = angular.module('app', [
     UserService.name,
     AppContent.name,
     ViewLogin.name,
-    ViewRegister.name
+    ViewRegister.name,
+    ViewNotifications.name
 ]);
 
 app.constant('API_URL', 'http://accd1eb4.ngrok.io/api');
