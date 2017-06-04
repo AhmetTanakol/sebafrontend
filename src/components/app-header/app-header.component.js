@@ -49,6 +49,10 @@ class AppHeaderComponentController{
       this.$state.go('register',{});
     }
 
+    getNotifications () {
+      this.$state.go('notifications',{});
+    }
+
     logout(){
         this.UserService.logout();
         this.$state.go('movies',{});
