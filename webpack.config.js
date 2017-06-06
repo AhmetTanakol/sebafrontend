@@ -10,8 +10,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
 
     entry: {
-        'vendor': ['angular','angular-animate','angular-aria','angular-messages','angular-material',
-          'angular-material-icons','@uirouter/angularjs', 'angular-jk-carousel'],
+        'vendor': ['angular','angular-animate', 'angular-touch', 'angular-aria','angular-messages','angular-material',
+          'angular-material-icons','@uirouter/angularjs', 'jquery', 'bootstrap', 'angular-ui-bootstrap'],
         'app': path.resolve(__dirname,'src/app.js')
     },
     output: {
@@ -32,6 +32,18 @@ module.exports = {
                 test: /\.html$/,
                 loader: 'html'
             },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'postcss', 'sass']
+            },
+            {
+                test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
+                loader: 'url-loader'
+            },
+            {
+                test: /bootstrap\/dist\/js\/umd\//,
+                loader: 'imports?jQuery=jquery'
+            },
             // Extract css files
             {
                 test: /\.css$/,
@@ -50,5 +62,11 @@ module.exports = {
         }),
 
         new ExtractTextPlugin("styles/[name].css"),
+
+        new webpack.ProvidePlugin({
+          jQuery: 'jquery',
+          $: 'jquery',
+          jquery: 'jquery'
+        })
     ]
 };

@@ -4,3 +4,8 @@ md-card {
     right: 0;
     margin-bottom: 20px;
 }
+
+.imageCarousel {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

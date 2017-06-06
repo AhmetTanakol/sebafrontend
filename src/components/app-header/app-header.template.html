@@ -6,15 +6,15 @@
         </a>
         <span flex></span>
         <span flex="5"></span>
-        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)">
+        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout()">
             <md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
             {{$ctrl.getCurrentUser()}}
         </md-button>
-        <md-button ng-if="!$ctrl.isAuthenticated()" ng-click="$ctrl.login($event)">
+        <md-button ng-if="!$ctrl.isAuthenticated()" ng-click="$ctrl.login()">
             <md-icon md-menu-align-target><ng-md-icon icon="login" ></ng-md-icon></md-icon>
             Login
         </md-button>
-        <md-button ng-if="!$ctrl.isAuthenticated()" ng-click="$ctrl.register($event)">
+        <md-button ng-if="!$ctrl.isAuthenticated()" ng-click="$ctrl.register()">
             <md-icon md-menu-align-target><ng-md-icon icon="person_add" ></ng-md-icon></md-icon>
             Register
         </md-button>

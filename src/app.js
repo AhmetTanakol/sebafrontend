@@ -6,11 +6,14 @@ import uiRouter from '@uirouter/angularjs';
 import angularMaterial from 'angular-material';
 import 'angular-material/angular-material.css';
 
+import ngAnimate from 'angular-animate';
+
+import 'bootstrap/dist/css/bootstrap.css';
+
+import uiBootstrap from 'angular-ui-bootstrap';
+
 import ngMdIcons from 'angular-material-icons';
 import ngMessages from 'angular-messages';
-
-import angularJkCarousel from 'angular-jk-carousel/dist/jk-carousel.min';
-import 'angular-jk-carousel/dist/jk-carousel.min.css';
 
 import UserService from './services/user/user';
 
@@ -24,9 +27,10 @@ import ViewRegister from './components/view-register/view-register';
 let app = angular.module('app', [
     uiRouter,
     angularMaterial,
+    ngAnimate,
     ngMdIcons,
     ngMessages,
-    angularJkCarousel,
+    uiBootstrap,
     UserService.name,
     AppContent.name,
     ViewLogin.name,
