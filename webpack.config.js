@@ -10,8 +10,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
 
     entry: {
-        'vendor': ['angular','angular-animate','angular-aria','angular-messages','angular-material',
-          'angular-material-icons','@uirouter/angularjs', 'angular-jk-carousel'],
+        'vendor': ['angular','angular-animate', 'angular-touch', 'angular-aria','angular-messages','angular-material',
+          'angular-material-icons','@uirouter/angularjs', 'jquery', 'bootstrap', 'angular-ui-bootstrap'],
         'app': path.resolve(__dirname,'src/app.js')
     },
     output: {
@@ -23,19 +23,31 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
-                loader: 'babel', // 'babel-loader' is also a legal name to reference
+                loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
                 query: {
                     presets: ['es2015']
                 }
             },
             {
                 test: /\.html$/,
-                loader: 'html'
+                loader: 'html-loader'
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'postcss', 'sass']
+            },
+            {
+                test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
+                loader: 'url-loader'
+            },
+            {
+                test: /bootstrap\/dist\/js\/umd\//,
+                loader: 'imports?jQuery=jquery'
             },
             // Extract css files
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                loader: ExtractTextPlugin.extract({ fallback: "style-loader", use: "css-loader" })
             }
         ]
     },
@@ -50,5 +62,11 @@ module.exports = {
         }),
 
         new ExtractTextPlugin("styles/[name].css"),
+
+        new webpack.ProvidePlugin({
+          jQuery: 'jquery',
+          $: 'jquery',
+          jquery: 'jquery'
+        })
     ]
 };
