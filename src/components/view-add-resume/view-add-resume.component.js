@@ -28,18 +28,18 @@ class ViewAddResumeComponentController{
 	$onInit() {
 		this.resume = {};
 	  
-		this.resume.birthdate = new Date();
+		this.resume.myDate = new Date();
 
 		this.resume.minDate = new Date(
-			this.myDate.getFullYear() - 30,
-			this.myDate.getMonth() - 2,
-			this.myDate.getDate()
+			this.resume.myDate.getFullYear() - 70,
+			this.resume.myDate.getMonth() - 2,
+			this.resume.myDate.getDate()
 		);
 
 		this.resume.maxDate = new Date(
-			this.myDate.getFullYear(),
-			this.myDate.getMonth(),
-			this.myDate.getDate()
+			this.resume.myDate.getFullYear(),
+			this.resume.myDate.getMonth(),
+			this.resume.myDate.getDate()
 		);
     }
 	
