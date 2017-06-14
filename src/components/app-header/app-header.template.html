@@ -10,6 +10,26 @@
             <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
             Notifications
         </md-button>
+		<md-menu>
+		  <md-button ng-mouseenter="$ctrl.openMenu($mdMenu, $event)">
+            <md-icon md-menu-align-target><ng-md-icon icon="account_box" ></ng-md-icon></md-icon>
+            Resume
+		  </md-button>
+		  <md-menu-content width="4">
+			<md-menu-item>
+			  <md-button ng-click="$ctrl.addResume()">
+				<md-icon icon="account_box" md-menu-align-target></md-icon>
+				Add Resume
+			  </md-button>
+			</md-menu-item>
+			<md-menu-item>
+			  <md-button ng-click="$ctrl.viewResume()">
+				<md-icon icon="account_box" md-menu-align-target></md-icon>
+				View Resume
+			  </md-button>
+			</md-menu-item>	
+		  </md-menu-content>
+		</md-menu>		
         <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
             {{$ctrl.getCurrentUser()}}

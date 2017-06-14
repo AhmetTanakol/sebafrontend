@@ -1,0 +1,7 @@
+.resume-form md-card {
+    padding: 0 !important;
+}
+.resume-form md-card md-card-title {
+    background-color: blue;
+}
+

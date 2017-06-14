@@ -46,11 +46,11 @@ class AppHeaderComponentController{
     }
 
     register(){
-      this.$state.go('register',{});
+		this.$state.go('register',{});
     }
 
     getNotifications () {
-      this.$state.go('notifications',{});
+		this.$state.go('notifications',{});
     }
 
     logout(){
@@ -58,6 +58,18 @@ class AppHeaderComponentController{
         this.$state.go('movies',{});
     }
 
+	openMenu($mdMenu, ev) {
+		$mdMenu.open(ev);
+	}
+	
+	addResume() {
+		this.$state.go('addResume',{});
+	}
+	
+	viewResume() {
+		this.$state.go('viewResume',{});
+	}
+	
     static get $inject(){
         return ['$state', UserService.name];
     }
