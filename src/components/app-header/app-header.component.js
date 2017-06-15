@@ -37,8 +37,8 @@ class AppHeaderComponentController{
         return user.username;
     }
 
-    goHome(){
-        this.$state.go('',{});
+    main(){
+        this.$state.go('main',{});
     }
 
     login(){
