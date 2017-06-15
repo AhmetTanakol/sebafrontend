@@ -1,20 +1,20 @@
 'use strict';
 
-import landingPageTemplate from './landing-page.template.html';
-import './landing-page.style.css';
+import template from './view-main.template.html';
+import './view-main.style.css';
 
-class LandingPageComponent {
+class ViewMainComponent {
   constructor () {
-    this.controller = LandingPageController;
-    this.template = landingPageTemplate;
+    this.controller = ViewMainComponentController;
+    this.template = template;
   }
 
   static get name() {
-    return 'landingPage';
+    return 'viewMain';
   }
 }
 
-class LandingPageController {
+class ViewMainComponentController {
   constructor () {
     this.myInterval = 3000;
     this.noWrapSlides = false;
@@ -44,4 +44,4 @@ class LandingPageController {
   }
 }
 
-export default LandingPageComponent;
+export default ViewMainComponent;

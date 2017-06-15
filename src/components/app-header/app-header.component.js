@@ -38,7 +38,7 @@ class AppHeaderComponentController{
     }
 
     goHome(){
-        this.$state.go('/',{});
+        this.$state.go('',{});
     }
 
     login(){

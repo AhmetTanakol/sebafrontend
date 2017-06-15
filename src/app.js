@@ -21,6 +21,7 @@ import Routes from './config/routes';
 import Middlewares from './config/middlewares';
 
 import AppContent from './components/app-content/app-content';
+import ViewMain from './components/view-main/view-main';
 import ViewLogin from './components/view-login/view-login';
 import ViewRegister from './components/view-register/view-register';
 import ViewNotifications from './components/view-notifications/view-notifications';
@@ -34,6 +35,7 @@ let app = angular.module('app', [
     uiBootstrap,
     UserService.name,
     AppContent.name,
+    ViewMain.name,
     ViewLogin.name,
     ViewRegister.name,
     ViewNotifications.name
