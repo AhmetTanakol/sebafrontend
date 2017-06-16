@@ -5,7 +5,38 @@ md-card {
     margin-bottom: 20px;
 }
 
-.imageCarousel {
+.mainCarousel {
     padding-bottom: 10px;
     padding-top: 10px;
+}
+
+.slideWrapper {
+    display: flex;
+    height: 300px;
+    flex-direction: row;
+}
+.slideImg {
+    display: inline-flex;
+}
+.slideImg img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slideInfo {
+    display: inline-flex;
+    text-align: center;
+    flex-direction: column;
+    padding:4px;
+    margin-left: 10px;
+
+}
+.slideInfo h2 {
+    margin-top: 0px;
+
+}
+
+.slideWrapper * {
+    border: 1px solid red;
 }

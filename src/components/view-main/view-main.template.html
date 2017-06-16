@@ -1,12 +1,31 @@
-<md-card class="imageCarousel" layout="column" layout-align="start center">
-    <div uib-carousel active="$ctrl.active" interval="$ctrl.myInterval" no-wrap="$ctrl.noWrapSlides">
-        <div uib-slide ng-repeat="slide in $ctrl.slides track by slide.id" index="slide.id">
-            <img ng-src="{{slide.image}}">
-            <div class="carousel-caption">
-                <h4>{{slide.text}}</h4>
+<md-card id="mainCarousel" class="mainCarousel carousel slide" data-ride="carousel" data-interval="$ctrl.myInterval">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" ng-repeat="slide in $ctrl.slides">
+        <li data-target="#mainCarousel" data-slide-to="$ctrl.active" ng-class="{'active': $index == $ctrl.active}"></li>
+    </ol>
+
+    <!-- Wrapper for Slides -->
+    <div class="carousel-inner" role="listbox" ng-repeat="slide in $ctrl.slides">
+        <div class="item" ng-class="{'active': $index == $ctrl.active}">
+            <!-- Set the first background image using inline CSS below. -->
+            <div class="container-fluid" >
+                <div class="row slideWrapper" >
+                    <div class="slideImg" flex="40"><img ng-src="{{slide.image}}"></div>
+                    <div class="slideInfo" flex="60">
+                        <h2>{{slide.title}}</h2>
+                        <p>{{slide.text}}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+<!-- Controls -->
+    <a class="left carousel-control" href="#mainCarousel" role="button" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#mainCarousel" role="button" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
 </md-card>
 <md-card-content>
     <h2>About WorkForce</h2>
