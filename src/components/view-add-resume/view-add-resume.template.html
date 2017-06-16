@@ -1,4 +1,4 @@
-<md-tabs md-dynamic-height="true">
+<md-tabs md-dynamic-height md-border-bottom md-center-tabs="true">
 	<md-tab label = "Personal Details & Education">	
 		<div layout="column" layout-padding="" ng-cloak>    
 			<md-content class="resume-form" layout-align-md="center" layout-md="row">
@@ -10,12 +10,12 @@
 							<md-input-container class="md-block">
 								<input ng-model="$ctrl.resume.photo" type="file" placeholder="Upload Photo (required)" ng-required="true" />
 							</md-input-container>
-							
 							<md-input-container class="md-block">                      
 								<input ng-model="$ctrl.resume.firstname" type="text" placeholder="First Name (required)" ng-required="true" flex="50">
+							</md-input-container>
+							<md-input-container class="md-block">
 								<input ng-model="$ctrl.resume.lastname" type="text" placeholder="Last Name (required)" ng-required="true">
 							</md-input-container>
-
 							<md-input-container class="md-block">
 								<label>Gender</label>
 								<md-select name="type" ng-model="$ctrl.resume.gender" ng-required="true">
@@ -74,7 +74,10 @@
 							
 							<md-input-container class="md-block">
 								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="From" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="To" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="To" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
 							</md-input-container>
 							
 							<md-input-container class="md-block">                      
@@ -118,7 +121,10 @@
 							
 							<md-input-container class="md-block">
 								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="Start Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
 							</md-input-container>
 						
 							<md-input-container class="md-block">                      
@@ -139,7 +145,10 @@
 
 							<md-input-container class="md-block">
 								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="Start Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
 							</md-input-container>
 						
 							<md-input-container class="md-block">

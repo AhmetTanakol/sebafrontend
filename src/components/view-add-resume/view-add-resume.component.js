@@ -24,7 +24,7 @@ class ViewAddResumeComponentController{
 	constructor ($state) {
 		this.$state = $state;		
     }
-	
+
 	$onInit() {
 		this.resume = {};
 	  
