@@ -58,17 +58,17 @@ class AppHeaderComponentController{
         this.$state.go('movies',{});
     }
 
-	openMenu($mdMenu, ev) {
-		$mdMenu.open(ev);
-	}
+    openMenu($mdMenu, ev) {
+      $mdMenu.open(ev);
+    }
 	
-	addResume() {
-		this.$state.go('addResume',{});
-	}
-	
-	viewResume() {
-		this.$state.go('viewResume',{});
-	}
+    addResume() {
+      this.$state.go('addResume',{});
+    }
+
+    viewResume() {
+      this.$state.go('viewResume',{});
+    }
 	
     static get $inject(){
         return ['$state', UserService.name];

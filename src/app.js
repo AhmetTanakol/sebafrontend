@@ -39,8 +39,8 @@ let app = angular.module('app', [
     ViewLogin.name,
     ViewRegister.name,
     ViewNotifications.name,
-	ViewAddResume.name,
-	ViewResume.name
+	  ViewAddResume.name,
+	  ViewResume.name
 ]);
 
 app.constant('API_URL', 'http://accd1eb4.ngrok.io/api');
