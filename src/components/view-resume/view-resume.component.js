@@ -25,27 +25,13 @@ class ViewResumeComponentController{
         this.UserService = UserService;
     }
 
-    $onInit() {
-      this.resume = {};
-    }
-
-    submit(){
-      let resumeInfo = {
-        user: this.resume.username,
-        phone: this.resume.phone,
-        email: this.resume.email,
-        type: this.resume.type,
-        password: this.resume.password
-      };
-
-      this.UserService.resume(resumeInfo).then(()=> {
-      });
-    }
-
+	$onInit() {
+		this.noProfilePicture = './../../../dist/assets/no_profile_pict.jpg';
+	}
+	
     static get $inject(){
         return ['$state', UserService.name];
     }
-
 }
 
 

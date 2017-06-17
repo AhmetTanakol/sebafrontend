@@ -15,8 +15,12 @@
 	font-weight: 700;
 }
 
-.button-add:hover {
+.button-add:hover:enabled {
 	color: #29374f;
+}
+
+.button-add:disabled {
+    background: #dddddd;
 }
 
 .resume-form .md-toolbar-tools {

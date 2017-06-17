@@ -26,6 +26,17 @@ class ViewAddResumeComponentController{
 			this.$state = $state;
 		}
 
+		addEducation () {
+			this.education.push({
+			  schoolName: this.education.schoolName,
+			  degree: this.education.degree,
+			  startDate: moment(this.education.startDate).format('YYYY-MM-DD'),
+			  endDate: moment(this.education.endDate).format('YYYY-MM-DD'),
+			  schoolDescription: this.education.schoolDescription
+			});
+			this.education = {};
+		}
+		
 		addExperience () {
 			this.experiences.push({
 			  company: this.experience.company,
