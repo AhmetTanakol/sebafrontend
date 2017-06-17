@@ -2,180 +2,226 @@
 	<md-tab label = "Personal Details & Education">	
 		<div layout="column" layout-padding="" ng-cloak>    
 			<md-content class="resume-form" layout-align-md="center" layout-md="row">
-			  <form name="AddResumeForm">
-				<span flex="5"></span>
-				<md-card flex="40">
-					<md-card-content>
-						Personal Details
-							<md-input-container class="md-block">
-								<input ng-model="$ctrl.resume.photo" type="file" placeholder="Upload Photo (required)" ng-required="true" />
-							</md-input-container>
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.firstname" type="text" placeholder="First Name (required)" ng-required="true" flex="50">
-							</md-input-container>
-							<md-input-container class="md-block">
-								<input ng-model="$ctrl.resume.lastname" type="text" placeholder="Last Name (required)" ng-required="true">
-							</md-input-container>
-							<md-input-container class="md-block">
-								<label>Gender</label>
-								<md-select name="type" ng-model="$ctrl.resume.gender" ng-required="true">
-									<md-option value="M">Male</md-option>
-									<md-option value="F">Female</md-option>
-								</md-select>
-							</md-input-container>
-							
-							<md-input-container class="md-block">
-								 <md-datepicker ng-model="$ctrl.resume.birthdate" md-placeholder="Date of Birth" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-							</md-input-container>
-							
-							<md-input-container class="md-block">
-								<label>Country of Birth</label>
-								<md-select name="type" ng-model="$ctrl.resume.countryofbirth" ng-required="true">
-									<md-option value="1">Germany</md-option>
-								</md-select>
-							</md-input-container>
-							
-							<md-input-container class="md-block">
-								<label>Marital Status</label>
-								<md-select name="type" ng-model="$ctrl.resume.marital" ng-required="true">
-									<md-option value="S">Single</md-option>
-									<md-option value="M">Married</md-option>
-									<md-option value="D">Divorced</md-option>
-								</md-select>
-							</md-input-container>
-							
-							<md-input-container class="md-block">				
-								<label>Language</label>
-								<md-select name="type" ng-model="$ctrl.resume.language" ng-required="true">
-									<md-option value="1">Deutsch</md-option>
-								</md-select>
-							</md-input-container>                    
-						
-					</md-card-content>
-				</md-card>
-				<span flex="10"></span>
-				<md-card flex="40">
-					<md-card-content>
-						Education
-							
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.education_schoolname_0" type="text" placeholder="School Name" ng-required="true">		
-							</md-input-container>
+				<form name="AddResumeForm">
+					<div class="row no-row-margin">
+						<div class="col-md-6 col-xs-12">
+							<md-card>
+								<md-card-content>
+										<md-toolbar md-scroll-shrink>
+											<div class="md-toolbar-tools">PERSONAL DETAILS</div>
+										</md-toolbar>
+																	
+										<md-input-container class="md-block">
+											<input ng-model="$ctrl.resume.photo" type="file" placeholder="Upload Pas Photo (required)" ng-required="true" class="" />
+										</md-input-container>
+										<div class="row">
+										  <div class="col-md-6 input-row">
+											<md-input-container class="md-block">                      
+												<input ng-model="$ctrl.resume.firstname" type="text" placeholder="First Name (required)" ng-required="true">
+											</md-input-container>
+										  </div>
+										  <div class="col-md-6 input-row">
+											<md-input-container class="md-block">
+												<input ng-model="$ctrl.resume.lastname" type="text" placeholder="Last Name (required)" ng-required="true">
+											</md-input-container>
+										  </div>
+										</div>
+										
+										<div class="row">
+										  <div class="col-md-6 input-row">
+											<md-input-container class="md-block">
+												<label>Gender</label>
+												<md-select name="type" ng-model="$ctrl.resume.gender" ng-required="true">
+													<md-option value="M">Male</md-option>
+													<md-option value="F">Female</md-option>
+												</md-select>
+											</md-input-container>
+										  </div>
+										  <div class="col-md-6 input-row">
+											<md-input-container class="md-block">
+												 <md-datepicker name="resumeDateBirth" ng-model="$ctrl.resume.birthdate" md-placeholder="Date of Birth" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+											</md-input-container>
+										  </div>
+										</div>
 
-							<md-input-container class="md-block">
-								<label>Degree</label>
-								<md-select name="type" ng-model="$ctrl.resume.schooldegree" ng-required="true">
-									<md-option value="1">Primary School</md-option>
-									<md-option value="2">Secondary School</md-option>
-									<md-option value="3">High School</md-option>
-									<md-option value="4">Secondary School</md-option>
-								</md-select>
-							</md-input-container>
-							
-							<md-input-container class="md-block">
-								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="From" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-							</md-input-container>
+										<md-input-container class="md-block">
+											<label>Country of Birth</label>
+											<md-select name="type" ng-model="$ctrl.resume.countryofbirth" ng-required="true">
+												<md-option value="1">Germany</md-option>
+											</md-select>
+										</md-input-container>
+										
+										<md-input-container class="md-block">
+											<label>Marital Status</label>
+											<md-select name="type" ng-model="$ctrl.resume.marital" ng-required="true">
+												<md-option value="S">Single</md-option>
+												<md-option value="M">Married</md-option>
+												<md-option value="D">Divorced</md-option>
+											</md-select>
+										</md-input-container>
+										
+										<md-input-container class="md-block">				
+											<label>Language</label>
+											<md-select name="type" ng-model="$ctrl.resume.language" ng-required="true">
+												<md-option value="1">Deutsch</md-option>
+											</md-select>
+										</md-input-container>                    
+									
+								</md-card-content>
+							</md-card>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<md-card>
+								
+								<md-card-content>
+										<md-toolbar md-scroll-shrink>
+											<div class="md-toolbar-tools">EDUCATION</div>
+										</md-toolbar>
+										
+										<md-input-container class="md-block">                      
+											<input ng-model="$ctrl.resume.education_schoolname_0" type="text" placeholder="School Name" ng-required="true">		
+										</md-input-container>
 
-							<md-input-container class="md-block">
-								<md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="To" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-							</md-input-container>
-							
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.education_schooldescription_0" type="text" placeholder="School Description">		
-							</md-input-container>
-													
-					</md-card-content>
-					<md-button>Add More Education</md-button>
-				</md-card>
-				<span flex></span>
-				
-				<md-button ng-disabled="!AddResumeForm.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
+										<md-input-container class="md-block">
+											<label>Degree</label>
+											<md-select name="type" ng-model="$ctrl.resume.schooldegree" ng-required="true">
+												<md-option value="1">Primary School</md-option>
+												<md-option value="2">Secondary School</md-option>
+												<md-option value="3">High School</md-option>
+												<md-option value="4">Secondary School</md-option>
+											</md-select>
+										</md-input-container>
+										
+										<div class="row">
+										  <div class="col-md-6">
+											<md-datepicker ng-model="$ctrl.resume.education_from_0" md-placeholder="From" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+										  </div>
+
+										  <div class="col-md-6">
+											<md-datepicker ng-model="$ctrl.resume.education_to_0" md-placeholder="To" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+										  </div>
+										</div>
+										
+										<md-input-container class="md-block">
+										  <label>Description</label>
+										  <textarea ng-model="$ctrl.resume.education_schooldescription_0" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+										</md-input-container>
+																
+								</md-card-content>
+								<md-button class="button-add">Add More Education</md-button>
+							</md-card>
+						</div>
+					</div>
+					<div class="row no-row-margin">
+						<div class="col-md-12">
+							<md-button ng-disabled="!AddResumeForm.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary pull-right">&nbsp Save & Next &nbsp</md-button>
+						</div>
+					</div>
 				</form>
 			</md-content>
-			<span flex></span>
 		</div>
 	</md-tab>
 	<md-tab label="Additional Information">
 		<div layout="column" layout-padding="" ng-cloak>    
 			<md-content class="resume-form" layout-align-md="center" layout-md="row">
-			  <form name="AddResumeForm2">
-				<span flex="5"></span>
-				<md-card flex="40">
-					<md-card-content>
-						Experiences
-							
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.experience_companyname_0" type="text" placeholder="Company Name (required)" ng-required="true" flex="50">
-							</md-input-container>
-							
-							<md-input-container class="md-block">
-								<label>Company Location</label>
-								<md-select name="type" ng-model="$ctrl.resume.experience_companylocation_0" ng-required="true">
-									<md-option value="1">Germany</md-option>
-								</md-select>
-							</md-input-container>
-							
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.experience_title_0" type="text" placeholder="Title" ng-required="true">		
-							</md-input-container>
-							
-							<md-input-container class="md-block">
-								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="Start Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-							</md-input-container>
+				<form name="AddResumeForm2">
+					<div class="row no-row-margin">
+						<div class="col-md-6 col-xs-12">
+							<md-card>
+								<md-card-content>
+										<md-toolbar md-scroll-shrink>
+											<div class="md-toolbar-tools">EXPERIENCES</div>
+										</md-toolbar>
+										
+										<md-input-container class="md-block">                      
+											<input ng-model="$ctrl.resume.experience_companyname_0" type="text" placeholder="Company Name (required)" ng-required="true">
+										</md-input-container>
+										
+										<md-input-container class="md-block">
+											<label>Company Location</label>
+											<md-select name="type" ng-model="$ctrl.resume.experience_companylocation_0" ng-required="true">
+												<md-option value="1">Germany</md-option>
+											</md-select>
+										</md-input-container>
+										
+										<md-input-container class="md-block">                      
+											<input ng-model="$ctrl.resume.experience_title_0" type="text" placeholder="Title" ng-required="true">		
+										</md-input-container>
+										
+										<div class="row">
+										  <div class="col-md-6">
+											<md-datepicker ng-model="$ctrl.resume.experience_from_0" md-placeholder="Start Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+										  </div>
 
-							<md-input-container class="md-block">
-								<md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-							</md-input-container>
-						
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.experience_jobdescription_0" type="text" placeholder="Job Description">		
-							</md-input-container>
-							
-					</md-card-content>
-					<md-button>Add More Experience</md-button>
-				</md-card>
-				<span flex="10"></span>
-				<md-card flex="40">
-					<md-card-content>
-						Certifications
-							
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.certification_title_0" type="text" placeholder="Title" ng-required="true">		
-							</md-input-container>
+										  <div class="col-md-6">
+											<md-datepicker ng-model="$ctrl.resume.experience_to_0" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>								
+										  </div>
+										</div>
+										
+										<md-input-container class="md-block">                      
+											<input ng-model="$ctrl.resume.experience_jobdescription_0" type="text" placeholder="Job Description">		
+										</md-input-container>
+										
+								</md-card-content>
+								<md-button class="button-add">Add More Experience</md-button>
+							</md-card>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<md-card>
+								<md-card-content>
+										<md-toolbar md-scroll-shrink>
+											<div class="md-toolbar-tools">CERTIFICATIONS</div>
+										</md-toolbar>
+										
+										<md-input-container class="md-block">                      
+											<input ng-model="$ctrl.resume.certification_title_0" type="text" placeholder="Title" ng-required="true">		
+										</md-input-container>
 
-							<md-input-container class="md-block">
-								 <md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="Start Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-							</md-input-container>
+										<div class="row">
+										  <div class="col-md-6">
+											<md-datepicker ng-model="$ctrl.resume.certification_from_0" md-placeholder="Start Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+										  </div>
 
-							<md-input-container class="md-block">
-								<md-datepicker ng-model="$ctrl.resume.myDate" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
-							</md-input-container>
-						
-							<md-input-container class="md-block">
-								<input ng-model="$ctrl.resume.photo" type="file" placeholder="Upload Photo (required)" ng-required="true" />
-							</md-input-container>
-						
-					</md-card-content>
-					<md-button>Add More Certification</md-button>
-				</md-card>
-				<md-card flex="40">
-					<md-card-content>
-						Skills
-							
-							<md-input-container class="md-block">                      
-								<input ng-model="$ctrl.resume.skills_type_0" type="text" placeholder="Skill Type" ng-required="true">		
-							</md-input-container>
+										  <div class="col-md-6">
+											<md-datepicker ng-model="$ctrl.resume.certification_to_0" md-placeholder="End Date" md-min-date="$ctrl.resume.minDate" md-max-date="$ctrl.resume.maxDate"></md-datepicker>
+										  </div>
+										</div>
+									
+										<md-input-container class="md-block">
+											<input ng-model="$ctrl.resume.photo" type="file" placeholder="Upload Photo (required)" ng-required="true" />
+										</md-input-container>
+									
+								</md-card-content>
+								<md-button class="button-add">Add More Certification</md-button>
+							</md-card>
 
-							<<<<< draggable bar -- probably using plugins >>>>
-						
-					</md-card-content>
+							<md-card>
+								<md-card-content>
+									<md-toolbar md-scroll-shrink>
+										<div class="md-toolbar-tools">SKILLS</div>
+									</md-toolbar>
+									
+									<md-input-container class="md-block">                      
+										<input ng-model="$ctrl.resume.skills_type_0" type="text" placeholder="Skill Type" ng-required="true">		
+									</md-input-container>
+
+									Power
+									<div layout>
+									  <md-slider flex class="md-warn" md-discrete ng-model="$ctrl.resume.skill_power_0" step="1" min="1" max="10" aria-label="rating"></md-slider>
+									</div>
+								</md-card-content>
+								
+								<md-button class="button-add">Add More Skills</md-button>
+							</md-card>
+						</div>
+					</div>
+					<div class="row no-row-margin">
+						<div class="col-md-12">						
+							<md-button ng-disabled="!AddResumeForm2.$valid" ng-click="$ctrl.download()" class="md-raised md-primary pull-right">&nbsp Download &nbsp</md-button>
+							<md-button ng-disabled="!AddResumeForm2.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary pull-right">&nbsp Save &nbsp</md-button>s
+						</div>
+					</div>
 					
-					<md-button>Add More Skills</md-button>
-				</md-card>
-				<span flex></span>
-				
-				<md-button ng-disabled="!AddResumeForm2.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save &nbsp</md-button>
-				<md-button ng-disabled="!AddResumeForm2.$valid" ng-click="$ctrl.download()" class="md-raised md-primary">&nbsp Download &nbsp</md-button>
 				</form>
 			</md-content>
 			<span flex></span>

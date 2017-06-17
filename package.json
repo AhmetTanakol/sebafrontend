@@ -28,6 +28,7 @@
     "angular-material": "^1.1.0",
     "angular-material-icons": "^0.7.1",
     "angular-messages": "^1.5.8",
+    "angular-slider-easy": "^1.1.0",
     "angular-touch": "^1.6.4",
     "angular-ui-bootstrap": "^2.5.0",
     "bootstrap": "^3.3.7",

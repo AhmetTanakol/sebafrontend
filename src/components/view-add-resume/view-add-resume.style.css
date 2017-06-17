@@ -5,3 +5,34 @@
     background-color: blue;
 }
 
+.input-row {
+	margin: -25px 0 -25px 0;
+}
+
+.button-add {
+	background-color: #4f6d9e;
+	color: #fff;
+	font-weight: 700;
+}
+
+.button-add:hover {
+	color: #29374f;
+}
+
+.resume-form .md-toolbar-tools {
+	color: #fff;
+	font-weight: 700;
+	background-color: #818791;
+}
+
+.resume-form .md-datepicker-button {
+	margin-left: -5px !important;
+	margin-right: -10px !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.resume-form .no-row-margin {
+	margin-left: 15px;
+	margin-right: 15px;
+}
