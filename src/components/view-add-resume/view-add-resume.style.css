@@ -5,3 +5,6 @@
     background-color: blue;
 }
 
+.resume-form md-divider {
+    margin-top: 10px;
+    margin-bottom: 0; }
