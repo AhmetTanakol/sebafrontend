@@ -5,6 +5,7 @@
 import template from './view-add-resume.template.html';
 import './view-add-resume.style.css';
 
+import moment from 'moment/moment';
 
 class ViewAddResumeComponent {
     constructor(){
@@ -21,27 +22,37 @@ class ViewAddResumeComponent {
 
 class ViewAddResumeComponentController{
     
-	constructor ($state) {
-		this.$state = $state;		
-    }
+		constructor ($state) {
+			this.$state = $state;
+		}
 
-	$onInit() {
-		this.resume = {};
-	  
-		this.resume.myDate = new Date();
+		addExperience () {
+      this.experiences.push(
+        {
+          company: this.experience.company,
+          jobTitle: this.experience.jobTitle,
+          startDate: moment(this.experience.startDate).format('YYYY-MM-DD'),
+          endDate: moment(this.experience.endDate).format('YYYY-MM-DD')
+        }
+      );
+      this.experience = {};
+		}
 
-		this.resume.minDate = new Date(
-			this.resume.myDate.getFullYear() - 70,
-			this.resume.myDate.getMonth() - 2,
-			this.resume.myDate.getDate()
-		);
-
-		this.resume.maxDate = new Date(
-			this.resume.myDate.getFullYear(),
-			this.resume.myDate.getMonth(),
-			this.resume.myDate.getDate()
-		);
-    }
+		$onInit() {
+      this.experiences = [];
+			this.experience = {};
+			var currentDate = new Date();
+      this.maxStartDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() - 1,
+        currentDate.getDate()
+      );
+      this.maxEndDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+		}
 	
     static get $inject () {
       return ['$state'];
