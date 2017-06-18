@@ -24,7 +24,7 @@ class ViewMainComponentController {
               id: 0,
               title: 'Title of Company',
               text: 'some information about the company',
-              image: 'https://www.travelexcellence.com/images/movil/La_Paz_Waterfall.jpg'
+              image: 'http://www.vietnamteambuilding.net/uploads/Gioi%20thieu/company-profile-Vietnam-team-building.jpg'
           },
           {
               id: 1,
