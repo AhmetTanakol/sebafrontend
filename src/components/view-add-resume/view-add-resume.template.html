@@ -1,0 +1,272 @@
+<md-tabs md-dynamic-height md-border-bottom md-center-tabs="true">
+
+	<md-tab label = "Personal Details & Education">
+		<div layout="row" layout-xs="column" layout-margin>
+			<div flex>
+				<form class= "resume-form" name="PersonalInformationForm">
+					<md-card>
+						<md-card-content>
+							<md-toolbar md-scroll-shrink>
+								<div class="md-toolbar-tools">PERSONAL DETAILS</div>
+							</md-toolbar>
+							<md-input-container md-no-float class="md-block">
+								<md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
+								<input ng-model="$ctrl.resume.photo" type="file" placeholder="Upload Photo">
+							</md-input-container>
+							<div class="row">
+								<div class="col-md-6 input-row">
+									<md-input-container class="md-block">
+										<input ng-model="$ctrl.resume.refugeeName" type="text" placeholder="Full Name (required)" ng-required="true">
+									</md-input-container>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 input-row">
+									<md-input-container class="md-block">
+										<label>Gender</label>
+										<md-select name="type" ng-model="$ctrl.resume.gender" ng-required="true">
+											<md-option value="Male">Male</md-option>
+											<md-option value="Female">Female</md-option>
+										</md-select>
+									</md-input-container>
+								</div>
+								<div class="col-md-6 input-row">
+									<label>Date of Birth</label>
+									<md-datepicker ng-model="$ctrl.resume.birthDate"></md-datepicker>
+								</div>
+							</div>
+
+							<md-input-container class="md-block">
+								<label>Country of Birth</label>
+								<md-select name="type" ng-model="$ctrl.resume.birthPlace" ng-required="true">
+									<md-option value="1">Germany</md-option>
+								</md-select>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<label>Marital Status</label>
+								<md-select name="type" ng-model="$ctrl.resume.marital">
+									<md-option value="Single">Single</md-option>
+									<md-option value="Married">Married</md-option>
+									<md-option value="Divorced">Divorced</md-option>
+								</md-select>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<label>Language</label>
+								<md-select name="type" ng-model="$ctrl.resume.language" ng-required="true">
+									<md-option value="1">Deutsch</md-option>
+								</md-select>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<label>Description</label>
+								<textarea ng-model="$ctrl.resume.profileDescription" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+							</md-input-container>
+
+						</md-card-content>
+					</md-card>
+				</form>
+			</div>
+			<div flex>
+				<form class= "resume-form" name="EducationForm">
+					<md-card>
+						<md-card-content>
+							<md-toolbar md-scroll-shrink>
+								<div class="md-toolbar-tools">EDUCATION</div>
+							</md-toolbar>
+							<md-list flex>
+								<md-subheader class="md-no-sticky">Added Educations</md-subheader>
+								<md-list-item class="md-3-line" ng-repeat="refugeeEducation in $ctrl.educations">
+									<div class="secondary-button-padding" layout="column">
+										<h3>{{ refugeeEducation.schoolName }} - {{ refugeeEducation.degree }}</h3>
+										<p>({{ refugeeEducation.startDate }} - {{ refugeeEducation.endDate }})</p>
+										<md-button class="md-secondary" ng-click="$ctrl.removeEducation(refugeeEducation)">Delete</md-button>
+									</div>
+									<md-divider></md-divider>
+								</md-list-item>
+							</md-list>
+							<md-input-container class="md-block">
+								<input ng-model="$ctrl.education.schoolName" type="text" placeholder="School Name" ng-required="true">
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<label>Degree</label>
+								<md-select name="type" ng-model="$ctrl.education.degree" ng-required="true">
+									<md-option value="Primary School">Primary School</md-option>
+									<md-option value="Secondary School">Secondary School</md-option>
+									<md-option value="High School">High School</md-option>
+									<md-option value="Bachelor Degree">Bachelor Degree</md-option>
+									<md-option value="Master Degree">Master Degree</md-option>
+									<md-option value="Doctor">Doctor</md-option>
+								</md-select>
+							</md-input-container>
+
+							<div class="row">
+								<div class="col-md-6">
+									<md-datepicker ng-model="$ctrl.education.startDate" md-placeholder="Start Date" ng-required="true"></md-datepicker>
+								</div>
+
+								<div class="col-md-6">
+									<md-datepicker ng-model="$ctrl.education.endDate" md-placeholder="End Date" ng-required="true"></md-datepicker>
+								</div>
+							</div>
+
+							<md-input-container class="md-block">
+								<label>Description</label>
+								<textarea ng-model="$ctrl.education.schoolDescription" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+							</md-input-container>
+
+						</md-card-content>
+						<md-button class="button-add" ng-disabled="!EducationForm.$valid" ng-click="$ctrl.addEducation()">Add More Education</md-button>
+					</md-card>
+				</form>
+			</div>
+		</div>
+		<div layout="row" layout-align="end center">
+			<md-button ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
+		</div>
+	</md-tab>
+	<md-tab label="Additional Information">
+		<div layout="row" layout-xs="column" layout-margin>
+			<div flex>
+				<form class= "resume-form" name="ExperienceForm">
+					<md-card>
+						<md-card-content>
+							<md-toolbar md-scroll-shrink>
+								<div class="md-toolbar-tools">EXPERIENCES</div>
+							</md-toolbar>
+							<md-list flex>
+								<md-subheader class="md-no-sticky">Added Jobs</md-subheader>
+								<md-list-item class="md-3-line" ng-repeat="refugeeExperience in $ctrl.experiences">
+									<div class="secondary-button-padding" layout="column">
+										<h3>{{ refugeeExperience.company }}</h3>
+										<p>({{ refugeeExperience.startDate }} - {{ refugeeExperience.endDate }})</p>
+										<h4>{{ refugeeExperience.jobTitle }}</h4>
+										<md-button class="md-secondary" ng-click="$ctrl.removeExperience(refugeeExperience)">Delete</md-button>
+									</div>
+									<md-divider></md-divider>
+								</md-list-item>
+							</md-list>
+							<md-input-container class="md-block">
+								<input ng-model="$ctrl.experience.company" type="text" placeholder="Company Name" ng-required="true">
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<label>Company Location</label>
+								<md-select name="type" ng-model="$ctrl.experience.companyLocation" ng-required="true">
+									<md-option value="1">Germany</md-option>
+								</md-select>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<input ng-model="$ctrl.experience.jobTitle" type="text" placeholder="Title" ng-required="true">
+							</md-input-container>
+
+							<div class="row">
+								<div class="col-md-6">
+									<label>Start Date</label>
+									<md-datepicker ng-model="$ctrl.experience.startDate" md-placeholder="Start Date" md-max-date="$ctrl.maxStartDate" ng-required="true"></md-datepicker>
+								</div>
+
+								<div class="col-md-6">
+									<label>End Date</label>
+									<md-datepicker ng-model="$ctrl.experience.endDate" md-placeholder="End Date" md-max-date="$ctrl.maxEndDate" ng-required="true"></md-datepicker>
+								</div>
+							</div>
+
+							<md-input-container class="md-block">
+								<label>Job Description</label>
+								<textarea ng-model="$ctrl.experience.jobDescription" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+							</md-input-container>
+
+						</md-card-content>
+						<md-button class="button-add" ng-disabled="!ExperienceForm.$valid" ng-click="$ctrl.addExperience()">Add More Experience</md-button>
+					</md-card>
+				</form>
+			</div>
+			<div flex>
+				<form class= "resume-form" name="CertificateForm">
+					<md-card>
+						<md-card-content>
+							<md-toolbar md-scroll-shrink>
+								<div class="md-toolbar-tools">CERTIFICATIONS</div>
+							</md-toolbar>
+							<md-list flex>
+								<md-subheader class="md-no-sticky">Added Cerficates</md-subheader>
+								<md-list-item class="md-3-line" ng-repeat="refugeeCertificate in $ctrl.certificates">
+									<div class="secondary-button-padding" layout="column">
+										<h3>{{ refugeeCertificate.title }}</h3>
+										<p>({{ refugeeCertificate.startDate }} - {{ refugeeCertificate.endDate }})</p>
+										<md-button class="md-secondary" ng-click="$ctrl.removeCertificate(refugeeCertificate)">Delete</md-button>
+									</div>
+									<md-divider></md-divider>
+								</md-list-item>
+							</md-list>
+
+							<md-input-container class="md-block">
+								<input ng-model="$ctrl.certificate.title" type="text" placeholder="Title" ng-required="true">
+							</md-input-container>
+
+							<div class="row">
+								<div class="col-md-6">
+									<md-datepicker ng-model="$ctrl.certificate.startDate" md-placeholder="Start Date" ng-required="true"></md-datepicker>
+								</div>
+
+								<div class="col-md-6">
+									<md-datepicker ng-model="$ctrl.certificate.endDate" md-placeholder="End Date" ng-required="true"></md-datepicker>
+								</div>
+							</div>
+
+							<md-input-container md-no-float class="md-block">
+								<md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
+								<input ng-model="$ctrl.certificate.photo" type="file" placeholder="Upload Photo">
+							</md-input-container>
+
+						</md-card-content>
+						<md-button class="button-add" ng-disabled="!CertificateForm.$valid" ng-click="$ctrl.addCertificate()">Add More Certification</md-button>
+					</md-card>
+				</form>
+			</div>
+			<div flex>
+				<form class= "resume-form" name="SkillForm">
+					<md-card>
+						<md-card-content>
+							<md-toolbar md-scroll-shrink>
+								<div class="md-toolbar-tools">SKILLS</div>
+							</md-toolbar>
+							<md-list flex>
+								<md-subheader class="md-no-sticky">Added Skills</md-subheader>
+								<md-list-item class="md-3-line" ng-repeat="refugeeSkill in $ctrl.skills">
+									<div class="secondary-button-padding" layout="column">
+										<h3>{{ refugeeSkill.type }}</h3>
+										<p>{{ refugeeSkill.power }} out of 10</p>
+										<md-button class="md-secondary" ng-click="$ctrl.removeSkill(refugeeSkill)">Delete</md-button>
+									</div>
+									<md-divider></md-divider>
+								</md-list-item>
+							</md-list>
+							<md-input-container class="md-block">
+								<input ng-model="$ctrl.skill.type" type="text" placeholder="Skill Type" ng-required="true">
+							</md-input-container>
+
+							Power
+							<div layout>
+								<md-slider flex class="md-warn" md-discrete ng-model="$ctrl.skill.power" step="1" min="1" max="10" aria-label="rating"></md-slider>
+							</div>
+
+						</md-card-content>
+
+						<md-button class="button-add" ng-disabled="!SkillForm.$valid" ng-click="$ctrl.addSkill()">Add More Skills</md-button>
+					</md-card>
+				</form>
+			</div>
+		</div>
+		<div layout="row" layout-align="end center">
+			<md-button ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save &nbsp</md-button>
+			<md-button ng-click="$ctrl.download()" class="md-raised md-primary">&nbsp Download &nbsp</md-button>
+		</div>
+
+	</md-tab>
+</md-tabs>

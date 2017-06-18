@@ -15,6 +15,8 @@ import uiBootstrap from 'angular-ui-bootstrap';
 import ngMdIcons from 'angular-material-icons';
 import ngMessages from 'angular-messages';
 
+import moment from 'moment/moment';
+
 import UserService from './services/user/user';
 
 import Routes from './config/routes';
@@ -24,6 +26,8 @@ import AppContent from './components/app-content/app-content';
 import ViewLogin from './components/view-login/view-login';
 import ViewRegister from './components/view-register/view-register';
 import ViewNotifications from './components/view-notifications/view-notifications';
+import ViewAddResume from './components/view-add-resume/view-add-resume';
+import ViewResume from './components/view-resume/view-resume';
 
 let app = angular.module('app', [
     uiRouter,
@@ -36,12 +40,19 @@ let app = angular.module('app', [
     AppContent.name,
     ViewLogin.name,
     ViewRegister.name,
-    ViewNotifications.name
+    ViewNotifications.name,
+	  ViewAddResume.name,
+	  ViewResume.name
 ]);
 
-app.constant('API_URL', 'http://accd1eb4.ngrok.io/api');
+app.constant('API_URL', 'localhost');
 app.config(Routes);
 app.config(Middlewares);
+app.config(['$mdDateLocaleProvider', function($mdDateLocaleProvider) {
+  $mdDateLocaleProvider.formatDate = function(date) {
+    return moment(date).format('YYYY-MM-DD');
+  };
+}]);
 
 
 angular.element(document).ready(function() {
