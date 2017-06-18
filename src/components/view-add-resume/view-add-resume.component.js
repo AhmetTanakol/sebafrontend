@@ -6,6 +6,7 @@ import template from './view-add-resume.template.html';
 import './view-add-resume.style.css';
 
 import moment from 'moment/moment';
+import _ from 'lodash';
 
 class ViewAddResumeComponent {
     constructor(){
@@ -26,8 +27,37 @@ class ViewAddResumeComponentController{
 			this.$state = $state;
 		}
 
+		removeCertificate (selectedItem) {
+      var index = this.certificates.indexOf(selectedItem);
+      this.certificates.splice(index, 1);
+    }
+
+		removeEducation (selectedItem) {
+      var index = this.educations.indexOf(selectedItem);
+      this.educations.splice(index, 1);
+		}
+
+  	removeExperience (selectedItem) {
+      var index = this.experiences.indexOf(selectedItem);
+      this.experiences.splice(index, 1);
+  	}
+
+  	removeSkill (selectedItem) {
+      var index = this.skills.indexOf(selectedItem);
+      this.skills.splice(index, 1);
+  	}
+
+  	addCertificate () {
+			this.certificates.push({
+				title: this.certificate.title,
+        startDate: moment(this.certificate.startDate).format('YYYY-MM-DD'),
+        endDate: moment(this.certificate.endDate).format('YYYY-MM-DD'),
+			});
+			this.certificate = {};
+		}
+
 		addEducation () {
-			this.education.push({
+			this.educations.push({
 			  schoolName: this.education.schoolName,
 			  degree: this.education.degree,
 			  startDate: moment(this.education.startDate).format('YYYY-MM-DD'),
@@ -48,10 +78,26 @@ class ViewAddResumeComponentController{
 			this.experience = {};
 		}
 
+		addSkill () {
+			this.skills.push({
+				type: this.skill.type,
+				power: this.skill.power,
+			});
+			this.skill = {};
+		}
+
 		$onInit() {
+			this.educations = [];
 			this.experiences = [];
-				this.experience = {};
-				var currentDate = new Date();
+      this.certificates = [];
+      this.skills = [];
+
+      this.certificate = {};
+      this.education = {};
+			this.experience = {};
+      this.skill = {};
+
+			var currentDate = new Date();
 			this.maxStartDate = new Date(
 				currentDate.getFullYear(),
 				currentDate.getMonth() - 1,
