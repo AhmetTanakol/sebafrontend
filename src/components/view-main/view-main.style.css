@@ -1,8 +1,53 @@
-md-card {
-    margin: auto;
-    left: 0;
-    right: 0;
-    margin-bottom: 20px;
+#background {
+    /*background-image: url("background-main.png");*/
+}
+
+.transparent{
+    background:rgba(63,81,181,0.05);
+    border-radius: 4px;
+    padding: 3px;
+}
+
+#maincontent-header{
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    background-image: url("http://www.cogointeractive.com/hubfs/hands-people-woman-working-large.jpg?t=1489729111580");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+#maincontent-header.container {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+#maincontent-headerimg {
+    display: block;
+    margin: 0 auto 20px;
+}
+#maincontent-header.intro-text .name {
+    display: block;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2em;
+}
+#maincontent-header.intro-text .skills {
+    font-size: 1.25em;
+    font-weight: 300;
+}
+@media (min-width: 768px) {
+    #maincontent-header.container {
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }
+    #maincontent-header.intro-text .name {
+        font-size: 4.75em;
+    }
+    #maincontent-header.intro-text .skills {
+        font-size: 1.75em;
+    }
 }
 
 .mainCarousel {
@@ -19,9 +64,10 @@ md-card {
     display: inline-flex;
 }
 .slideImg img {
-    width: auto;
-    height: 100%;
+    marign:auto;
     object-fit: contain;
+    width: 100%;
+    height: auto;
 }
 
 .slideInfo {
@@ -38,5 +84,22 @@ md-card {
 }
 
 .slideWrapper * {
-    border: 1px solid red;
+    border: 1px  red;
+
 }
+.right.carousel-control, .left.carousel-control {
+    opacity: 0;
+    filter:alpha(opacity=0); /* IE support */
+}
+
+md-card * {
+    border: 1px  red;
+
+}
+
+md-card-title {
+    height: 90px;
+}
+
+
+

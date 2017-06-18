@@ -1,39 +1,120 @@
-<md-card id="mainCarousel" class="mainCarousel carousel slide" data-ride="carousel" data-interval="$ctrl.myInterval">
-    <!-- Indicators -->
-    <ol class="carousel-indicators" ng-repeat="slide in $ctrl.slides">
-        <li data-target="#mainCarousel" data-slide-to="$ctrl.active" ng-class="{'active': $index == $ctrl.active}"></li>
-    </ol>
-
-    <!-- Wrapper for Slides -->
-    <div class="carousel-inner" role="listbox" ng-repeat="slide in $ctrl.slides">
-        <div class="item" ng-class="{'active': $index == $ctrl.active}">
-            <!-- Set the first background image using inline CSS below. -->
-            <div class="container-fluid" >
-                <div class="row slideWrapper" >
-                    <div class="slideImg" flex="40"><img ng-src="{{slide.image}}"></div>
-                    <div class="slideInfo" flex="60">
-                        <h2>{{slide.title}}</h2>
-                        <p>{{slide.text}}</p>
+ <div id="background">
+     <div class="container" id="maincontent-header" tabindex="-1">
+         <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <div layout-align="center center" layout="row">
+                            <h1 class="name transparent">New Country, many Challanges</h1>
+                        </div>
+                        <span class="skills transparent">Finding a job don't have to be one</span>
+                        <hr class="star-light">
+                        <div layout="column" layout-align="center center" flex="nogrow">
+                            <span class="skills transparent">Let us help you with Informations and Jobs</span>
+                            <md-button class="transparent">Register now</md-button>
+                        </div>
                     </div>
                 </div>
             </div>
+     </div>
+
+     <br>
+
+    <div class="imageCarousel"  layout-align="start center">
+        <div uib-carousel active="$ctrl.active" interval="$ctrl.interval" no-wrap="$ctrl.noWrapSlides">
+            <div uib-slide ng-repeat="slide in $ctrl.slides track by slide.id" index="slide.id" flex="90" flex-offset="5" >
+                <md-card class="row slideWrapper" layout-align="center">
+                    <div layout="row" layout-align="center center" flex="35">
+                        <img  flex="95"  ng-src="{{slide.image}}">
+                    </div>
+                    <div class="slideInfo" layout-no-wrap="true" layout="column" layout-align="center center" flex="65x">
+                        <h2>{{slide.title}}</h2>
+                        <p>{{slide.text}}</p>
+                    </div>
+                </md-card>
+            </div>
         </div>
     </div>
-<!-- Controls -->
-    <a class="left carousel-control" href="#mainCarousel" role="button" data-slide="prev">
-        <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#mainCarousel" role="button" data-slide="next">
-        <span class="icon-next"></span>
-    </a>
-</md-card>
-<md-card-content>
-    <h2>About WorkForce</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a felis et justo gravida euismod.
-        Phasellus lectus leo, feugiat vitae vulputate at, sodales ac risus. Nam ut metus vestibulum, cursus tortor
-        eget, placerat ante. Quisque facilisis nunc arcu, a porttitor nulla rutrum quis. Etiam non laoreet nisl.
-        Maecenas quis facilisis tellus. Nunc efficitur erat csed lacus laoreet, eu suscipit quam tempor.
-        Duis mauris risus, varius ut convallis at, aliquet tempus eros. Pellentesque consequat lectus nec
-        magna tincidunt viverra.</p>
-</md-card-content>
-</md-card>
+
+     <div id="forRefugees" layout="column">
+         <h2 layout-padding >Our Services for Refugees</h2>
+         <div id="servicesRefugee" layout="row" layout-align="space-around stretch">
+             <md-card flex="30" id="refugeeCV" layout="column" layout-wrap>
+                 <img ng-src="https://www.travelexcellence.com/images/movil/La_Paz_Waterfall.jpg" class="md-card-image" alt="for Refugees">
+                 <div layout="column" layout-align="center center">
+                     <md-card-title flex="nogrow">
+                         <md-card-title-text>
+                             <span class="md-headline">Build your resumee</span>
+                         </md-card-title-text>
+                     </md-card-title>
+                     <md-card-content>
+                         <p>
+                             Here you can build up your resumee!
+                         </p>
+                     </md-card-content>
+                 </div>
+             </md-card>
+
+             <md-card flex="30" id="refugeeCV">
+                 <img ng-src="http://images.kuoni.co.uk/73/indonesia-34834203-1451484722-ImageGalleryLightbox.jpg" class="md-card-image" alt="about the law">
+                 <div layout="column" layout-align="center center">
+                     <md-card-title flex="nogrow">
+                         <md-card-title-text>
+                             <span class="md-headline">About the law</span>
+                         </md-card-title-text>
+                     </md-card-title>
+                     <md-card-content>
+                         <p>
+                         Uncertain about your Rights?
+                         <br>
+                         Here you find all informations!
+                         </p>
+                     </md-card-content>
+                 </div>
+             </md-card>
+
+             <md-card flex="30" id="refugeeCV">
+                 <img ng-src="http://www.parasholidays.in/blog/wp-content/uploads/2014/05/holiday-tour-packages-for-usa.jpg" class="md-card-image" alt="Washed Out">
+                 <div layout="column" layout-align="center center">
+                     <md-card-title flex="nogrow">
+                         <md-card-title-text>
+                             <span class="md-headline">Build you resumee</span>
+                         </md-card-title-text>
+                     </md-card-title>
+                     <md-card-content>
+                         <p>
+                             Here you can build up your resumee!
+                         </p>
+                     </md-card-content>
+                 </div>
+             </md-card>
+         </div>
+     </div>
+
+
+
+     <md-card id="aboutUs">
+         <md-card-content >
+             <h2>About WorkForce</h2>
+             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a felis et justo gravida euismod.
+                 Phasellus lectus leo, feugiat vitae vulputate at, sodales ac risus. Nam ut metus vestibulum, cursus tortor
+                 eget, placerat ante. Quisque facilisis nunc arcu, a porttitor nulla rutrum quis. Etiam non laoreet nisl.
+                 Maecenas quis facilisis tellus. Nunc efficitur erat csed lacus laoreet, eu suscipit quam tempor.
+                 Duis mauris risus, varius ut convallis at, aliquet tempus eros. Pellentesque consequat lectus nec
+                 magna tincidunt viverra.</p>
+         </md-card-content>
+     </md-card>
+
+     <md-card id="contactUs">
+         <md-card-content >
+             <h2>About WorkForce</h2>
+             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a felis et justo gravida euismod.
+                 Phasellus lectus leo, feugiat vitae vulputate at, sodales ac risus. Nam ut metus vestibulum, cursus tortor
+                 eget, placerat ante. Quisque facilisis nunc arcu, a porttitor nulla rutrum quis. Etiam non laoreet nisl.
+                 Maecenas quis facilisis tellus. Nunc efficitur erat csed lacus laoreet, eu suscipit quam tempor.
+                 Duis mauris risus, varius ut convallis at, aliquet tempus eros. Pellentesque consequat lectus nec
+                 magna tincidunt viverra.</p>
+         </md-card-content>
+     </md-card>
+
+
+ </div>

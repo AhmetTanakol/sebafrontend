@@ -1,12 +1,10 @@
-<div layout="row" layout-fill ng-cloak>
+<div id="background" layout="row" layout-fill ng-cloak>
     <div layout="column" flex>
         <app-header></app-header>
         <md-content flex layout-gt-sm="row">
-            <span flex="5"></span>
             <ui-view flex>
                 <view-main></view-main>
             </ui-view>
-            <span flex="5"></span>
         </md-content>
         <app-footer></app-footer>
     </div>
