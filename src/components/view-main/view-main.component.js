@@ -24,7 +24,7 @@ class ViewMainComponentController {
               id: 0,
               title: 'Title of Company',
               text: 'some information about the company',
-              image: 'http://www.vietnamteambuilding.net/uploads/Gioi%20thieu/company-profile-Vietnam-team-building.jpg'
+              image: 'http://bashooka.com/wp-content/uploads/2016/12/company-profile-design-templates-24.jpg'
           },
           {
               id: 1,
