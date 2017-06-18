@@ -45,7 +45,7 @@ let app = angular.module('app', [
 	  ViewResume.name
 ]);
 
-app.constant('API_URL', 'http://accd1eb4.ngrok.io/api');
+app.constant('API_URL', 'localhost');
 app.config(Routes);
 app.config(Middlewares);
 app.config(['$mdDateLocaleProvider', function($mdDateLocaleProvider) {

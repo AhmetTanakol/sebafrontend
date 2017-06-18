@@ -30,6 +30,10 @@ module.exports = {
                 }
             },
             {
+                test: /\.(jpe?g)$/i,
+                loader:'file-loader'
+            },
+            {
                 test: /\.html$/,
                 loader: 'html-loader'
             },

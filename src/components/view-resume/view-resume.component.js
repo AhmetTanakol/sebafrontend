@@ -25,9 +25,8 @@ class ViewResumeComponentController{
         this.UserService = UserService;
     }
 
-	$onInit() {
-		this.noProfilePicture = './../../../dist/assets/no_profile_pict.jpg';
-	}
+	  $onInit() {
+	  }
 	
     static get $inject(){
         return ['$state', UserService.name];
