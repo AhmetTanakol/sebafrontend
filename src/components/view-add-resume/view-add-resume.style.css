@@ -19,6 +19,15 @@
 	color: #29374f;
 }
 
+.button-delete {
+	background-color: #bf0d10;
+	color: #fff;
+}
+
+.button-delete:hover {
+	color: #333;
+}
+
 .button-add:disabled {
     background: #dddddd;
 }

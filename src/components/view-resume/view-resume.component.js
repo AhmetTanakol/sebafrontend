@@ -25,8 +25,8 @@ class ViewResumeComponentController{
         this.UserService = UserService;
     }
 
-	  $onInit() {
-	  }
+	$onInit() {
+	}
 	
     static get $inject(){
         return ['$state', UserService.name];
