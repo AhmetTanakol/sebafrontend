@@ -43,9 +43,9 @@ export default class RefugeeService {
     }
 
 
-    create(movie) {
+    create(refugee) {
         let url = this.resourceUrl;
-        return this.$http.post(url,movie).then(responce => {
+        return this.$http.post(url,refugee).then(responce => {
 
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
@@ -65,10 +65,10 @@ export default class RefugeeService {
         })
     }
 
-    update(movie) {
+    update(refugee) {
 
-        let url = `${ this.resourceUrl }${ movie['_id'] }`;
-        return this.$http.put(url,movie).then(responce => {
+        let url = `${ this.resourceUrl }${ refugee['_id'] }`;
+        return this.$http.put(url,refugee).then(responce => {
 
             return new Promise((resolve, reject) => {
                 resolve(responce.data);

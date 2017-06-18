@@ -2,9 +2,9 @@
 
 import angular from 'angular';
 
-//import MoviesService from './movies.service';
-import MoviesService from './movies.local.service';
+//import RefugeeService from './refugee.service';
+import RefugeeService from './refugee.local.service';
 
 
-export default angular.module('MoviesServiceDefinition', [])
-    .service(MoviesService.name, MoviesService)
+export default angular.module('RefugeeServiceDefinition', [])
+    .service(RefugeeService.name, RefugeeService)
