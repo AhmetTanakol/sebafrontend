@@ -1,11 +1,13 @@
 <md-toolbar>
     <div class="md-toolbar-tools">
         <a layout="row">
-            <md-icon><ng-md-icon icon="grain" ></ng-md-icon></md-icon>
-            <h2>WorkForce</h2>
+            <span id="logo" ng-click="$ctrl.main()">
+                <md-icon><ng-md-icon icon="grain" ></ng-md-icon></md-icon>
+                <h2>WorkForce</h2>
+            </span>
         </a>
         <span flex></span>
-        <span flex="5"></span>
+        <span flex="4"></span>
         <md-button ng-click="$ctrl.getNotifications($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
             Notifications
