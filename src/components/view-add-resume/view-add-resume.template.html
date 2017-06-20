@@ -55,7 +55,7 @@
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Postal Code</label>
 									<input name="postalCode" ng-model="$ctrl.resume.postalCode"
-										   ng-required="true" ng-pattern="/^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/" md-maxlength="5">
+										   ng-required="true" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
 
 									<div ng-messages="PersonalInformationForm.postalCode.$error" role="alert" multiple>
 										<div ng-message="required" class="my-message">You must supply a postal code.</div>
