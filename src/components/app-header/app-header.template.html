@@ -1,15 +1,39 @@
 <md-toolbar>
     <div class="md-toolbar-tools">
         <a layout="row">
-            <md-icon><ng-md-icon icon="grain" ></ng-md-icon></md-icon>
-            <h2>WorkForce</h2>
+            <span id="logo" ng-click="$ctrl.main()">
+                <md-icon><ng-md-icon icon="grain" ></ng-md-icon></md-icon>
+                <h2>WorkForce</h2>
+            </span>
         </a>
         <span flex></span>
-        <span flex="5"></span>
+        <span flex="4"></span>
         <md-button ng-click="$ctrl.getNotifications($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
             Notifications
         </md-button>
+        <md-menu-bar>
+            <md-menu>
+                <md-button ng-click="$mdMenu.open()">
+                    <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
+                    Resume
+                </md-button>
+                <md-menu-content width="2">
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.addResume()">
+                            <md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
+                            Add Resume
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.viewResume()">
+                            <md-icon md-menu-align-target><ng-md-icon icon="pageview" ></ng-md-icon></md-icon>
+                            View Resume
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
         <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
             {{$ctrl.getCurrentUser()}}
