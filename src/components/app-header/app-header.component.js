@@ -69,6 +69,10 @@ class AppHeaderComponentController{
     viewResume() {
       this.$state.go('viewResume',{});
     }
+
+    makeSearch() {
+      this.$state.go('viewMatching', {});
+    }
 	
     static get $inject(){
         return ['$state', UserService.name];

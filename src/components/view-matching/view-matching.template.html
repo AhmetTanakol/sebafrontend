@@ -1,0 +1,83 @@
+<div layout="column">
+    <div layout="row" layout-marging layout-padding layout-align="center center">
+        <md-input-container>
+            <label>Location</label>
+            <md-select ng-model="search.location">
+                <md-option ng-repeat="location in $ctrl.locations" value="{{location.name}}">
+                    {{location.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container ng-if="$ctrl.isUserRefugee()">
+            <label>Age</label>
+            <md-select ng-model="search.age">
+                <md-option ng-repeat="age in $ctrl.ages" value="{{age}}">
+                    {{age}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container ng-if="$ctrl.isUserRefugee()">
+            <label>Gender</label>
+            <md-select ng-model="search.gender">
+                <md-option value="Male">Male</md-option>
+                <md-option value="Female">Female</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>Industry</label>
+            <md-select ng-model="search.industry">
+                <md-option ng-repeat="industry in $ctrl.industries" value="{{industry.name}}">
+                    {{industry.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-button class="md-fab md-warn" aria-label="Apply Filter" ng-click="$ctrl.declineCandidate()">
+                <md-icon class="material-icons md-48"><ng-md-icon icon="filter_list"></ng-md-icon></md-icon>
+            </md-button>
+        </md-input-container>
+    </div>
+    <div layout="row" layout-margin>
+        <div flex="20" layout="row" class="flexitem" layout-align="end center">
+            <md-button aria-label="Cancel" class="md-fab md-warn">
+                <md-icon class="material-icons md-48"><ng-md-icon icon="cancel"></ng-md-icon></md-icon>
+            </md-button>
+        </div>
+        <div flex="70" layout="row" layout-align="center center">
+            <md-card layout-padding flex="auto" ng-if="$ctrl.isUserRefugee()">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{$ctrl.refugee.name}}</span>
+                        <span class="md-subhead">{{$ctrl.refugee.nationality}} / {{$ctrl.refugee.location}} / {{$ctrl.refugee.language}} / {{$ctrl.refugee.age}}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-xl card-media">
+                            <img src="./../../images/noimage.jpeg" alt="Refugee Profile Picture"/>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-content layout="row" layout-align="space-between" flex="auto">
+                    <md-list>
+                        <md-list-item ng-repeat="skill in $ctrl.refugee.skills">
+                            <div layout="row">
+                                <div flex>
+                                    {{ skill.name }}
+                                </div>
+                                <div flex>
+                                    <md-slider-container>
+                                        <md-slider flex ng-model="skill.power" ng-disabled="true" md-discrete aria-label="Disabled" ng-readonly="true"></md-slider>
+                                    </md-slider-container>
+                                </div>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex="20" class="flexitem" layout="row" layout-align="start center">
+            <md-button aria-label="Check" class="md-fab md-warn" ng-click="$ctrl.addCandidate()">
+                <md-icon class="material-icons md-48"><ng-md-icon icon="check"></ng-md-icon></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>
