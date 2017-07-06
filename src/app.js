@@ -47,7 +47,7 @@ let app = angular.module('app', [
 	  ViewResume.name
 ]);
 
-app.constant('API_URL', 'localhost');
+app.constant('API_URL', 'http://localhost:3000/api');
 app.config(Routes);
 app.config(Middlewares);
 app.config(['$mdDateLocaleProvider', function($mdDateLocaleProvider) {

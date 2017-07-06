@@ -46,6 +46,11 @@ class ViewAddResumeComponentController{
 		var index = this.skills.indexOf(selectedItem);
 		this.skills.splice(index, 1);
   	}
+	
+	removeLanguage (selectedItem) {
+		var index = this.resume.languages.indexOf(selectedItem);
+		this.resume.languages.splice(index, 1);
+	}
 
 	addCertificate () {
 		this.certificates.push({
@@ -79,19 +84,37 @@ class ViewAddResumeComponentController{
 	}
 
 	addSkill () {
-		this.skills.push({
-			type: this.skill.type,
-			power: this.skill.power,
-		});
-		this.skill = {};
+		var validSkill = true;
+		for (var i=0; i<this.skills.length; i++) {
+			if (this.skills[i].type == this.skill.type) {
+				validSkill = false;
+			}
+		}
+		if (validSkill) {
+			this.skills.push({
+				type: this.skill.type,
+				power: this.skill.power,
+			});
+			this.skill = {};
+		}
+	}
+	
+	addLanguage () {
+		if ((this.resume.language != '') && (this.resume.languages.indexOf(this.resume.language) == -1)) {
+			this.resume.languages.push(this.resume.language);
+			this.resume.language = '';
+		}
 	}
 
 	$onInit() {
+		this.resume = [];
+		this.resume.languages = [];
 		this.educations = [];
 		this.experiences = [];
 		this.certificates = [];
 		this.skills = [];
 
+		this.resume.language = '';
 		this.certificate = {};
 		this.education = {};
 		this.experience = {};
@@ -119,8 +142,49 @@ class ViewAddResumeComponentController{
 			currentDate.getMonth(),
 			currentDate.getDate()
 		);
-				
+		
+		// get languages
+		this.languagesList = [
+			{id:1, name:'Deutsch'}, 
+			{id:2, name:'English'}, 
+			{id:3, name:'Indonesian'}, 
+			{id:4, name:'Chinese'}, 
+			{id:5, name:'Tamil'}, 
+			{id:6, name:'Abcwkwkwkwkwkwk'}
+		];		
+		
+		// get country of birth & company location (countries list)
+		this.countriesList = [
+			{id:1, name:'Germany'}, 
+			{id:2, name:'USA'}, 
+			{id:3, name:'Indonesia'}, 
+			{id:4, name:'China'}, 
+			{id:5, name:'India'}, 
+			{id:6, name:'Australia'}
+		];		
+		
+		// get skills
+		this.skillsList = [
+			{id:1, name:'Cook'}, 
+			{id:2, name:'Baker'}, 
+			{id:3, name:'Construction'}, 
+			{id:4, name:'Electrican'}, 
+			{id:5, name:'Gardening'}, 
+			{id:6, name:'Plumber'}
+		];
+		
 	}
+	
+	save() {
+        /*let user = this.UserService.getCurrentUser();
+
+        this.movie['user'] = user['_id'];
+        this.MoviesService.create(this.movie).then(data => {
+            let _id = data['_id'];
+            this.$state.go('movie',{ movieId:_id});
+        });*/
+
+    };
 	
     static get $inject () {
       return ['$state'];

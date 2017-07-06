@@ -24,8 +24,21 @@
 	color: #fff;
 }
 
-.button-delete:hover {
+.button-delete:hover, .button-delete-small:hover {
 	color: #333;
+}
+
+.md-button.md-small {
+    min-width: 1%;
+}
+
+.button-delete-small {
+	background-color: #bf0d10;
+	width: 40px;
+}
+
+.button-delete-small .icon-delete {
+	color: #fff;
 }
 
 .button-add:disabled {
