@@ -1,7 +1,7 @@
 'use strict';
 
-import RefugeeService from './../../services/refugee/refugee.service';
 import UserService from './../../services/user/user.service';
+import MatchingService from './../../services/matching/matching.service';
 
 import template from './view-matching.template.html';
 
@@ -21,69 +21,94 @@ class ViewMatchingComponent {
 }
 
 class ViewMatchingController {
-  constructor($state, UserService, RefugeeService) {
+  constructor($state, UserService, MatchingService) {
     this.$state = $state;
-    this.RefugeeService = RefugeeService;
     this.UserService = UserService;
+    this.MatchingService = MatchingService;
   }
 
-  isAuthenticated(){
-    return this.UserService.isAuthenticated();
-  }
+  selectItem(action) {
+    if (this.isUserRefugee()) {
+      this.jobCounter++;
+      if (this.jobCounter <= this.jobs.length) {
+        this.job = this.jobs[this.jobCounter];
+      }
+    } else {
+      this.refugeeCounter++;
+      if (this.refugeeCounter <= this.refugees.length) {
+        this.refugee = this.refugees[this.refugeeCounter];
+      }
+    }
+    /*this.MatchingService.addRefugee().then(data => {
 
-  getCurrentUser(){
-    //let user = this.UserService.getCurrentUser();
-    //return user.username;
-    let usertype = 'company';
-    return usertype;
-  }
+      console.log(data);
 
-  declineCandidate() {
-
-  }
-
-  addCandidate() {
-
+    });*/
   }
 
   isUserRefugee() {
-    if (this.getCurrentUser() == 'refugee'){
+    let user = this.UserService.getCurrentUser();
+    if (user.type === 'refugee') {
       return true;
+    }
+    return false;
+  }
+
+  isUndefined(obj) {
+    return _.isUndefined(obj);
+  }
+
+  applyFilter() {
+    if (this.isUserRefugee()) {
+      this.jobs = [];
+      this.job = {};
+      this.jobCounter = 0;
+      this.MatchingService.listCompanies(this.search).then(jobs => {
+        this.jobs = jobs;
+        this.job = this.jobs[this.jobCounter];
+      });
     } else {
-      return false;
+      this.refugees = [];
+      this.refugee = {};
+      this.refugeeCounter = 0;
+      this.MatchingService.listRefugees(this.search).then(refugees => {
+        this.refugees = refugees;
+        this.refugee = this.refugees[this.refugeeCounter];
+      });
     }
   }
 
   $onInit() {
-    this.refugee = {
-      name: "Ahmet Tanakol",
-      language: "Turkish",
-      nationality: "Turkish",
-      location: "Munich",
-      age: 28,
-      skills: [
-        {
-          name: "Bakery",
-          power: 5
-        },
-        {
-          name: "Cooking",
-          power: 7
-        }
-      ]
-    };
-    /*if (this.UserService.isAuthenticated()) {
-      this.RefugeeService.list().then(response => {
+    if (this.isUserRefugee()) {
+      this.jobs = [];
+      this.job = {};
+      this.jobCounter = 0;
+    } else {
+      this.refugees = [];
+      this.refugee = {};
+      this.refugeeCounter = 0;
+    }
+    if (this.UserService.isAuthenticated()) {
+      this.search = {};
+      this.MatchingService.listLocations().then(locations => {
+        this.locations = locations;
+      });
 
-      })
+      this.MatchingService.listIndustries().then(industries => {
+        this.industries = industries;
+      });
+
+      this.MatchingService.listSkills().then(skills => {
+        this.skills = skills;
+      });
 
     } else {
       this.$state.go('login',{});
-    } */
+    }
   }
 
   static get $inject() {
-    return ['$state', UserService.name, RefugeeService.name];
+    return ['$state', UserService.name, MatchingService.name];
   }
 }
 

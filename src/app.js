@@ -19,6 +19,7 @@ import moment from 'moment/moment';
 
 import UserService from './services/user/user';
 import RefugeeService from './services/refugee/refugee';
+import MatchingService from './services/matching/matching';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -41,6 +42,7 @@ let app = angular.module('app', [
     uiBootstrap,
     UserService.name,
     RefugeeService.name,
+    MatchingService.name,
     AppContent.name,
     ViewMain.name,
     ViewLogin.name,
@@ -51,7 +53,7 @@ let app = angular.module('app', [
     ViewMatching.name
 ]);
 
-app.constant('API_URL', 'localhost');
+app.constant('API_URL', 'http://localhost:3000/api');
 app.config(Routes);
 app.config(Middlewares);
 app.config(['$mdDateLocaleProvider', function($mdDateLocaleProvider) {

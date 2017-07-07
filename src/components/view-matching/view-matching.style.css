@@ -5,3 +5,7 @@
 .flexitem {
     text-align: center;
 }
+
+.matching-card {
+    min-height: 250px;
+}

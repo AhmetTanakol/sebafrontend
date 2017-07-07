@@ -8,15 +8,15 @@
         </a>
         <span flex></span>
         <span flex="4"></span>
-        <md-button ng-click="$ctrl.makeSearch($event)">
+        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.makeSearch($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="group" ></ng-md-icon></md-icon>
             Search
         </md-button>
-        <md-button ng-click="$ctrl.getNotifications($event)">
+        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.getNotifications($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
             Notifications
         </md-button>
-        <md-menu-bar>
+        <md-menu-bar ng-if="$ctrl.isAuthenticated()">
             <md-menu>
                 <md-button ng-click="$mdMenu.open()">
                     <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
@@ -38,10 +38,22 @@
                 </md-menu-content>
             </md-menu>
         </md-menu-bar>
-        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)">
-            <md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
-            {{$ctrl.getCurrentUser()}}
-        </md-button>
+        <md-menu-bar ng-if="$ctrl.isAuthenticated()">
+            <md-menu>
+                <md-button ng-click="$mdMenu.open()">
+                    <md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
+                    {{$ctrl.getCurrentUser()}}
+                </md-button>
+                <md-menu-content width="2">
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.logout($event)">
+                            <md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
+                            Logout
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
         <md-button ng-if="!$ctrl.isAuthenticated()" ng-click="$ctrl.login()">
             <md-icon md-menu-align-target><ng-md-icon icon="login" ></ng-md-icon></md-icon>
             Login
