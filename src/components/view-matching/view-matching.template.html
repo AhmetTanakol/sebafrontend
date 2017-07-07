@@ -10,7 +10,7 @@
         </md-input-container>
         <md-input-container ng-if="!$ctrl.isUserRefugee()">
             <label>Age</label>
-            <md-select ng-model="search.age">
+            <md-select ng-model="$ctrl.search.age">
                 <md-option value="18-25">18-25</md-option>
                 <md-option value="26-35">26-35</md-option>
                 <md-option value="36-45">36-45</md-option>
@@ -19,7 +19,7 @@
         </md-input-container>
         <md-input-container ng-if="!$ctrl.isUserRefugee()">
             <label>Gender</label>
-            <md-select ng-model="search.gender">
+            <md-select ng-model="$ctrl.search.gender">
                 <md-option value="Male">Male</md-option>
                 <md-option value="Female">Female</md-option>
             </md-select>
@@ -40,6 +40,14 @@
                 </md-option>
             </md-select>
         </md-input-container>
+        <md-input-container ng-if="!$ctrl.isUserRefugee()">
+            <label>Jobs</label>
+            <md-select ng-model="$ctrl.search.job">
+                <md-option ng-repeat="jobItem in $ctrl.jobList" value="{{jobItem._id}}">
+                    {{jobItem.title}}
+                </md-option>
+            </md-select>
+        </md-input-container>
         <md-input-container>
             <md-button class="md-fab md-warn" aria-label="Apply Filter" ng-click="$ctrl.applyFilter()">
                 <md-icon class="material-icons md-48"><ng-md-icon icon="filter_list"></ng-md-icon></md-icon>
@@ -48,7 +56,7 @@
     </div>
     <div layout="row" layout-margin>
         <div flex="20" layout="row" class="flexitem" layout-align="end center">
-            <md-button aria-label="Cancel" class="md-fab md-warn" ng-click="$ctrl.selectItem('decline')">
+            <md-button aria-label="Cancel" class="md-fab md-warn" ng-click="$ctrl.selectItem('decline', $ctrl.search)">
                 <md-icon class="material-icons md-48"><ng-md-icon icon="cancel"></ng-md-icon></md-icon>
             </md-button>
         </div>
@@ -127,7 +135,7 @@
 
         </div>
         <div flex="20" class="flexitem" layout="row" layout-align="start center">
-            <md-button aria-label="Check" class="md-fab md-warn" ng-click="$ctrl.selectItem('add')">
+            <md-button aria-label="Check" class="md-fab md-warn" ng-click="$ctrl.selectItem('add', $ctrl.search)">
                 <md-icon class="material-icons md-48"><ng-md-icon icon="check"></ng-md-icon></md-icon>
             </md-button>
         </div>
