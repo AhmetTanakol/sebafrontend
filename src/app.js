@@ -18,6 +18,8 @@ import ngMessages from 'angular-messages';
 import moment from 'moment/moment';
 
 import UserService from './services/user/user';
+import RefugeeService from './services/refugee/refugee';
+import MatchingService from './services/matching/matching';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -29,6 +31,7 @@ import ViewRegister from './components/view-register/view-register';
 import ViewNotifications from './components/view-notifications/view-notifications';
 import ViewAddResume from './components/view-add-resume/view-add-resume';
 import ViewResume from './components/view-resume/view-resume';
+import ViewMatching from './components/view-matching/view-matching';
 
 let app = angular.module('app', [
     uiRouter,
@@ -38,16 +41,19 @@ let app = angular.module('app', [
     ngMessages,
     uiBootstrap,
     UserService.name,
+    RefugeeService.name,
+    MatchingService.name,
     AppContent.name,
     ViewMain.name,
     ViewLogin.name,
     ViewRegister.name,
     ViewNotifications.name,
 	  ViewAddResume.name,
-	  ViewResume.name
+	  ViewResume.name,
+    ViewMatching.name
 ]);
 
-app.constant('API_URL', 'localhost');
+app.constant('API_URL', 'http://localhost:3000/api');
 app.config(Routes);
 app.config(Middlewares);
 app.config(['$mdDateLocaleProvider', function($mdDateLocaleProvider) {

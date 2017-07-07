@@ -55,13 +55,13 @@ class AppHeaderComponentController{
 
     logout(){
         this.UserService.logout();
-        this.$state.go('movies',{});
+        this.$state.go('main',{});
     }
 
     openMenu($mdMenu, ev) {
       $mdMenu.open(ev);
     }
-	
+
     addResume() {
       this.$state.go('addResume',{});
     }
@@ -69,7 +69,11 @@ class AppHeaderComponentController{
     viewResume() {
       this.$state.go('viewResume',{});
     }
-	
+
+    makeSearch() {
+      this.$state.go('viewMatching', {});
+    }
+
     static get $inject(){
         return ['$state', UserService.name];
     }

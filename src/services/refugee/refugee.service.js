@@ -18,7 +18,6 @@ export default class RefugeeService {
     }
 
     list() {
-
         let url = this.resourceUrl;
         return this.$http.get(url).then(responce => {
 
@@ -28,7 +27,6 @@ export default class RefugeeService {
             });
 
         });
-
     }
 
     get(id) {

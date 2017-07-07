@@ -6,6 +6,7 @@ import NotificationComponent from './../components/view-notifications/view-notif
 import MainComponent from './../components/view-main/view-main.component'
 import AddResumeComponent from './../components/view-add-resume/view-add-resume.component';
 import ResumeComponent from './../components/view-resume/view-resume.component';
+import MatchingComponent from './../components/view-matching/view-matching.component';
 
 
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
@@ -30,13 +31,17 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
           url: '/notification',
           component: NotificationComponent.name,
         })
-		.state('addResume', {
+        .state('addResume', {
           url: '/add-resume',
           component: AddResumeComponent.name,
         })
-		.state('viewResume', {
+        .state('viewResume', {
           url: '/view-resume',
           component: ResumeComponent.name,
+        })
+        .state('viewMatching', {
+          url: '/matching',
+          component: MatchingComponent.name,
         })
 }
 

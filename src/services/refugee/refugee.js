@@ -2,8 +2,7 @@
 
 import angular from 'angular';
 
-//import RefugeeService from './refugee.service';
-import RefugeeService from './refugee.local.service';
+import RefugeeService from './refugee.service';
 
 
 export default angular.module('RefugeeServiceDefinition', [])
