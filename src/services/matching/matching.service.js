@@ -18,10 +18,6 @@ export default class MatchingService {
         return 'MatchingService';
     }
 
-    addRefugee() {
-
-    }
-
     listLocations() {
         return this.$http.get(`${this.API_URL}/location/`).then(response => {
            return new Promise((resolve, reject) => {
@@ -40,6 +36,18 @@ export default class MatchingService {
 
     listSkills() {
       return this.$http.get(`${this.API_URL}/skill/`).then(response => {
+        return new Promise((resolve, reject) => {
+          resolve(response.data);
+        });
+      });
+    }
+
+    listJobs(companyUser) {
+      return this.$http.get(`${this.API_URL}/job/`, {
+        params: {
+          user: companyUser
+        }
+      }).then(response => {
         return new Promise((resolve, reject) => {
           resolve(response.data);
         });
@@ -67,6 +75,33 @@ export default class MatchingService {
           skill: parameters.skill,
           age: parameters.age,
           gender: parameters.gender
+        }
+      }).then(response => {
+        return new Promise((resolve, reject) => {
+          resolve(response.data);
+        });
+      });
+    }
+
+    matchWithCompany(job, user) {
+      return this.$http.post(`${this.API_URL}/match/matchWithCompany`, {
+        params: {
+          job: job,
+          user: user
+        }
+      }).then(response => {
+        return new Promise((resolve, reject) => {
+          resolve(response.data);
+        });
+      });
+    }
+
+    matchWithRefugee(refugee, user, job) {
+      return this.$http.post(`${this.API_URL}/match/matchWithRefugee`, {
+        params: {
+          refugee: refugee,
+          job: job,
+          user: user
         }
       }).then(response => {
         return new Promise((resolve, reject) => {

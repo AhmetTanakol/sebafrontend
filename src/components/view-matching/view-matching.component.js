@@ -27,28 +27,34 @@ class ViewMatchingController {
     this.MatchingService = MatchingService;
   }
 
-  selectItem(action) {
+  selectItem(action, filter) {
     if (this.isUserRefugee()) {
       this.jobCounter++;
       if (this.jobCounter <= this.jobs.length) {
-        this.job = this.jobs[this.jobCounter];
+        if (action === 'add') {
+          this.MatchingService.matchWithCompany(this.job, this.currentUser).then(data => {
+            this.job = this.jobs[this.jobCounter];
+          });
+        } else {
+          this.job = this.jobs[this.jobCounter];
+        }
       }
     } else {
       this.refugeeCounter++;
       if (this.refugeeCounter <= this.refugees.length) {
-        this.refugee = this.refugees[this.refugeeCounter];
+        if (action === 'add') {
+          this.MatchingService.matchWithRefugee(this.refugee, this.currentUser, filter.job).then(data => {
+            this.refugee = this.refugees[this.refugeeCounter];
+          });
+        } else {
+          this.refugee = this.refugees[this.refugeeCounter];
+        }
       }
     }
-    /*this.MatchingService.addRefugee().then(data => {
-
-      console.log(data);
-
-    });*/
   }
 
   isUserRefugee() {
-    let user = this.UserService.getCurrentUser();
-    if (user.type === 'refugee') {
+    if (this.currentUser.type === 'refugee') {
       return true;
     }
     return false;
@@ -79,23 +85,26 @@ class ViewMatchingController {
   }
 
   $onInit() {
-    if (this.isUserRefugee()) {
-      this.jobs = [];
-      this.job = {};
-      this.jobCounter = 0;
-    } else {
-      this.refugees = [];
-      this.refugee = {};
-      this.refugeeCounter = 0;
-    }
     if (this.UserService.isAuthenticated()) {
+      this.currentUser = this.UserService.getCurrentUser();
       this.search = {};
+      if (this.isUserRefugee()) {
+        this.jobs = [];
+        this.job = {};
+        this.jobCounter = 0;
+        this.MatchingService.listIndustries().then(industries => {
+          this.industries = industries;
+        });
+      } else {
+        this.refugees = [];
+        this.refugee = {};
+        this.refugeeCounter = 0;
+        this.MatchingService.listJobs(this.currentUser._id).then(jobs => {
+          this.jobList = jobs;
+        });
+      }
       this.MatchingService.listLocations().then(locations => {
         this.locations = locations;
-      });
-
-      this.MatchingService.listIndustries().then(industries => {
-        this.industries = industries;
       });
 
       this.MatchingService.listSkills().then(skills => {
