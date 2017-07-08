@@ -1,0 +1,46 @@
+.view-profile {
+	font-family: Trebuchet Ms;
+}
+.view-profile .name-container {
+	background-color: #444;
+	color: #fff;
+	font-size: 3em;
+	text-align: center;	
+	padding: 50px 0;
+}
+
+.view-profile .title {
+	font-size: 0.6em;
+}
+
+.view-profile .left-container {
+	background-color: #9ca2ad;
+	text-align: center;
+	color: #333;
+}
+
+.view-profile .titles {
+	font-weight: 700;
+	font-size: 1.5em;
+	padding: 5px 0 10px 0;
+}
+
+.view-profile .profile-picture {
+	padding: 20px 0;
+}
+
+.view-profile .right-container {
+	text-align: center;
+}
+
+.view-profile .work-title {
+	font-size: 1.2em;
+}
+
+.view-profile .work-subtitle {
+	font-weight: 700;
+}
+
+.view-profile .work-exp {
+	margin-bottom: 20px;
+}
