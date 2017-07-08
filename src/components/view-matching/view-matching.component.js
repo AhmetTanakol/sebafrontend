@@ -69,7 +69,7 @@ class ViewMatchingController {
       this.jobs = [];
       this.job = {};
       this.jobCounter = 0;
-      this.MatchingService.listCompanies(this.search).then(jobs => {
+      this.MatchingService.listCompanies(this.search, this.currentUser.refugee).then(jobs => {
         this.jobs = jobs;
         this.job = this.jobs[this.jobCounter];
       });
@@ -77,7 +77,7 @@ class ViewMatchingController {
       this.refugees = [];
       this.refugee = {};
       this.refugeeCounter = 0;
-      this.MatchingService.listRefugees(this.search).then(refugees => {
+      this.MatchingService.listRefugees(this.search, this.currentUser.company).then(refugees => {
         this.refugees = refugees;
         this.refugee = this.refugees[this.refugeeCounter];
       });
@@ -99,7 +99,7 @@ class ViewMatchingController {
         this.refugees = [];
         this.refugee = {};
         this.refugeeCounter = 0;
-        this.MatchingService.listJobs(this.currentUser._id).then(jobs => {
+        this.MatchingService.listJobs(this.currentUser.company).then(jobs => {
           this.jobList = jobs;
         });
       }
