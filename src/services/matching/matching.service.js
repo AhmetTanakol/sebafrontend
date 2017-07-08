@@ -54,12 +54,13 @@ export default class MatchingService {
       });
     }
 
-    listCompanies(parameters) {
+    listCompanies(parameters, user) {
         return this.$http.get(`${this.API_URL}/company/findCompanies`, {
           params: {
             location: parameters.location,
             industry: parameters.industry,
-            skill: parameters.skill
+            skill: parameters.skill,
+            user: user
           }
         }).then(response => {
            return new Promise((resolve, reject) => {
@@ -68,13 +69,14 @@ export default class MatchingService {
         });
     }
 
-    listRefugees(parameters) {
+    listRefugees(parameters, user) {
       return this.$http.get(`${this.API_URL}/refugee/findRefugees`, {
         params: {
           location: parameters.location,
           skill: parameters.skill,
           age: parameters.age,
-          gender: parameters.gender
+          gender: parameters.gender,
+          user: user
         }
       }).then(response => {
         return new Promise((resolve, reject) => {
