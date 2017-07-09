@@ -12,7 +12,7 @@ module.exports = {
     entry: {
         'vendor': ['angular','angular-animate', 'angular-touch', 'angular-aria','angular-messages','angular-material',
           'angular-material-icons','@uirouter/angularjs', 'jquery', 'bootstrap', 'angular-ui-bootstrap',
-          'moment', 'alertifyjs', 'lodash'],
+          'moment', 'lodash'],
         'app': path.resolve(__dirname,'src/app.js')
     },
     output: {
