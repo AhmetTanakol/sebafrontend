@@ -21,7 +21,7 @@ export default class MatchingService {
     listLocations() {
         return this.$http.get(`${this.API_URL}/location/`).then(response => {
            return new Promise((resolve, reject) => {
-               resolve(response.data);
+             resolve(response.data);
            });
         });
     }
@@ -29,7 +29,7 @@ export default class MatchingService {
     listIndustries() {
         return this.$http.get(`${this.API_URL}/industry/`).then(response => {
            return new Promise((resolve, reject) => {
-               resolve(response.data);
+             resolve(response.data);
            })
         });
     }
@@ -37,7 +37,7 @@ export default class MatchingService {
     listSkills() {
       return this.$http.get(`${this.API_URL}/skill/`).then(response => {
         return new Promise((resolve, reject) => {
-          resolve(response.data);
+            resolve(response.data);
         });
       });
     }
@@ -76,7 +76,8 @@ export default class MatchingService {
           skill: parameters.skill,
           age: parameters.age,
           gender: parameters.gender,
-          user: user
+          user: user,
+          job: parameters.job
         }
       }).then(response => {
         return new Promise((resolve, reject) => {
