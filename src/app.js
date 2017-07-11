@@ -30,6 +30,7 @@ import ViewLogin from './components/view-login/view-login';
 import ViewRegister from './components/view-register/view-register';
 import ViewNotifications from './components/view-notifications/view-notifications';
 import ViewAddResume from './components/view-add-resume/view-add-resume';
+import ViewAddJob from './components/view-add-Job/view-add-Job';
 import ViewResume from './components/view-resume/view-resume';
 import ViewMatching from './components/view-matching/view-matching';
 
@@ -47,6 +48,7 @@ let app = angular.module('app', [
     ViewMain.name,
     ViewLogin.name,
     ViewRegister.name,
+    ViewAddJob.name,
     ViewNotifications.name,
 	  ViewAddResume.name,
 	  ViewResume.name,

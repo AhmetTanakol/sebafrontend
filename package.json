@@ -37,7 +37,8 @@
     "imagemin-webpack-plugin": "^1.4.4",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "spdx-license-ids": "^2.0.1"
   },
   "engines": {
     "node": ">=4.3"

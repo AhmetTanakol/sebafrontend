@@ -74,6 +74,10 @@ class AppHeaderComponentController{
       this.$state.go('viewMatching', {});
     }
 
+    addJob() {
+        this.$state.go('addJob', {});
+    }
+
     static get $inject(){
         return ['$state', UserService.name];
     }
