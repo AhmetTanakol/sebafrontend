@@ -1,175 +1,80 @@
 <!--<md-tabs md-dynamic-height md-border-bottom md-center-tabs="true">-->
 
-<div layout="row" layout-xs="column" layout-margin>
-	<div flex>
-		<form class= "job-form" name="PersonalInformationForm">
-			<md-card>
-				<md-card-content>
-					<md-toolbar md-scroll-shrink>
-						<div class="md-toolbar-tools">PERSONAL DETAILS</div>
-					</md-toolbar>
-					<md-input-container md-no-float class="md-block">
-						<md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
-						<input ng-model="$ctrl.job.photo" type="file" placeholder="Upload Photo">
-						<label>Profile Picture</label>
-					</md-input-container>
+<div layout="column" layout-gt-sm="row"  layout-margin>
 
-					<md-input-container class="md-block">
-						<input ng-model="$ctrl.job.refugeeName" type="text" placeholder="Full Name" ng-required="true">
-					</md-input-container>
+    <form flex class="job-form" name="JobInformation">
+            <md-card>
+                <md-card-content layout="column">
+                    <md-toolbar md-scroll-shrink>
+                        <div class="md-toolbar-tools">JOB DETAILS</div>
+                    </md-toolbar>
+                    <!--<md-input-container md-no-float class="md-block">
+                        <md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
+                        <input ng-model="$ctrl.job.photo" type="file" placeholder="Upload Photo">
+                        &lt;!&ndash;<label>Profile Picture</label>&ndash;&gt;
+                    </md-input-container>-->
 
-					<div layout-gt-sm="row">
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>Gender</label>
-							<md-select name="type" ng-model="$ctrl.job.gender" ng-required="true">
-								<md-option value="Male">Male</md-option>
-								<md-option value="Female">Female</md-option>
-							</md-select>
-						</md-input-container>
+                    <md-input-container >
+                        <input ng-model="$ctrl.job.jobTitle" type="text" placeholder="Job Title" ng-required="true">
+                    </md-input-container>
 
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>Date of Birth</label>
-							<md-datepicker ng-model="$ctrl.job.birthDate" ng-reqired="true"></md-datepicker>
-						</md-input-container>
-					</div>
+                    <md-input-container>
+                        <input ng-model="$ctrl.job.jobDescription" type="text" placeholder="Job Description" ng-required="true">
+                    </md-input-container>
 
-					<md-input-container class="md-block">
-						<label>Country of Birth</label>
-						<md-select name="type" ng-model="$ctrl.job.birthPlace" ng-required="true">
-							<md-option value="1">Germany</md-option>
-						</md-select>
-					</md-input-container>
+                    <div layout="row" layout-align="space-around">
 
-					<md-input-container md-no-float class="md-block">
-						<label>Address</label>
-						<input ng-model="$ctrl.job.refugeeAddress" type="text" ng-required="true">
-					</md-input-container>
+                        <md-input-container>
+                            <md-datepicker placeholder="Start Date" ng-model="$ctrl.job.jobStart" ng-reqired="true"></md-datepicker>
+                        </md-input-container>
 
-					<div layout-gt-sm="row">
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>City</label>
-							<input ng-model="$ctrl.job.city" ng-required="true">
-						</md-input-container>
+                        <md-input-container>
+                            <md-datepicker placeholder="End Date" ng-model="$ctrl.job.jobEnd" ng-reqired="true"></md-datepicker>
+                        </md-input-container>
+                    </div>
 
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>Postal Code</label>
-							<input name="postalCode" ng-model="$ctrl.job.postalCode"
-								   ng-required="true" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                </md-card-content>
+                <md-card-content>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">Added Skills</md-subheader>
+                        <md-list-item class="md-3-line" ng-repeat="skillitem in $ctrl.skills">
+                            <div class="secondary-button-padding" layout="column">
+                                <h3>{{ skillitem.type }}</h3>
+                                <p>{{ skillitem.power }} out of 10</p>
+                                <md-button class="md-secondary button-delete" ng-click="$ctrl.removeSkill(skillitem)">Delete</md-button>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+    </form>
 
-							<div ng-messages="PersonalInformationForm.postalCode.$error" role="alert" multiple>
-								<div ng-message="required" class="my-message">You must supply a postal code.</div>
-								<div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-									code
-								</div>
-								<div ng-message="md-maxlength" class="my-message">
-									Too long
-								</div>
-							</div>
-						</md-input-container>
-					</div>
+    <form flex class="job-form" name="SkillForm">
 
-					<md-input-container md-no-float class="md-block">
-						<label>Phone Number</label>
-						<input name="phoneNumber" ng-model="$ctrl.job.phone">
-					</md-input-container>
 
-					<md-input-container md-no-float class="md-block">
-						<label>Email</label>
-						<input  name="email" ng-model="$ctrl.job.email" ng-pattern="/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/">
+        <md-card>
+            <md-card-content layout="column">
+                <md-toolbar md-scroll-shrink>
+                    <div class="md-toolbar-tools">Add New Skills</div>
+                </md-toolbar>
+                <!--<md-subheader class="md-no-sticky">Add New Skill</md-subheader>-->
 
-						<div ng-messages="PersonalInformationForm.email.$error" role="alert">
-							<div ng-message="pattern" class="my-message">That doesn't look like a valid email
-							</div>
-						</div>
-					</md-input-container>
+                <md-input-container >
+                    <input ng-model="$ctrl.skill.type" type="text" placeholder="Skill Type" ng-required="true">
+                </md-input-container>
+                <div layout="column">
+                    Power
+                    <md-slider flex class="md-warn" md-discrete ng-model="$ctrl.skill.power"  step="1" min="1" max="10" aria-label="rating" ng-required="true"></md-slider>
+                </div>
+            </md-card-content>
+            <md-button flex class="button-add" ng-disabled="!SkillForm.$valid" ng-click="$ctrl.addSkill()">Add More Skills</md-button>
+        </md-card>
 
-					<md-input-container class="md-block">
-						<label>Marital Status</label>
-						<md-select name="type" ng-model="$ctrl.job.marital">
-							<md-option value="Single">Single</md-option>
-							<md-option value="Married">Married</md-option>
-							<md-option value="Divorced">Divorced</md-option>
-						</md-select>
-					</md-input-container>
+    </form>
 
-					<md-input-container class="md-block">
-						<label>Language</label>
-						<md-select name="type" ng-model="$ctrl.job.language" ng-required="true">
-							<md-option value="1">Deutsch</md-option>
-						</md-select>
-					</md-input-container>
-
-					<md-input-container class="md-block">
-						<label>Description</label>
-						<textarea ng-model="$ctrl.job.profileDescription" md-maxlength="150" rows="3" md-select-on-focus></textarea>
-					</md-input-container>
-
-				</md-card-content>
-			</md-card>
-		</form>
-	</div>
-	<div flex>
-		<form class= "job-form" name="EducationForm">
-			<md-card>
-				<md-card-content>
-					<md-toolbar md-scroll-shrink>
-						<div class="md-toolbar-tools">EDUCATION</div>
-					</md-toolbar>
-					<md-list flex>
-						<md-subheader class="md-no-sticky">Added Educations</md-subheader>
-						<md-list-item class="md-3-line" ng-repeat="refugeeEducation in $ctrl.educations">
-							<div class="secondary-button-padding" layout="column">
-								<h3>{{ refugeeEducation.schoolName }} - {{ refugeeEducation.degree }}</h3>
-								<p>({{ refugeeEducation.startDate | date:'mediumDate' }} - {{ refugeeEducation.endDate | date:'mediumDate' }})</p>
-								<md-button class="md-secondary button-delete" ng-click="$ctrl.removeEducation(refugeeEducation)">Delete</md-button>
-							</div>
-							<md-divider></md-divider>
-						</md-list-item>
-					</md-list>
-					<md-input-container class="md-block">
-						<input ng-model="$ctrl.education.schoolName" type="text" placeholder="School Name" ng-required="true">
-					</md-input-container>
-
-					<md-input-container class="md-block">
-						<label>Degree</label>
-						<md-select name="type" ng-model="$ctrl.education.degree" ng-required="true">
-							<md-option value="Primary School">Primary School</md-option>
-							<md-option value="Secondary School">Secondary School</md-option>
-							<md-option value="High School">High School</md-option>
-							<md-option value="Bachelor Degree">Bachelor Degree</md-option>
-							<md-option value="Master Degree">Master Degree</md-option>
-							<md-option value="Doctor">Doctor</md-option>
-						</md-select>
-					</md-input-container>
-
-					<md-input-container class="md-block">
-						<input ng-model="$ctrl.education.fieldOfStudy" type="text" placeholder="Field of study">
-					</md-input-container>
-
-					<div layout-gt-sm="row">
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>Start Date</label>
-							<md-datepicker ng-model="$ctrl.education.startDate" ng-required="true"></md-datepicker>
-						</md-input-container>
-
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>End Date</label>
-							<md-datepicker ng-model="$ctrl.education.endDate" ng-required="true"></md-datepicker>
-						</md-input-container>
-					</div>
-
-					<md-input-container class="md-block">
-						<label>Description</label>
-						<textarea ng-model="$ctrl.education.schoolDescription" md-maxlength="150" rows="3" md-select-on-focus></textarea>
-					</md-input-container>
-
-				</md-card-content>
-				<md-button class="button-add" ng-disabled="!EducationForm.$valid" ng-click="$ctrl.addEducation()">Add More Education</md-button>
-			</md-card>
-		</form>
-	</div>
 </div>
 <div layout="row" layout-align="end center">
-	<md-button ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
+	<md-button ng-disabled="!JobInformation.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
 </div>
 <!--</md-tabs>-->

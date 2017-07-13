@@ -12,7 +12,6 @@ class ViewAddJobComponent {
     constructor(){
         this.controller = ViewAddJobComponentController;
         this.template = template;
-
     }
 
     static get name() {
@@ -27,56 +26,10 @@ class ViewAddJobComponentController{
 		this.$state = $state;
 	}
 
-	removeCertificate (selectedItem) {
-		var index = this.certificates.indexOf(selectedItem);
-		this.certificates.splice(index, 1);
-    }
-
-	removeEducation (selectedItem) {
-		var index = this.educations.indexOf(selectedItem);
-		this.educations.splice(index, 1);
-	}
-
-  	removeExperience (selectedItem) {
-		var index = this.experiences.indexOf(selectedItem);
-		this.experiences.splice(index, 1);
-  	}
-
   	removeSkill (selectedItem) {
 		var index = this.skills.indexOf(selectedItem);
 		this.skills.splice(index, 1);
   	}
-
-	addCertificate () {
-		this.certificates.push({
-			title: this.certificate.title,
-			startDate: moment(this.certificate.startDate).format('YYYY-MM-DD'),
-			endDate: moment(this.certificate.endDate).format('YYYY-MM-DD'),
-		});
-		this.certificate = {};
-	}
-
-	addEducation () {
-		this.educations.push({
-		  schoolName: this.education.schoolName,
-		  degree: this.education.degree,
-		  startDate: moment(this.education.startDate).format('YYYY-MM-DD'),
-		  endDate: moment(this.education.endDate).format('YYYY-MM-DD'),
-		  schoolDescription: this.education.schoolDescription
-		});
-		this.education = {};
-	}
-	
-	addExperience () {
-		this.experiences.push({
-		  company: this.experience.company,
-		  jobTitle: this.experience.jobTitle,
-		  startDate: moment(this.experience.startDate).format('YYYY-MM-DD'),
-		  endDate: moment(this.experience.endDate).format('YYYY-MM-DD'),
-		  jobDescription: this.experience.jobDescription
-		});
-		this.experience = {};
-	}
 
 	addSkill () {
 		this.skills.push({
@@ -84,18 +37,27 @@ class ViewAddJobComponentController{
 			power: this.skill.power,
 		});
 		this.skill = {};
+        this.skill.power = 1;
 	}
 
-	$onInit() {
-		this.educations = [];
-		this.experiences = [];
-		this.certificates = [];
+	submit () {
+		let jobInfo = {
+            user:,
+            title:this.job.jobTitle,
+            description: this.job.jobDescription,
+            startDate: this.job.startDate,
+            endDate: this.job.endDate,
+            skills: this.skills
+
+		}
+	}
+
+	$onInit(){
 		this.skills = [];
 
-		this.certificate = {};
-		this.education = {};
-		this.experience = {};
 		this.skill = {};
+
+		this.skill.power = 1;
 
 		var currentDate = new Date();
 		this.maxStartDate = new Date(
