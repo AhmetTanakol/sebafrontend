@@ -18,6 +18,10 @@ class ViewNotificationsComponent {
 class ViewNotificationsController {
     constructor ($state) {
       this.$state = $state;
+	  
+	  // company or refugee
+	  this.loginAs = 'company';
+	  
     }
 
     static get $inject () {
