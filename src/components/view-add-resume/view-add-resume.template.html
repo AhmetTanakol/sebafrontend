@@ -51,7 +51,11 @@
 							<div layout-gt-sm="row">
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>City</label>
-									<input ng-model="$ctrl.resume.city" ng-required="true">
+									<md-select name="type" ng-model="$ctrl.resume.city" ng-required="true">
+										<md-option ng-repeat="cities in $ctrl.cities" value="{{ cities.name }}">
+											  {{ cities.name }}
+										</md-option>
+									</md-select>
 								</md-input-container>
 
 								<md-input-container class="md-block" flex-gt-sm>
@@ -99,7 +103,7 @@
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Language</label>
 									<md-select name="type" ng-model="$ctrl.resume.language" ng-required="true">
-										<md-option ng-repeat="languagesList in $ctrl.languagesList" value="{{ languagesList.id }}">
+										<md-option ng-repeat="languagesList in $ctrl.languagesList" value="{{ languagesList.name }}">
 											  {{ languagesList.name }}
 										</md-option>
 									</md-select>
@@ -308,7 +312,7 @@
 								<md-subheader class="md-no-sticky">Added Skills</md-subheader>
 								<md-list-item class="md-3-line" ng-repeat="refugeeSkill in $ctrl.skills">
 									<div class="secondary-button-padding" layout="column">
-										<h3>{{ $ctrl.skillsList[refugeeSkill.type-1].name }}</h3>
+										<h3>{{ refugeeSkill.name }}</h3>
 										<p>{{ refugeeSkill.power }} out of 10</p>
 										<md-button class="md-secondary button-delete" ng-click="$ctrl.removeSkill(refugeeSkill)">Delete</md-button>
 									</div>
@@ -319,10 +323,10 @@
 							<md-input-container class="md-block">
 								<label>Skill Type</label>
 								<md-select name="type" ng-model="$ctrl.skill.type" ng-required="true">
-									<md-option ng-repeat="skillsList in $ctrl.skillsList" value="{{ skillsList.id }}">
+									<md-option ng-repeat="skillsList in $ctrl.skillsList" value="{{ skillsList.name }}">
 										  {{ skillsList.name }}
 									</md-option>
-								</md-select>							
+								</md-select>
 							</md-input-container>
 							Power
 							<div layout>

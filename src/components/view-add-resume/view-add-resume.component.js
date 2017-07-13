@@ -1,6 +1,7 @@
 'use strict';
 
-/*import UserService from './../../services/user/user.service'; */
+import UserService from './../../services/user/user.service'; 
+import RefugeeService from './../../services/refugee/refugee.service';
 
 import template from './view-add-resume.template.html';
 import './view-add-resume.style.css';
@@ -12,7 +13,9 @@ class ViewAddResumeComponent {
     constructor(){
         this.controller = ViewAddResumeComponentController;
         this.template = template;
-
+		this.bindings = {
+			refugee: '<',
+        }
     }
 
     static get name() {
@@ -23,8 +26,11 @@ class ViewAddResumeComponent {
 
 class ViewAddResumeComponentController{
     
-	constructor ($state) {
+	constructor ($state, UserService, RefugeeService) {
+		this.model = {};
 		this.$state = $state;
+		this.UserService = UserService;
+		this.RefugeeService = RefugeeService;
 	}
 
 	removeCertificate (selectedItem) {
@@ -86,13 +92,13 @@ class ViewAddResumeComponentController{
 	addSkill () {
 		var validSkill = true;
 		for (var i=0; i<this.skills.length; i++) {
-			if (this.skills[i].type == this.skill.type) {
+			if (this.skills[i].name == this.skill.type) {
 				validSkill = false;
 			}
 		}
 		if (validSkill) {
 			this.skills.push({
-				type: this.skill.type,
+				name: this.skill.type,
 				power: this.skill.power,
 			});
 			this.skill = {};
@@ -105,89 +111,117 @@ class ViewAddResumeComponentController{
 			this.resume.language = '';
 		}
 	}
+	
+	isUserRefugee() {
+		if (this.currentUser.type === 'refugee') {
+		  return true;
+		}
+		return false;
+	}
 
 	$onInit() {
-		this.resume = [];
-		this.resume.languages = [];
-		this.educations = [];
-		this.experiences = [];
-		this.certificates = [];
-		this.skills = [];
+		if (this.UserService.isAuthenticated()) {
+			this.currentUser = this.UserService.getCurrentUser();
+			if (this.isUserRefugee()) {
+			
+				this.refugee = [];
+				this.resume = [];
+				this.resume.languages = [];
+				this.educations = [];
+				this.experiences = [];
+				this.certificates = [];
+				this.skills = [];
+				this.cities = [];
 
-		this.resume.language = '';
-		this.certificate = {};
-		this.education = {};
-		this.experience = {};
-		this.skill = {};
+				this.resume.language = '';
+				this.certificate = {};
+				this.education = {};
+				this.experience = {};
+				this.skill = {};
 
-		var currentDate = new Date();
-		
-		this.minStartDate = new Date(
-			currentDate.getFullYear(),
-			currentDate.getMonth() - 70,
-			currentDate.getDate()
-		);
-		this.minEndDate = new Date(
-			currentDate.getFullYear() - 70,
-			currentDate.getMonth(),
-			currentDate.getDate()
-		);
-		this.maxStartDate = new Date(
-			currentDate.getFullYear(),
-			currentDate.getMonth() - 1,
-			currentDate.getDate()
-		);
-		this.maxEndDate = new Date(
-			currentDate.getFullYear(),
-			currentDate.getMonth(),
-			currentDate.getDate()
-		);
-		
-		// get languages
-		this.languagesList = [
-			{id:1, name:'Deutsch'}, 
-			{id:2, name:'English'}, 
-			{id:3, name:'Indonesian'}, 
-			{id:4, name:'Chinese'}, 
-			{id:5, name:'Tamil'}, 
-			{id:6, name:'Abcwkwkwkwkwkwk'}
-		];		
-		
-		// get country of birth & company location (countries list)
-		this.countriesList = [
-			{id:1, name:'Germany'}, 
-			{id:2, name:'USA'}, 
-			{id:3, name:'Indonesia'}, 
-			{id:4, name:'China'}, 
-			{id:5, name:'India'}, 
-			{id:6, name:'Australia'}
-		];		
-		
-		// get skills
-		this.skillsList = [
-			{id:1, name:'Cook'}, 
-			{id:2, name:'Baker'}, 
-			{id:3, name:'Construction'}, 
-			{id:4, name:'Electrican'}, 
-			{id:5, name:'Gardening'}, 
-			{id:6, name:'Plumber'}
-		];
-		
+				var currentDate = new Date();
+				
+				this.minStartDate = new Date(
+					currentDate.getFullYear(),
+					currentDate.getMonth() - 70,
+					currentDate.getDate()
+				);
+				this.minEndDate = new Date(
+					currentDate.getFullYear() - 70,
+					currentDate.getMonth(),
+					currentDate.getDate()
+				);
+				this.maxStartDate = new Date(
+					currentDate.getFullYear(),
+					currentDate.getMonth() - 1,
+					currentDate.getDate()
+				);
+				this.maxEndDate = new Date(
+					currentDate.getFullYear(),
+					currentDate.getMonth(),
+					currentDate.getDate()
+				);
+				
+				// get languages
+				/*this.languagesList = [
+					{id:1, name:'Deutsch'}, 
+					{id:2, name:'English'}, 
+					{id:3, name:'Indonesian'}, 
+					{id:4, name:'Chinese'}, 
+					{id:5, name:'Tamil'}, 
+					{id:6, name:'Abcwkwkwkwkwkwk'}
+				];*/		
+				this.RefugeeService.listLanguages().then(languages => {
+					this.languagesList = languages;
+				});
+				
+				// get country of birth & company location (countries list)
+				this.countriesList = [
+					{id:1, name:'Germany'}, 
+					{id:2, name:'USA'}, 
+					{id:3, name:'Indonesia'}, 
+					{id:4, name:'China'}, 
+					{id:5, name:'India'}, 
+					{id:6, name:'Australia'}
+				];		
+				
+				// get Germany city
+				this.RefugeeService.listLocations().then(cities => {
+					this.cities = cities;
+				});	
+				
+				// get skills
+				this.RefugeeService.listSkills().then(skills => {
+					this.skillsList = skills;
+				});	
+				
+				console.log(this.currentUser._id);
+				/*this.RefugeeService.getRefugee(this.currentUser._id).then(refugee => {
+					this.refugee = refugee;
+				});*/
+				
+				console.log(this.refugee);
+				
+				
+			}
+		} else {
+			this.$state.go('login',{});
+		}
 	}
 	
 	save() {
-        /*let user = this.UserService.getCurrentUser();
+		/*let user = this.UserService.getCurrentUser();
 
-        this.movie['user'] = user['_id'];
-        this.MoviesService.create(this.movie).then(data => {
-            let _id = data['_id'];
-            this.$state.go('movie',{ movieId:_id});
-        });*/
+		this.movie['user'] = user['_id'];
+		this.MoviesService.create(this.movie).then(data => {
+			let _id = data['_id'];
+			this.$state.go('movie',{ movieId:_id});
+		});*/
 
-    };
+	};
 	
     static get $inject () {
-      return ['$state'];
+		return ['$state', UserService.name, RefugeeService.name];
     }
 
 }
