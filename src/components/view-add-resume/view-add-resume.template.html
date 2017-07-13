@@ -30,7 +30,7 @@
 
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Date of Birth</label>
-									<md-datepicker ng-model="$ctrl.resume.birthDate" ng-reqired="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.resume.birthDate" md-max-date="$ctrl.maxStartDate" md-max-date="$ctrl.minStartDate" ng-reqired="true"></md-datepicker>
 								</md-input-container>
 							</div>
 
@@ -150,12 +150,12 @@
 							<div layout-gt-sm="row">
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Start Date</label>
-									<md-datepicker ng-model="$ctrl.education.startDate" ng-required="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.education.startDate" md-min-date="$ctrl.minStartDate" md-max-date="$ctrl.maxStartDate" ng-required="true"></md-datepicker>
 								</md-input-container>
 
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>End Date</label>
-									<md-datepicker ng-model="$ctrl.education.endDate" ng-required="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.education.endDate" md-min-date="$ctrl.minEndDate" md-max-date="$ctrl.maxEndDate" ng-required="true"></md-datepicker>
 								</md-input-container>
 							</div>
 
@@ -213,12 +213,12 @@
 							<div layout-gt-sm="row">
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Start Date</label>
-									<md-datepicker ng-model="$ctrl.experience.startDate" md-max-date="$ctrl.maxStartDate" ng-required="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.experience.startDate" md-min-date="$ctrl.minStartDate" md-max-date="$ctrl.maxStartDate" ng-required="true"></md-datepicker>
 								</md-input-container>
 
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>End Date</label>
-									<md-datepicker ng-model="$ctrl.experience.endDate" md-max-date="$ctrl.maxEndDate" ng-required="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.experience.endDate" md-min-date="$ctrl.minEndDate" md-max-date="$ctrl.maxEndDate" ng-required="true"></md-datepicker>
 								</md-input-container>
 							</div>
 
@@ -258,12 +258,12 @@
 							<div layout-gt-sm="row">
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Start Date</label>
-									<md-datepicker ng-model="$ctrl.certificate.startDate" ng-required="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.certificate.startDate"  md-min-date="$ctrl.minStartDate" md-max-date="$ctrl.maxStartDate" ng-required="true"></md-datepicker>
 								</md-input-container>
 
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>End Date</label>
-									<md-datepicker ng-model="$ctrl.certificate.endDate" ng-required="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.certificate.endDate" md-min-date="$ctrl.minEndDate" md-max-date="$ctrl.maxEndDate" ng-required="true"></md-datepicker>
 								</md-input-container>
 							</div>
 

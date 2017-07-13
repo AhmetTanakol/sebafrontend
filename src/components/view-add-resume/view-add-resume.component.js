@@ -98,6 +98,17 @@ class ViewAddResumeComponentController{
 		this.skill = {};
 
 		var currentDate = new Date();
+		
+		this.minStartDate = new Date(
+			currentDate.getFullYear(),
+			currentDate.getMonth() - 70,
+			currentDate.getDate()
+		);
+		this.minEndDate = new Date(
+			currentDate.getFullYear() - 70,
+			currentDate.getMonth(),
+			currentDate.getDate()
+		);
 		this.maxStartDate = new Date(
 			currentDate.getFullYear(),
 			currentDate.getMonth() - 1,
@@ -108,6 +119,7 @@ class ViewAddResumeComponentController{
 			currentDate.getMonth(),
 			currentDate.getDate()
 		);
+				
 	}
 	
     static get $inject () {
