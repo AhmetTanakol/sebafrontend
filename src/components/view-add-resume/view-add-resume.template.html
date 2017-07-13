@@ -7,7 +7,7 @@
 					<md-card>
 						<md-card-content>
 							<md-toolbar md-scroll-shrink>
-								<div class="md-toolbar-tools">PERSONAL DETAILS</div>
+								<div class="md-toolbar-tools">PERSONAL DETAILS of {{ $ctrl.refugee.name }}</div>
 							</md-toolbar>
 							<md-input-container md-no-float class="md-block">
 								<md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
@@ -16,7 +16,7 @@
 							</md-input-container>
 
 							<md-input-container class="md-block">
-								<input ng-model="$ctrl.resume.refugeeName" type="text" placeholder="Full Name" ng-required="true">
+								<input ng-model="$ctrl.resume.refugeeName" type="text" placeholder="Full Name" ng-required="true">xx
 							</md-input-container>
 
 							<div layout-gt-sm="row">
@@ -116,7 +116,7 @@
 							<div layout-gt-sm="row">
 								<ul class="list-inline">
 									<li ng-repeat="refugeeLang in $ctrl.resume.languages"> 
-										{{ $ctrl.languagesList[refugeeLang-1].name }} 
+										{{ refugeeLang }} 
 										<md-button class="md-small button-delete-small" ng-click="$ctrl.removeLanguage(refugeeLang)">
 											<md-icon class="icon-delete"><ng-md-icon icon="delete_forever" ></ng-md-icon></md-icon>
 										</md-button>

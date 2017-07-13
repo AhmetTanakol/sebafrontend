@@ -196,9 +196,9 @@ class ViewAddResumeComponentController{
 				});	
 				
 				console.log(this.currentUser._id);
-				/*this.RefugeeService.getRefugee(this.currentUser._id).then(refugee => {
+				this.RefugeeService.get(this.currentUser._id).then(refugee => {
 					this.refugee = refugee;
-				});*/
+				});
 				
 				console.log(this.refugee);
 				
