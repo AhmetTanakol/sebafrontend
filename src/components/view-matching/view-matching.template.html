@@ -1,4 +1,4 @@
-<div layout="column">
+<div layout="column" id="popupContainer" ng-cloak>
     <div layout="row" layout-marging layout-padding layout-align="center center">
         <md-input-container>
             <label>Location</label>
@@ -120,7 +120,7 @@
                         <md-list-item ng-repeat="skill in $ctrl.refugee.skills">
                             <div layout="row">
                                 <div flex>
-                                    {{ skill.name }}
+                                    {{ skill.name.name }}
                                 </div>
                                 <div flex>
                                     <md-slider-container>
