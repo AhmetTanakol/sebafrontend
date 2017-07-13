@@ -38,6 +38,30 @@
                 </md-menu-content>
             </md-menu>
         </md-menu-bar>
+
+        <md-menu-bar> <!--just to see comapny page without login-->
+            <md-menu>
+                <md-button ng-click="$mdMenu.open()">
+                    <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
+                    Company Profile
+                </md-button>
+                <md-menu-content width="2">
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.addResume()">
+                            <md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
+                            Add Profile
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.viewProfile()">
+                            <md-icon md-menu-align-target><ng-md-icon icon="pageview" ></ng-md-icon></md-icon>
+                            View Profile
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+
         <md-menu-bar ng-if="$ctrl.isAuthenticated()">
             <md-menu>
                 <md-button ng-click="$mdMenu.open()">

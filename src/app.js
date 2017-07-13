@@ -31,6 +31,7 @@ import ViewRegister from './components/view-register/view-register';
 import ViewNotifications from './components/view-notifications/view-notifications';
 import ViewAddResume from './components/view-add-resume/view-add-resume';
 import ViewResume from './components/view-resume/view-resume';
+import ViewProfile from './components/view-profile/view-profile';
 import ViewMatching from './components/view-matching/view-matching';
 
 let app = angular.module('app', [
@@ -50,6 +51,7 @@ let app = angular.module('app', [
     ViewNotifications.name,
 	  ViewAddResume.name,
 	  ViewResume.name,
+      ViewProfile.name,
     ViewMatching.name
 ]);
 
