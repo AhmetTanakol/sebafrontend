@@ -50,10 +50,10 @@ let app = angular.module('app', [
     ViewLogin.name,
     ViewRegister.name,
     ViewNotifications.name,
-	  ViewAddResume.name,
-	  ViewResume.name,
-      ViewAddProfile.name,
-      ViewProfile.name,
+	    ViewAddResume.name,
+	    ViewResume.name,
+        ViewAddProfile.name,
+        ViewProfile.name,
     ViewMatching.name
 ]);
 
