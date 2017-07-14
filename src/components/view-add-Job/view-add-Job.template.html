@@ -37,7 +37,7 @@
                 <md-card-content>
                     <md-list flex>
                         <md-subheader class="md-no-sticky">Added Skills</md-subheader>
-                        <md-list-item class="md-3-line" ng-repeat="skillitem in $ctrl.skills">
+                        <md-list-item class="md-3-line" ng-repeat="skillitem in $ctrl.job.skills">
                             <div class="secondary-button-padding" layout="column">
                                 <h3>{{ skillitem.type }}</h3>
                                 <p>{{ skillitem.power }} out of 10</p>
