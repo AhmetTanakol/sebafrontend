@@ -31,23 +31,13 @@
 				</form>
 			</div>
 			<div flex>
-				<form class= "profile-form" name="EducationForm">
+				<form class= "profile-form" name="InformationForm">
 					<md-card>
 						<md-card-content>
 							<md-toolbar md-scroll-shrink>
 								<div class="md-toolbar-tools">Information</div>
 							</md-toolbar>
-							<!--<md-list flex>
-								<md-subheader class="md-no-sticky">Added Educations</md-subheader>
-								<md-list-item class="md-3-line" ng-repeat="refugeeEducation in $ctrl.educations">
-									<div class="secondary-button-padding" layout="column">
-										<h3>{{ refugeeEducation.schoolName }} - {{ refugeeEducation.degree }}</h3>
-										<p>({{ refugeeEducation.startDate | date:'mediumDate' }} - {{ refugeeEducation.endDate | date:'mediumDate' }})</p>
-										<md-button class="md-secondary button-delete" ng-click="$ctrl.removeEducation(refugeeEducation)">Delete</md-button>
-									</div>
-									<md-divider></md-divider>
-								</md-list-item>
-							</md-list>-->
+							
 							<md-input-container class="md-block">
 								<input ng-model="$ctrl.profile.companyName" type="text" placeholder="Cpmpany Name" ng-required="true">
 							</md-input-container>
@@ -65,7 +55,7 @@
 							
 
 						</md-card-content>
-						<!--<md-button class="button-add" ng-disabled="!EducationForm.$valid" ng-click="$ctrl.addEducation()">Add More Education</md-button>-->
+						
 					</md-card>
 				</form>
 			</div>
