@@ -16,45 +16,52 @@
 							</md-input-container>
 
 							<md-input-container class="md-block">
-								<input ng-model="$ctrl.resume.refugeeName" type="text" placeholder="Full Name" ng-required="true">
+								<input ng-model="$ctrl.refugee.name" type="text" placeholder="Full Name" ng-required="true" value="xx">
 							</md-input-container>
 
 							<div layout-gt-sm="row">
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Gender</label>
-									<md-select name="type" ng-model="$ctrl.resume.gender" ng-required="true">
+									<md-select name="type" ng-model="$ctrl.refugee.gender" ng-required="true">
 										<md-option value="Male">Male</md-option>
 										<md-option value="Female">Female</md-option>
+										<md-option value="Other">Other</md-option>
 									</md-select>
 								</md-input-container>
 
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Date of Birth</label>
-									<md-datepicker ng-model="$ctrl.resume.birthDate" md-max-date="$ctrl.maxStartDate" md-max-date="$ctrl.minStartDate" ng-reqired="true"></md-datepicker>
+									<md-datepicker ng-model="$ctrl.refugee.dateOfBirth" md-max-date="$ctrl.maxStartDate" md-max-date="$ctrl.minStartDate" ng-reqired="true"></md-datepicker>
 								</md-input-container>
 							</div>
 
 							<md-input-container class="md-block">
 								<label>Country of Birth</label>
-								<md-select name="type" ng-model="$ctrl.resume.birthPlace" ng-required="true">
-									<md-option value="1">Germany</md-option>
+								<md-select name="type" ng-model="$ctrl.refugee.placeOfBirth" ng-required="true">
+									<md-option ng-repeat="countriesList in $ctrl.countriesList" value="{{ countriesList._id }}">
+										  {{ countriesList.name }}
+									</md-option>
 								</md-select>
 							</md-input-container>
 
 							<md-input-container md-no-float class="md-block">
 								<label>Address</label>
-								<input ng-model="$ctrl.resume.refugeeAddress" type="text" ng-required="true">
+								<input ng-model="$ctrl.refugee.address" type="text" ng-required="true">
 							</md-input-container>
 
 							<div layout-gt-sm="row">
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>City</label>
-									<input ng-model="$ctrl.resume.city" ng-required="true">
+									<md-select name="type" ng-model="$ctrl.refugee.city" ng-required="true">
+										<md-option ng-repeat="cities in $ctrl.cities" value="{{ cities._id }}">
+											  {{ cities.name }}
+										</md-option>
+									</md-select>
 								</md-input-container>
 
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Postal Code</label>
-									<input name="postalCode" ng-model="$ctrl.resume.postalCode"
+									<input name="postalCode" ng-model="$ctrl.refugee.postalCode"
 										   ng-required="true" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
 
 									<div ng-messages="PersonalInformationForm.postalCode.$error" role="alert" multiple>
@@ -71,12 +78,12 @@
 
 							<md-input-container md-no-float class="md-block">
 								<label>Phone Number</label>
-								<input name="phoneNumber" ng-model="$ctrl.resume.phone">
+								<input name="phoneNumber" ng-model="$ctrl.refugee.phone">
 							</md-input-container>
 
 							<md-input-container md-no-float class="md-block">
 								<label>Email</label>
-								<input  name="email" ng-model="$ctrl.resume.email" ng-pattern="/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/">
+								<input  name="email" ng-model="$ctrl.refugee.email" ng-pattern="/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/">
 
 								<div ng-messages="PersonalInformationForm.email.$error" role="alert">
 									<div ng-message="pattern" class="my-message">That doesn't look like a valid email
@@ -86,23 +93,40 @@
 
 							<md-input-container class="md-block">
 								<label>Marital Status</label>
-								<md-select name="type" ng-model="$ctrl.resume.marital">
-									<md-option value="Single">Single</md-option>
-									<md-option value="Married">Married</md-option>
-									<md-option value="Divorced">Divorced</md-option>
+								<md-select name="type" ng-model="$ctrl.refugee.maritalStatus">
+									<md-option value="single">Single</md-option>
+									<md-option value="married">Married</md-option>
+									<md-option value="divorced">Divorced</md-option>
 								</md-select>
 							</md-input-container>
 
-							<md-input-container class="md-block">
-								<label>Language</label>
-								<md-select name="type" ng-model="$ctrl.resume.language" ng-required="true">
-									<md-option value="1">Deutsch</md-option>
-								</md-select>
-							</md-input-container>
-
+							<div layout-gt-sm="row">
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Language</label>
+									<md-select name="type" ng-model="$ctrl.language" ng-required="true">
+										<md-option ng-repeat="languagesList in $ctrl.languagesList" value="{{ languagesList._id }}">
+											  {{ languagesList.name }}
+										</md-option>
+									</md-select>
+								</md-input-container>
+								<md-input-container class="md-block" flex-gt-sm>
+									<md-button class="button-add" ng-click="$ctrl.addLanguage()">Add</md-button>
+								</md-input-container>
+							</div>
+							
+							<div layout-gt-sm="row">
+								<ul class="list-inline">
+									<li ng-repeat="refugeeLang in $ctrl.languages"> 
+										{{ refugeeLang.nameAlias }} 
+										<md-button class="md-small button-delete-small" ng-click="$ctrl.removeLanguage(refugeeLang)">
+											<md-icon class="icon-delete"><ng-md-icon icon="delete_forever" ></ng-md-icon></md-icon>
+										</md-button>
+									</li>
+								</ul>
+							</div>
 							<md-input-container class="md-block">
 								<label>Description</label>
-								<textarea ng-model="$ctrl.resume.profileDescription" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+								<textarea ng-model="$ctrl.refugee.description" md-maxlength="150" rows="3" md-select-on-focus></textarea>
 							</md-input-container>
 
 						</md-card-content>
@@ -171,7 +195,7 @@
 			</div>
 		</div>
 		<div layout="row" layout-align="end center">
-			<md-button ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
+			<md-button ng-click="$ctrl.save()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
 		</div>
 	</md-tab>
 	<md-tab label="Additional Information">
@@ -202,8 +226,10 @@
 							<md-input-container class="md-block">
 								<label>Company Location</label>
 								<md-select name="type" ng-model="$ctrl.experience.companyLocation" ng-required="true">
-									<md-option value="1">Germany</md-option>
-								</md-select>
+									<md-option ng-repeat="countriesList in $ctrl.countriesList" value="{{ countriesList._id }}">
+										  {{ countriesList.name }}
+									</md-option>
+								</md-select>							
 							</md-input-container>
 
 							<md-input-container class="md-block">
@@ -286,18 +312,23 @@
 							<md-list flex>
 								<md-subheader class="md-no-sticky">Added Skills</md-subheader>
 								<md-list-item class="md-3-line" ng-repeat="refugeeSkill in $ctrl.skills">
-									<div class="secondary-button-padding" layout="column">
-										<h3>{{ refugeeSkill.type }}</h3>
+									<div class="secondary-button-padding" layout="column">								
+										<h3>{{ refugeeSkill.nameAlias }}</h3>
 										<p>{{ refugeeSkill.power }} out of 10</p>
 										<md-button class="md-secondary button-delete" ng-click="$ctrl.removeSkill(refugeeSkill)">Delete</md-button>
 									</div>
 									<md-divider></md-divider>
 								</md-list-item>
 							</md-list>
+							
 							<md-input-container class="md-block">
-								<input ng-model="$ctrl.skill.type" type="text" placeholder="Skill Type" ng-required="true">
+								<label>Skill Type</label>
+								<md-select name="type" ng-model="$ctrl.skill.type" ng-required="true">
+									<md-option ng-repeat="skillsList in $ctrl.skillsList" value="{{ skillsList._id }}">
+										  {{ skillsList.name }}
+									</md-option>
+								</md-select>
 							</md-input-container>
-
 							Power
 							<div layout>
 								<md-slider flex class="md-warn" md-discrete ng-model="$ctrl.skill.power" step="1" min="1" max="10" aria-label="rating"></md-slider>
