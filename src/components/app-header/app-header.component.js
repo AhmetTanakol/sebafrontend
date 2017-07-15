@@ -70,6 +70,14 @@ class AppHeaderComponentController{
       this.$state.go('viewResume',{});
     }
 
+    addProfile() {
+      this.$state.go('addProfile',{});
+    }
+
+    viewProfile() {
+      this.$state.go('viewProfile',{});
+    }
+
     makeSearch() {
       this.$state.go('viewMatching', {});
     }

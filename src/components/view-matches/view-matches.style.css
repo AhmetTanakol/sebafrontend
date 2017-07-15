@@ -1,0 +1,14 @@
+.matches-view .md-toolbar-tools {
+	color: #fff;
+	font-weight: 700;
+	background-color: #818791;
+}
+
+.matches-view .notification-details {
+	width: 100%;
+}
+
+.matches-view .view-more {
+	width: 100%;
+	text-align: right;
+}
