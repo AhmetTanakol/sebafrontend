@@ -20,7 +20,7 @@ export default class JobService {
 
 
 
-    list() {
+    listJobs() {
         let url = this.resourceUrl;
         return this.$http.get(url).then(response => {
             return new Promise((resolve, reject) => {

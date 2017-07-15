@@ -6,7 +6,7 @@
             <md-card>
                 <md-card-content layout="column">
                     <md-toolbar md-scroll-shrink>
-                        <div class="md-toolbar-tools">JOB DETAILS</div>
+                        <div class="md-toolbar-tools">{{$ctrl.job.title}}</div>
                     </md-toolbar>
                     <!--<md-input-container md-no-float class="md-block">
                         <md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
@@ -14,26 +14,25 @@
                         &lt;!&ndash;<label>Profile Picture</label>&ndash;&gt;
                     </md-input-container>-->
 
-                    <span class="md-headline">{{$ctrl.job.title}}</span>
+                    <div layout="column">
+                        <div class="h4" flex>Description:</div>
+                        <p class="" flex >{{$ctrl.job.description}}</p>
 
-                    <md-input-container >
-                        <input ng-model="$ctrl.job.jobTitle" type="text" placeholder="Job Title" ng-required="true">
-                    </md-input-container>
+                        <div layout="row"  flex layout-align="space-around">
+                            <div layout="column" flex>
+                                <h4 flex>Start Date:</h4>
+                                <span flex>{{$ctrl.job.startDate | date}}</span>
+                            </div>
+                            <div layout="column" flex>
+                                <h4 flex>End Date:</h4>
+                                <span flex>{{$ctrl.job.endDate | date}}</span>
+                            </div>
+                        </div>
 
-                    <md-input-container>
-                        <input ng-model="$ctrl.job.jobDescription" type="text" placeholder="Job Description" ng-required="true">
-                    </md-input-container>
-
-                    <div layout="row" layout-align="space-around">
-
-                        <md-input-container>
-                            <md-datepicker placeholder="Start Date" ng-model="$ctrl.job.startDate" ng-reqired="true"></md-datepicker>
-                        </md-input-container>
-
-                        <md-input-container>
-                            <md-datepicker placeholder="End Date" ng-model="$ctrl.job.endDate" ng-reqired="true"></md-datepicker>
-                        </md-input-container>
                     </div>
+
+
+
 
                 </md-card-content>
                 <md-card-content>
@@ -43,7 +42,6 @@
                             <div class="secondary-button-padding" layout="column">
                                 <h3>{{ skillitem.type }}</h3>
                                 <p>{{ skillitem.power }} out of 10</p>
-                                <md-button class="md-secondary button-delete" ng-click="$ctrl.removeSkill(skillitem)">Delete</md-button>
                             </div>
                             <md-divider></md-divider>
                         </md-list-item>
@@ -55,6 +53,7 @@
 
 </div>
 <div layout="row" layout-align="end center">
-	<md-button ng-disabled="!JobInformation.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
+    <md-button ng-click="$ctrl.edit()" class="md-raised md-primary">&nbsp Edit &nbsp</md-button>
+    <md-button ng-click="$ctrl.back()" class="md-raised md-primary">&nbsp Back &nbsp</md-button>
 </div>
 <!--</md-tabs>-->

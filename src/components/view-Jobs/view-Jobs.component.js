@@ -2,27 +2,27 @@
 
 import UserService from './../../services/user/user.service';
 
-import template from './view-job.template.html';
-import './view-job.style.css';
+import template from './view-jobs.template.html';
+import './view-jobs.style.css';
 import JobService from './../../services/job/job.service';
 
 
-class ViewAddJobComponent {
+class ViewJobsComponent {
     constructor(){
-        this.controller = ViewAddJobComponentController;
+        this.controller = ViewJobsComponentController;
         this.template = template;
         this.bindings = {
-        	job: '<',
+        	jobs: '<',
 		}
     }
 
     static get name() {
-        return 'viewJob';
+        return 'viewJobs';
     }
 
 }
 
-class ViewAddJobComponentController{
+class ViewJobsComponentController{
     
 	constructor ($state ,UserService, JobService) {
         this.UserService = UserService;
@@ -45,21 +45,9 @@ class ViewAddJobComponentController{
 	}
 
     back () {
-        if (this.UserService.isAuthenticated()) {
-            let _id = this.job['_id'];
-            this.$state.go('jobs',{});
-        } else {
-            this.$state.go('login',{});
-        }
+		this.$state.go('job');
 	}
-    edit () {
-        if (this.UserService.isAuthenticated()) {
-            let _id = this.job['_id'];
-            this.$state.go('jobEdit',{ jobId:_id});
-        } else {
-            this.$state.go('login',{});
-        }
-    }
+
 	$onInit(){
 		this.job = JSON.parse(JSON.stringify(this.job))
 
@@ -83,4 +71,4 @@ class ViewAddJobComponentController{
 }
 
 
-export default ViewAddJobComponent;
+export default ViewJobsComponent;

@@ -34,6 +34,7 @@ import ViewNotifications from './components/view-notifications/view-notification
 import ViewAddResume from './components/view-add-resume/view-add-resume';
 import ViewAddJob from './components/view-add-Job/view-add-Job';
 import ViewJob from './components/view-Job/view-Job';
+import ViewJobs from  './components/view-Jobs/view-Jobs';
 import ViewResume from './components/view-resume/view-resume';
 import ViewMatching from './components/view-matching/view-matching';
 
@@ -58,7 +59,8 @@ let app = angular.module('app', [
 	  ViewAddResume.name,
 	  ViewResume.name,
     ViewMatching.name,
-    ViewJob.name
+    ViewJob.name,
+    ViewJobs.name
 ]);
 
 app.constant('API_URL', 'http://localhost:3000/api');

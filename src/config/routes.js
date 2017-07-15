@@ -9,6 +9,7 @@ import ResumeComponent from './../components/view-resume/view-resume.component';
 import MatchingComponent from './../components/view-matching/view-matching.component';
 import AddJobComponent from './../components/view-add-job/view-add-Job.component';
 import JobComponent from './../components/view-Job/view-Job.component';
+import JobsComponent from './../components/view-Jobs/view-Jobs.component';
 
 import JobService from './../services/job/job.service'
 
@@ -18,7 +19,7 @@ function resolveJob($stateParams, JobService) {
 }
 resolveJobs.$inject = ['$stateParams', JobService.name];
 function resolveJobs(JobService) {
-    return JobService.list();
+    return JobService.listJobs()
 }
 
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
@@ -47,16 +48,23 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
           url: '/add-resume',
           component: AddResumeComponent.name,
         })
-        .state('jobAdd', {
-            url: '/job/new',
-            component: AddJobComponent.name,
+        .state('jobs', {
+            url: '/job/',
+            component: JobsComponent.name,
+            resolve: {
+                jobs: resolveJobs
+            }
         })
         .state('job', {
-            url: '/job/:jobId',
+            url: '/job/:jobId/',
             component: JobComponent.name,
             resolve: {
                 job : resolveJob
             }
+        })
+        .state('jobAdd', {
+            url: '/job/new',
+            component: AddJobComponent.name,
         })
         .state('jobEdit', {
             url: '/job/:jobId/edit',
