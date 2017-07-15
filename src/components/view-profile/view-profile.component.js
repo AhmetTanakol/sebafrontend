@@ -23,6 +23,7 @@ class ViewProfileComponentController{
     constructor($state,UserService){
         this.$state = $state;
         this.UserService = UserService;
+        this.CompanyService = CompanyService;
     }
 
 	$onInit() {
