@@ -31,15 +31,16 @@ class ViewRegisterComponentController{
 
     submit(){
       let registerInfo = {
-        user: this.register.username,
-        phone: this.register.phone,
+        name: this.register.name,
         email: this.register.email,
         type: this.register.type,
         password: this.register.password
       };
-
+      if (this.register.phone) {
+        registerInfo.phone = this.register.phone;
+      }
       this.UserService.register(registerInfo).then(()=> {
-        this.$state.go('main',{});
+        this.$state.go('viewMatching',{});
       });
     }
 

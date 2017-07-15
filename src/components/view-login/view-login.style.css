@@ -5,10 +5,10 @@
     background-color: blue;
 }
 
-.register-form md-input-container:not(.md-input-invalid) > md-icon.username,
+.register-form md-input-container:not(.md-input-invalid) > md-icon.email,
 .register-form md-input-container:not(.md-input-invalid) > md-icon.password {
     color: green; }
 .register-form md-input-container.md
-.register-form md-input-container.md-input-invalid > md-icon.username,
+.register-form md-input-container.md-input-invalid > md-icon.email,
 .register-form md-input-container.md-input-invalid > md-icon.password {
     color: red; }
