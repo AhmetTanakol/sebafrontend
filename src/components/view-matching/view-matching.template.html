@@ -77,25 +77,27 @@
                     </md-card-title-text>
                 </md-card-title>
             </md-card>
-            <md-card class="matching-card" layout-padding flex="auto" ng-if="$ctrl.isUserRefugee() && $ctrl.jobs.length && !$ctrl.isUndefined($ctrl.job)">
-                <md-card-title>
+            <md-card class="matching-card" layout="column" layout-padding flex="auto" ng-if="$ctrl.isUserRefugee() && $ctrl.jobs.length && !$ctrl.isUndefined($ctrl.job)">
+                <md-card-title flex="auto">
                     <md-card-title-text>
-                        <span class="md-headline">{{$ctrl.job.company.name}}</span>
-                        <span class="md-subhead">{{$ctrl.job.company.email}} /  {{$ctrl.job.company.phone}}</span>
+                        <span class="md-headline card-title">{{$ctrl.job.company.name}} / {{$ctrl.job.title}}</span>
+                        <span class="md-subhead card-subtitle">{{$ctrl.job.company.email}} /  {{$ctrl.job.company.phone}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
-                        <div class="md-media-l card-media">
+                        <div class="md-media-xl card-media">
                             <img src="./../../images/noimage.jpeg" alt="Refugee Profile Picture"/>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
-                <md-card-content layout="column" flex="auto">
-                    <div flex>
+                <md-card-content flex="auto">
+                    <div flex="50">
+                        <h4>Company Information</h4>
                         <p>
                             {{$ctrl.job.company.info}}
                         </p>
                     </div>
-                    <div flex>
+                    <div flex="50">
+                        <h4>Job Description</h4>
                         <p>
                             {{$ctrl.job.description}}
                         </p>
@@ -106,8 +108,8 @@
             <md-card class="matching-card" layout-padding flex="auto" ng-if="!$ctrl.isUserRefugee() && $ctrl.refugees.length && !$ctrl.isUndefined($ctrl.refugee)">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{$ctrl.refugee.name}}</span>
-                        <span class="md-subhead">{{$ctrl.refugee.city.name}} / {{$ctrl.refugee.placeOfBirth}} / {{$ctrl.refugee.email}} / {{$ctrl.refugee.age}}</span>
+                        <span class="md-headline card-title">{{$ctrl.refugee.name}}</span>
+                        <span class="md-subhead card-subtitle">{{$ctrl.refugee.city.name}} / {{$ctrl.refugee.placeOfBirth}} / {{$ctrl.refugee.email}} / {{$ctrl.refugee.age}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-xl card-media">
