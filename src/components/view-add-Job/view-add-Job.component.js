@@ -5,12 +5,16 @@ import UserService from './../../services/user/user.service';
 import template from './view-add-job.template.html';
 import './view-add-job.style.css';
 import JobService from './../../services/job/job.service';
+import SkillService from './../../services/skill/skill.service';
 
 
 class ViewAddJobComponent {
     constructor(){
         this.controller = ViewAddJobComponentController;
         this.template = template;
+        this.bindings = {
+        	skills: '<',
+		}
     }
 
     static get name() {
@@ -21,11 +25,12 @@ class ViewAddJobComponent {
 
 class ViewAddJobComponentController{
     
-	constructor ($state ,UserService, JobService) {
+	constructor ($state ,UserService, JobService, SkillService) {
 	    this.job ={};
         this.UserService = UserService;
 	    this.JobService = JobService;
 		this.$state = $state;
+		this.SkillService = SkillService;
 	}
 
   	removeSkill (selectedItem) {
@@ -35,7 +40,7 @@ class ViewAddJobComponentController{
 
 	addSkill () {
 		this.job.skills.push({
-			type: this.skill.type,
+			name: this.skill.name,
 			power: this.skill.power,
 		});
 		this.skill = {};
@@ -50,7 +55,7 @@ class ViewAddJobComponentController{
             description: this.job.jobDescription,
             startDate: this.job.startDate,
             endDate: this.job.endDate,
-            skills: [] //todo this.job.skills
+            skills: this.job.skills
 		};
         // this.job['user'] = user['_id'];
         this.JobService.create(jobInfo).then(data => {
@@ -75,8 +80,12 @@ class ViewAddJobComponentController{
 		this.skill = {};
 
 		this.skill.power = 1;
+        this.job.startDate = new Date();
+        this.job.endDate = new Date();
 
-		/*let currentDate = new Date();
+		console.log(this.skills);
+
+		/*this.currentDate = new Date();
 		this.maxStartDate = new Date(
 			currentDate.getFullYear(),
 			currentDate.getMonth() - 1,
@@ -90,7 +99,7 @@ class ViewAddJobComponentController{
 	}
 	
     static get $inject () {
-      return ['$state',UserService.name, JobService.name];
+      return ['$state',UserService.name, JobService.name, SkillService.name];
     }
 
 }

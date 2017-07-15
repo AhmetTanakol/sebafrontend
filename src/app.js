@@ -21,7 +21,7 @@ import UserService from './services/user/user';
 import RefugeeService from './services/refugee/refugee';
 import MatchingService from './services/matching/matching';
 import JobService from './services/job/job';
-
+import SkillService from './services/skill/skill';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -48,6 +48,7 @@ let app = angular.module('app', [
     uiBootstrap,
     UserService.name,
     JobService.name,
+    SkillService.name,
     RefugeeService.name,
     MatchingService.name,
     AppContent.name,

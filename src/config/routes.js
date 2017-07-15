@@ -12,11 +12,18 @@ import JobComponent from './../components/view-Job/view-Job.component';
 import JobsComponent from './../components/view-Jobs/view-Jobs.component';
 
 import JobService from './../services/job/job.service'
+import SkillService from './../services/skill/skill.service'
 
+resolveSkills.$inject = [SkillService.name];
+function resolveSkills( SkillService) {
+    return SkillService.list()
+}
 resolveJob.$inject = ['$stateParams', JobService.name];
 function resolveJob($stateParams, JobService) {
     return JobService.get($stateParams.jobId)
 }
+
+
 resolveJobs.$inject = ['$stateParams', JobService.name];
 function resolveJobs(JobService) {
     return JobService.listJobs()
@@ -65,6 +72,9 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
         .state('jobAdd', {
             url: '/job/new',
             component: AddJobComponent.name,
+            resolve: {
+                skills: resolveSkills
+            }
         })
         .state('jobEdit', {
             url: '/job/:jobId/edit',

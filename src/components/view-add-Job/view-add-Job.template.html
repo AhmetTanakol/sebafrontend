@@ -29,7 +29,7 @@
                         </md-input-container>
 
                         <md-input-container>
-                            <md-datepicker placeholder="End Date" ng-model="$ctrl.job.endDate" ng-reqired="true"></md-datepicker>
+                            <md-datepicker placeholder="End Date"  ng-model="$ctrl.job.endDate" ng-reqired="true"></md-datepicker>
                         </md-input-container>
                     </div>
 
@@ -39,7 +39,7 @@
                         <md-subheader class="md-no-sticky">Added Skills</md-subheader>
                         <md-list-item class="md-3-line" ng-repeat="skillitem in $ctrl.job.skills">
                             <div class="secondary-button-padding" layout="column">
-                                <h3>{{ skillitem.type }}</h3>
+                                <h3>{{ skillitem.name }}</h3>
                                 <p>{{ skillitem.power }} out of 10</p>
                                 <md-button class="md-secondary button-delete" ng-click="$ctrl.removeSkill(skillitem)">Delete</md-button>
                             </div>
@@ -61,7 +61,12 @@
                 <!--<md-subheader class="md-no-sticky">Add New Skill</md-subheader>-->
 
                 <md-input-container >
-                    <input ng-model="$ctrl.skill.type" type="text" placeholder="Skill Type" ng-required="true">
+                    <label>Skill</label>
+                    <md-select ng-model="$ctrl.skill.name" ng-required="true">
+                        <md-option ng-repeat="skill in $ctrl.skills" value="{{skill.name}}">
+                            {{skill.name}}
+                        </md-option>
+                    </md-select>
                 </md-input-container>
                 <div layout="column">
                     Power
