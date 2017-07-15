@@ -14,6 +14,8 @@
                         &lt;!&ndash;<label>Profile Picture</label>&ndash;&gt;
                     </md-input-container>-->
 
+                    <span class="md-headline">{{$ctrl.job.title}}</span>
+
                     <md-input-container >
                         <input ng-model="$ctrl.job.jobTitle" type="text" placeholder="Job Title" ng-required="true">
                     </md-input-container>
@@ -50,28 +52,6 @@
             </md-card>
     </form>
 
-    <form flex class="job-form" name="SkillForm">
-
-
-        <md-card>
-            <md-card-content layout="column">
-                <md-toolbar md-scroll-shrink>
-                    <div class="md-toolbar-tools">Add New Skills</div>
-                </md-toolbar>
-                <!--<md-subheader class="md-no-sticky">Add New Skill</md-subheader>-->
-
-                <md-input-container >
-                    <input ng-model="$ctrl.skill.type" type="text" placeholder="Skill Type" ng-required="true">
-                </md-input-container>
-                <div layout="column">
-                    Power
-                    <md-slider flex class="md-warn" md-discrete ng-model="$ctrl.skill.power"  step="1" min="1" max="10" aria-label="rating" ng-required="true"></md-slider>
-                </div>
-            </md-card-content>
-            <md-button flex class="button-add" ng-disabled="!SkillForm.$valid" ng-click="$ctrl.addSkill()">Add More Skills</md-button>
-        </md-card>
-
-    </form>
 
 </div>
 <div layout="row" layout-align="end center">

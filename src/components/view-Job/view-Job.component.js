@@ -2,8 +2,8 @@
 
 import UserService from './../../services/user/user.service';
 
-import template from './view-add-job.template.html';
-import './view-add-job.style.css';
+import template from './view-job.template.html';
+import './view-job.style.css';
 import JobService from './../../services/job/job.service';
 
 
@@ -11,10 +11,13 @@ class ViewAddJobComponent {
     constructor(){
         this.controller = ViewAddJobComponentController;
         this.template = template;
+        this.bindings = {
+        	job: '<',
+		}
     }
 
     static get name() {
-        return 'viewAddJob';
+        return 'viewJob';
     }
 
 }
@@ -56,25 +59,12 @@ class ViewAddJobComponentController{
         this.JobService.create(jobInfo).then(data => {
             let _id = data['_id'];
             this.$state.go('job',{ jobId:_id});
-        	//todo go to Job-View
+            //todo go to Job-View
         });
 	}
 
-    /*getCurrentUser () {
-        let token = this.$window.localStorage['jwtToken'];
-        if (!token) return {};
-
-        let base64Url = token.split('.')[1];
-        let base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(this.$window.atob(base64)).user;
-    }*/
-
 	$onInit(){
-		this.job.skills = [];
-
-		this.skill = {};
-
-		this.skill.power = 1;
+		this.job = JSON.parse(JSON.stringify(this.job))
 
 		/*let currentDate = new Date();
 		this.maxStartDate = new Date(

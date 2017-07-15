@@ -75,7 +75,7 @@ class AppHeaderComponentController{
     }
 
     addJob() {
-        this.$state.go('addJob', {});
+        this.$state.go('jobAdd', {});
     }
 
     static get $inject(){

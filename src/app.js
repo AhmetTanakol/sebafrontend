@@ -20,6 +20,8 @@ import moment from 'moment/moment';
 import UserService from './services/user/user';
 import RefugeeService from './services/refugee/refugee';
 import MatchingService from './services/matching/matching';
+import JobService from './services/job/job';
+
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -31,8 +33,10 @@ import ViewRegister from './components/view-register/view-register';
 import ViewNotifications from './components/view-notifications/view-notifications';
 import ViewAddResume from './components/view-add-resume/view-add-resume';
 import ViewAddJob from './components/view-add-Job/view-add-Job';
+import ViewJob from './components/view-Job/view-Job';
 import ViewResume from './components/view-resume/view-resume';
 import ViewMatching from './components/view-matching/view-matching';
+
 
 let app = angular.module('app', [
     uiRouter,
@@ -42,6 +46,7 @@ let app = angular.module('app', [
     ngMessages,
     uiBootstrap,
     UserService.name,
+    JobService.name,
     RefugeeService.name,
     MatchingService.name,
     AppContent.name,
@@ -52,7 +57,8 @@ let app = angular.module('app', [
     ViewNotifications.name,
 	  ViewAddResume.name,
 	  ViewResume.name,
-    ViewMatching.name
+    ViewMatching.name,
+    ViewJob.name
 ]);
 
 app.constant('API_URL', 'http://localhost:3000/api');
