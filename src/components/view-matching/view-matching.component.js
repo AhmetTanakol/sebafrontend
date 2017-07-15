@@ -8,6 +8,7 @@ import template from './view-matching.template.html';
 import './view-matching.style.css';
 
 import _ from 'lodash';
+import moment from 'moment';
 
 class ViewMatchingComponent {
   constructor() {
@@ -21,10 +22,11 @@ class ViewMatchingComponent {
 }
 
 class ViewMatchingController {
-  constructor($state, UserService, MatchingService) {
+  constructor($state, UserService, MatchingService, $mdDialog) {
     this.$state = $state;
     this.UserService = UserService;
     this.MatchingService = MatchingService;
+    this.$mdDialog = $mdDialog;
   }
 
   selectItem(action, filter) {
@@ -64,6 +66,10 @@ class ViewMatchingController {
     return _.isUndefined(obj);
   }
 
+  getRefugeeAge(dateOfBirth) {
+    return moment().diff(moment(dateOfBirth), 'year');
+  }
+
   applyFilter() {
     if (this.isUserRefugee()) {
       this.jobs = [];
@@ -77,10 +83,23 @@ class ViewMatchingController {
       this.refugees = [];
       this.refugee = {};
       this.refugeeCounter = 0;
-      this.MatchingService.listRefugees(this.search, this.currentUser.company).then(refugees => {
-        this.refugees = refugees;
-        this.refugee = this.refugees[this.refugeeCounter];
-      });
+      if (!this.search.job) {
+        this.$mdDialog.show(
+          this.$mdDialog.alert()
+            .clickOutsideToClose(true)
+            .title('Filter Error')
+            .textContent('Please select a job')
+            .ariaLabel('Left to right demo')
+            .ok('Cancel')
+            .openFrom('#left')
+            .closeTo(angular.element(document.querySelector('#right')))
+        );
+      } else {
+        this.MatchingService.listRefugees(this.search, this.currentUser.company).then(refugees => {
+          this.refugees = refugees;
+          this.refugee = this.refugees[this.refugeeCounter];
+        });
+      }
     }
   }
 
@@ -117,7 +136,7 @@ class ViewMatchingController {
   }
 
   static get $inject() {
-    return ['$state', UserService.name, MatchingService.name];
+    return ['$state', UserService.name, MatchingService.name, '$mdDialog'];
   }
 }
 

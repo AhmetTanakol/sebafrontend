@@ -3,6 +3,7 @@
         <md-input-container>
             <label>Location</label>
             <md-select ng-model="$ctrl.search.location">
+                <md-option (click)="form.controls.formal.reset()"></md-option>
                 <md-option ng-repeat="location in $ctrl.locations" value="{{location._id}}">
                     {{location.name}}
                 </md-option>
@@ -11,6 +12,7 @@
         <md-input-container ng-if="!$ctrl.isUserRefugee()">
             <label>Age</label>
             <md-select ng-model="$ctrl.search.age">
+                <md-option (click)="form.controls.formal.reset()"></md-option>
                 <md-option value="18-25">18-25</md-option>
                 <md-option value="26-35">26-35</md-option>
                 <md-option value="36-45">36-45</md-option>
@@ -20,6 +22,7 @@
         <md-input-container ng-if="!$ctrl.isUserRefugee()">
             <label>Gender</label>
             <md-select ng-model="$ctrl.search.gender">
+                <md-option (click)="form.controls.formal.reset()"></md-option>
                 <md-option value="Male">Male</md-option>
                 <md-option value="Female">Female</md-option>
             </md-select>
@@ -27,6 +30,7 @@
         <md-input-container ng-if="$ctrl.isUserRefugee()">
             <label>Industry</label>
             <md-select ng-model="$ctrl.search.industry">
+                <md-option (click)="form.controls.formal.reset()"></md-option>
                 <md-option ng-repeat="industry in $ctrl.industries" value="{{industry._id}}">
                     {{industry.name}}
                 </md-option>
@@ -35,6 +39,7 @@
         <md-input-container>
             <label>Skill</label>
             <md-select ng-model="$ctrl.search.skill">
+                <md-option (click)="form.controls.formal.reset()"></md-option>
                 <md-option ng-repeat="skill in $ctrl.skills" value="{{skill._id}}">
                     {{skill.name}}
                 </md-option>
@@ -43,6 +48,7 @@
         <md-input-container ng-if="!$ctrl.isUserRefugee()">
             <label>Jobs</label>
             <md-select ng-model="$ctrl.search.job">
+                <md-option (click)="form.controls.formal.reset()"></md-option>
                 <md-option ng-repeat="jobItem in $ctrl.jobList" value="{{jobItem._id}}">
                     {{jobItem.title}}
                 </md-option>
@@ -81,7 +87,7 @@
                 <md-card-title flex="auto">
                     <md-card-title-text>
                         <span class="md-headline card-title">{{$ctrl.job.company.name}} / {{$ctrl.job.title}}</span>
-                        <span class="md-subhead card-subtitle">{{$ctrl.job.company.email}} /  {{$ctrl.job.company.phone}}</span>
+                        <span class="md-subhead card-subtitle">Email: {{$ctrl.job.company.email}} / Phone: {{$ctrl.job.company.phone}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-xl card-media">
@@ -109,7 +115,7 @@
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline card-title">{{$ctrl.refugee.name}}</span>
-                        <span class="md-subhead card-subtitle">{{$ctrl.refugee.city.name}} / {{$ctrl.refugee.placeOfBirth}} / {{$ctrl.refugee.email}} / {{$ctrl.refugee.age}}</span>
+                        <span class="md-subhead card-subtitle">City: {{$ctrl.refugee.city.name}} / Birth Place: {{$ctrl.refugee.placeOfBirth}} / Email: {{$ctrl.refugee.email}} / Age: {{$ctrl.getRefugeeAge($ctrl.refugee.dateOfBirth)}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-xl card-media">
@@ -141,5 +147,8 @@
                 <md-icon class="material-icons md-48"><ng-md-icon icon="check"></ng-md-icon></md-icon>
             </md-button>
         </div>
+    </div>
+    <div layout="column" layout-align="center center" class="md-padding">
+        <span id="left"></span>
     </div>
 </div>
