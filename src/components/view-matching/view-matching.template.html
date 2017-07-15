@@ -4,7 +4,7 @@
             <label>Location</label>
             <md-select ng-model="$ctrl.search.location">
                 <md-option (click)="form.controls.formal.reset()"></md-option>
-                <md-option ng-repeat="location in $ctrl.locations" value="{{location._id}}">
+                <md-option ng-repeat="location in $ctrl.locations | orderBy:'name'" value="{{location._id}}">
                     {{location.name}}
                 </md-option>
             </md-select>
@@ -31,7 +31,7 @@
             <label>Industry</label>
             <md-select ng-model="$ctrl.search.industry">
                 <md-option (click)="form.controls.formal.reset()"></md-option>
-                <md-option ng-repeat="industry in $ctrl.industries" value="{{industry._id}}">
+                <md-option ng-repeat="industry in $ctrl.industries | orderBy:'name'" value="{{industry._id}}">
                     {{industry.name}}
                 </md-option>
             </md-select>
@@ -40,7 +40,7 @@
             <label>Skill</label>
             <md-select ng-model="$ctrl.search.skill">
                 <md-option (click)="form.controls.formal.reset()"></md-option>
-                <md-option ng-repeat="skill in $ctrl.skills" value="{{skill._id}}">
+                <md-option ng-repeat="skill in $ctrl.skills | orderBy:'name'" value="{{skill._id}}">
                     {{skill.name}}
                 </md-option>
             </md-select>
@@ -49,7 +49,7 @@
             <label>Jobs</label>
             <md-select ng-model="$ctrl.search.job">
                 <md-option (click)="form.controls.formal.reset()"></md-option>
-                <md-option ng-repeat="jobItem in $ctrl.jobList" value="{{jobItem._id}}">
+                <md-option ng-repeat="jobItem in $ctrl.jobList | orderBy:'title'" value="{{jobItem._id}}">
                     {{jobItem.title}}
                 </md-option>
             </md-select>
