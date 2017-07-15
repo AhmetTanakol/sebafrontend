@@ -54,8 +54,8 @@ class ViewAddResumeComponentController{
   	}
 	
 	removeLanguage (selectedItem) {
-		var index = this.resume.languages.indexOf(selectedItem);
-		this.resume.languages.splice(index, 1);
+		var index = this.languages.indexOf(selectedItem);
+		this.languages.splice(index, 1);
 	}
 
 	addCertificate () {
@@ -92,23 +92,29 @@ class ViewAddResumeComponentController{
 	addSkill () {
 		var validSkill = true;
 		for (var i=0; i<this.skills.length; i++) {
-			if (this.skills[i].name == this.skill.type) {
+			if (this.skills[i]._id == this.skill.type) {
 				validSkill = false;
 			}
 		}
 		if (validSkill) {
+			var alias = this.getNameFromId(this.skillsList, this.skill.type);
 			this.skills.push({
-				name: this.skill.type,
+				name: this.skill.type,			
 				power: this.skill.power,
+				nameAlias : alias,
 			});
 			this.skill = {};
 		}
 	}
 	
 	addLanguage () {
-		if ((this.resume.language != '') && (this.resume.languages.indexOf(this.resume.language) == -1)) {
-			this.resume.languages.push(this.resume.language);
-			this.resume.language = '';
+		if ((this.language != '') && (this.languages.indexOf(this.language) == -1)) {
+			var alias = this.getNameFromId(this.languagesList, this.language);
+			this.languages.push({
+				name: this.language,
+				nameAlias : alias,
+			});
+			this.language = '';
 		}
 	}
 	
@@ -119,26 +125,40 @@ class ViewAddResumeComponentController{
 		return false;
 	}
 
+	getNameFromId(collection, id) {	
+		for (var i=0; i<collection.length; i++) {
+			if (collection[i]._id == id) {
+				return collection[i].name;
+			}
+		}
+		return null;
+	}
+  
+  
 	$onInit() {
 		if (this.UserService.isAuthenticated()) {
 			this.currentUser = this.UserService.getCurrentUser();
 			if (this.isUserRefugee()) {
 			
 				this.refugee = [];
-				this.resume = [];
-				this.resume.languages = [];
+				
+				this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
+					this.refugee = refugee;
+				});
+								
+				this.languages = [];
 				this.educations = [];
 				this.experiences = [];
 				this.certificates = [];
 				this.skills = [];
 				this.cities = [];
 
-				this.resume.language = '';
+				this.language = '';
 				this.certificate = {};
 				this.education = {};
 				this.experience = {};
 				this.skill = {};
-
+				
 				var currentDate = new Date();
 				
 				this.minStartDate = new Date(
@@ -163,29 +183,16 @@ class ViewAddResumeComponentController{
 				);
 				
 				// get languages
-				/*this.languagesList = [
-					{id:1, name:'Deutsch'}, 
-					{id:2, name:'English'}, 
-					{id:3, name:'Indonesian'}, 
-					{id:4, name:'Chinese'}, 
-					{id:5, name:'Tamil'}, 
-					{id:6, name:'Abcwkwkwkwkwkwk'}
-				];*/		
 				this.RefugeeService.listLanguages().then(languages => {
 					this.languagesList = languages;
 				});
 				
 				// get country of birth & company location (countries list)
-				this.countriesList = [
-					{id:1, name:'Germany'}, 
-					{id:2, name:'USA'}, 
-					{id:3, name:'Indonesia'}, 
-					{id:4, name:'China'}, 
-					{id:5, name:'India'}, 
-					{id:6, name:'Australia'}
-				];		
-				
-				// get Germany city
+				this.RefugeeService.listCountries().then(countries => {
+					this.countriesList = countries;
+				});	
+
+				// get Germany cities
 				this.RefugeeService.listLocations().then(cities => {
 					this.cities = cities;
 				});	
@@ -193,15 +200,7 @@ class ViewAddResumeComponentController{
 				// get skills
 				this.RefugeeService.listSkills().then(skills => {
 					this.skillsList = skills;
-				});	
-				
-				console.log(this.currentUser._id);
-				this.RefugeeService.get(this.currentUser._id).then(refugee => {
-					this.refugee = refugee;
 				});
-				
-				console.log(this.refugee);
-				
 				
 			}
 		} else {
@@ -210,14 +209,11 @@ class ViewAddResumeComponentController{
 	}
 	
 	save() {
-		/*let user = this.UserService.getCurrentUser();
-
-		this.movie['user'] = user['_id'];
-		this.MoviesService.create(this.movie).then(data => {
-			let _id = data['_id'];
-			this.$state.go('movie',{ movieId:_id});
-		});*/
-
+		 
+		this.RefugeeService.updateResume(this.refugee).then(data => {
+			this.result = result;
+		});	
+		
 	};
 	
     static get $inject () {

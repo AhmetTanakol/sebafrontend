@@ -74,6 +74,18 @@ export default class RefugeeService {
 
         })
     }
+	
+	updateResume(refugee) {
+      return this.$http.post(`${this.API_URL}/refugee/updateResume`, {
+        params: {
+          refugee: refugee
+        }
+      }).then(response => {
+        return new Promise((resolve, reject) => {
+          resolve(response.data);
+        });
+      });
+    }
 
 	listSkills() {
       return this.$http.get(`${this.API_URL}/skill/`).then(response => {
@@ -93,6 +105,14 @@ export default class RefugeeService {
 
 	listLanguages() {
 		return this.$http.get(`${this.API_URL}/language/`).then(response => {
+		   return new Promise((resolve, reject) => {
+			 resolve(response.data);
+		   });
+		});
+	}
+	
+	listCountries() {
+		return this.$http.get(`${this.API_URL}/country/`).then(response => {
 		   return new Promise((resolve, reject) => {
 			 resolve(response.data);
 		   });
