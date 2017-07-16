@@ -24,9 +24,9 @@ function resolveJob($stateParams, JobService) {
 }
 
 
-resolveJobs.$inject = ['$stateParams', JobService.name];
+resolveJobs.$inject = [JobService.name];
 function resolveJobs(JobService) {
-    return JobService.listJobs()
+    return JobService.list()
 }
 
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];

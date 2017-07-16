@@ -35,13 +35,10 @@ class ViewJobsComponentController{
 		this.job.skills.splice(index, 1);
   	}
 
-	addSkill () {
-		this.job.skills.push({
-			type: this.skill.type,
-			power: this.skill.power,
-		});
-		this.skill = {};
-        this.skill.power = 1;
+    deleteJob (selectedItem) {
+        let index = this.jobs.indexOf(selectedItem);
+        this.job.skills.splice(index, 1);
+        this.JobService.delete(selectedItem._id);
 	}
 
     back () {

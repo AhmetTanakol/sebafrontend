@@ -20,7 +20,7 @@ export default class JobService {
 
 
 
-    listJobs() {
+    list() {
         let url = this.resourceUrl;
         return this.$http.get(url).then(response => {
             return new Promise((resolve, reject) => {
@@ -42,6 +42,15 @@ export default class JobService {
     get(jobID) {
         let url = `${ this.resourceUrl }${ jobID }`;
         return this.$http.get(url).then(response => {
+            return new Promise((resolve, reject) => {
+                resolve(response.data);
+            });
+        })
+    }
+
+    delete(jobID) {
+        let url = `${ this.resourceUrl }${ jobID }`;
+        return this.$http.delete(url).then(response => {
             return new Promise((resolve, reject) => {
                 resolve(response.data);
             });
