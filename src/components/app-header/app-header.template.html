@@ -16,11 +16,11 @@
             <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
             Notifications
         </md-button>
-        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.addJob($event)">
+        <md-button ng-if="$ctrl.isAuthenticated() && $ctrl.isUserCompany()" ng-click="$ctrl.addJob($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
             Create Job
         </md-button>
-        <md-menu-bar ng-if="$ctrl.isAuthenticated()">
+        <md-menu-bar ng-if="$ctrl.isAuthenticated() && $ctrl.isUserRefugee()">
             <md-menu>
                 <md-button ng-click="$mdMenu.open()">
                     <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
@@ -30,7 +30,7 @@
                     <md-menu-item>
                         <md-button ng-click="$ctrl.addResume()">
                             <md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-                            Add Resume
+                            Edit Resume
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
@@ -42,7 +42,7 @@
                 </md-menu-content>
             </md-menu>
         </md-menu-bar>
-        <md-menu-bar> <!--just to see comapny page without login-->
+        <md-menu-bar ng-if="$ctrl.isAuthenticated() && $ctrl.isUserCompany()">
             <md-menu>
                 <md-button ng-click="$mdMenu.open()">
                     <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
@@ -52,7 +52,7 @@
                     <md-menu-item>
                         <md-button ng-click="$ctrl.addProfile()">
                             <md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-                            Add Profile
+                            Edit Profile
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>

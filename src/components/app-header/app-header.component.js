@@ -31,6 +31,22 @@ class AppHeaderComponentController{
     isAuthenticated(){
         return this.UserService.isAuthenticated();
     }
+	
+	isUserRefugee() {
+		this.currentUser = this.UserService.getCurrentUser();
+		if (this.currentUser.type === 'refugee') {
+		  return true;
+		}
+		return false;
+	}
+	
+	isUserCompany() {
+		this.currentUser = this.UserService.getCurrentUser();
+		if (this.currentUser.type === 'company') {
+		  return true;
+		}
+		return false;
+	}
 
     getCurrentUser(){
         let user = this.UserService.getCurrentUser();
