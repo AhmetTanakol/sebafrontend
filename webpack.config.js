@@ -11,7 +11,8 @@ module.exports = {
 
     entry: {
         'vendor': ['angular','angular-animate', 'angular-touch', 'angular-aria','angular-messages','angular-material',
-          'angular-material-icons','@uirouter/angularjs', 'jquery', 'bootstrap', 'angular-ui-bootstrap'],
+          'angular-material-icons','@uirouter/angularjs', 'jquery', 'bootstrap', 'angular-ui-bootstrap',
+          'moment', 'lodash'],
         'app': path.resolve(__dirname,'src/app.js')
     },
     output: {
@@ -27,6 +28,10 @@ module.exports = {
                 query: {
                     presets: ['es2015']
                 }
+            },
+            {
+                test: /\.(jpe?g)$/i,
+                loader:'file-loader'
             },
             {
                 test: /\.html$/,

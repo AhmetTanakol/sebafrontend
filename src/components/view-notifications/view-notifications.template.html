@@ -1,11 +1,17 @@
-<div layout="row" layout-lg ng-cloak>
-    <div flex>
-        <view-matches></view-matches>
-    </div>
-    <div flex>
-        <view-wishlist></view-wishlist>
-    </div>
-    <div flex>
-        Banner ads
-    </div>
+<div id="notificationMain" class="row no-margin" ng-if="$ctrl.loginAs == 'company'">
+	<div class="col-md-10 left-container">					
+		<view-matches></view-matches>
+	</div>
+	<div class="col-md-2 name-container">
+		<img ng-src="https://marketplace.canva.com/MACJ7n2v4Rw/1/0/thumbnail_large/canva-gym-fitness-photo-large-rectangle-advertisement-MACJ7n2v4Rw.jpg" />
+	</div>
+</div>
+
+<div id="notificationMain" class="row no-margin" ng-if="$ctrl.loginAs == 'refugee'">
+	<div class="col-md-10 left-container">
+		<view-matches></view-matches>
+	</div>	
+	<div class="col-md-2 name-container">
+		<img ng-src="https://marketplace.canva.com/MACJ7n2v4Rw/1/0/thumbnail_large/canva-gym-fitness-photo-large-rectangle-advertisement-MACJ7n2v4Rw.jpg" />
+	</div>
 </div>

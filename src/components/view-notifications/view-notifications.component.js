@@ -1,5 +1,7 @@
 'use strict';
 
+import UserService from './../../services/user/user.service';
+
 import template from './view-notifications.template.html';
 
 import './view-notifications.style.css';
@@ -16,13 +18,23 @@ class ViewNotificationsComponent {
 }
 
 class ViewNotificationsController {
-    constructor ($state) {
-      this.$state = $state;
+    constructor ($state, UserService) {
+		this.$state = $state;
+		this.UserService = UserService;	  
     }
+	
+	$onInit() {
+		if (this.UserService.isAuthenticated()) {
+			this.currentUser = this.UserService.getCurrentUser();
+			
+			// company or refugee
+			this.loginAs = this.currentUser.type;
+		}
+	}
 
-    static get $inject () {
-      return ['$state'];
-    }
+    static get $inject() {
+		return ['$state', UserService.name];
+	}
 }
 
 export default ViewNotificationsComponent;

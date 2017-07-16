@@ -1,0 +1,65 @@
+<div layout="column" layout-padding="" ng-cloak>
+    <span flex="20"></span>
+    <md-content class="view-resume" layout="row" flex="35">
+        <span flex="10"></span>
+        <md-card flex="80">
+            <md-card-content class="no-top-padding">
+            <div class="row">
+				<div class="col-md-3 left-container">					
+					<div class="profile-picture" ng-cloak="media_list">
+						<img src="{{ $ctrl.profilePicture }}" alt="Refugee Profile Picture" width="140" height="175" />
+					</div>
+				</div>
+				<div class="col-md-9 name-container">
+					<div>{{ $ctrl.refugee.name }}</div>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 left-container">
+					<div class="titles">CONTACT</div>
+					<div>{{ $ctrl.refugee.phone }}</div>
+					<div>{{ $ctrl.refugee.email }}</div>
+					<div>{{ $ctrl.refugee.address }}</div>
+					<div>{{ $ctrl.refugee.city }}, {{ $ctrl.refugee.postalCode }}, Germany</div>
+					<hr/>
+					<div class="titles">EDUCATIONS</div>
+					
+					<md-list-item class="md-3-line" ng-repeat="education in $ctrl.educations">
+						<div class="education">{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}<br/>
+						{{ education.school }}<br/>
+						{{ education.from | date:'yyyy' }} - {{ education.to | date:'yyyy' }}</div>
+					</md-list-item>
+					
+					<hr/>
+					<div class="titles">SKILLS</div>
+					<md-list-item class="md-1-line" ng-repeat="refugeeSkill in $ctrl.skills">
+						<p>{{ refugeeSkill.name }} {{ refugeeSkill.power }}/10</p>						
+					</md-list-item>
+					
+					<hr />
+					<div class="titles">LANGUAGES</div>
+					<md-list-item class="md-1-line" ng-repeat="language in $ctrl.languages">
+						<p>{{ language }}</p>						
+					</md-list-item>
+				</div>
+				<div class="col-md-9 right-container">
+					<div class="titles">PROFILE</div>
+					<div>{{ $ctrl.refugee.description }}</div>
+					<hr/>
+					<div class="titles">WORK EXPERIENCES</div>
+					
+					<md-list-item class="md-3-line" ng-repeat="experience in $ctrl.experiences">
+						<div class="work-exp">
+							<div class="work-title">{{ experience.title | uppercase }}</div>
+							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.companyLocation }} / {{ experience.from | date:'yyyy'  }} - {{ experience.to | date:'yyyy' }}</div>
+							{{ experience.description }}
+						</div>
+					</md-list-item>
+				</div>
+			</div>
+            </md-card-content>
+        </md-card>
+        <span flex></span>
+    </md-content>
+    <span flex></span>
+</div>

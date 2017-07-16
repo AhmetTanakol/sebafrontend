@@ -1,0 +1,57 @@
+.view-resume {
+	font-family: Trebuchet Ms;
+}
+
+.view-resume .no-top-padding {
+	padding: 0 16px !important;
+}
+
+.view-resume .name-container {
+	background-color: #709690;
+	color: #fff;
+	font-size: 3em;
+	text-align: center;	
+	padding: 50px 0;
+}
+
+.view-resume .title {
+	font-size: 0.6em;
+}
+
+.view-resume .left-container {
+	background-color: #1aa8a1;
+	text-align: center;
+	color: #eee;
+}
+
+.view-resume .titles {
+	font-weight: 700;
+	font-size: 1.5em;
+	padding: 5px 0 10px 0;
+}
+
+.view-resume .profile-picture {
+	padding: 20px 0;
+}
+
+.view-resume .right-container {
+	text-align: center;
+}
+
+.view-resume .work-title {
+	font-size: 1.2em;
+}
+
+.view-resume .work-subtitle {
+	font-weight: 700;
+}
+
+.view-resume .work-exp {
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.view-resume .education {
+	text-align: center;
+	width: 100%;
+}
