@@ -27,6 +27,7 @@ class ViewAddJobComponentController{
     
 	constructor ($state ,UserService, JobService, SkillService) {
 	    this.job ={};
+        this.skillObj = {};
         this.UserService = UserService;
 	    this.JobService = JobService;
 		this.$state = $state;
@@ -40,9 +41,11 @@ class ViewAddJobComponentController{
 
 	addSkill () {
 		this.job.skills.push({
-			name: this.skill.name,
-			power: this.skill.power,
-		});
+            _id: this.skillObj['_id'],
+            name: this.skillObj['name'],
+            power: this.skill.power,
+        });
+		console.log(this.job.skills);
 		this.skill = {};
         this.skill.power = 1;
 	}
@@ -58,6 +61,7 @@ class ViewAddJobComponentController{
             skills: this.job.skills
 		};
         // this.job['user'] = user['_id'];
+		console.log(jobInfo);
         this.JobService.create(jobInfo).then(data => {
             let _id = data['_id'];
             this.$state.go('job',{ jobId:_id});
@@ -78,7 +82,6 @@ class ViewAddJobComponentController{
 		this.job.skills = [];
 
 		this.skill = {};
-
 		this.skill.power = 1;
         this.job.startDate = new Date();
         this.job.endDate = new Date();

@@ -66,7 +66,7 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
             url: '/job/:jobId/',
             component: JobComponent.name,
             resolve: {
-                job : resolveJob
+                job : resolveJob,
             }
         })
         .state('jobAdd', {

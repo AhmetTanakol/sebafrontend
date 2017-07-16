@@ -61,9 +61,9 @@
                 <!--<md-subheader class="md-no-sticky">Add New Skill</md-subheader>-->
 
                 <md-input-container >
-                    <label>Skill</label>
-                    <md-select ng-model="$ctrl.skill.name" ng-required="true">
-                        <md-option ng-repeat="skill in $ctrl.skills" value="{{skill.name}}">
+                    <label>Skill </label>
+                    <md-select ng-model="$ctrl.skillObj" ng-required="true">
+                        <md-option ng-repeat="skill in $ctrl.skills" ng-value="{{skill}}">
                             {{skill.name}}
                         </md-option>
                     </md-select>

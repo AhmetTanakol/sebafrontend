@@ -19,7 +19,7 @@ export default class UserService {
 
     register(registerInfo) {
         return this.$http.post(`${ this.API_URL }/user/signup`, {
-            username: registerInfo.user,
+            email: registerInfo.user,
             password: registerInfo.password,
             type: registerInfo.type
         });
@@ -27,7 +27,7 @@ export default class UserService {
 
     login(user, pass) {
         return this.$http.post(`${ this.API_URL }/user/login`, {
-            username: user,
+            email: user,
             password: pass
         });
     }

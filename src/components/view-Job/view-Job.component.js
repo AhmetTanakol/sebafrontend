@@ -5,6 +5,8 @@ import UserService from './../../services/user/user.service';
 import template from './view-job.template.html';
 import './view-job.style.css';
 import JobService from './../../services/job/job.service';
+import SkillService from './../../services/skill/skill.service';
+
 
 
 class ViewAddJobComponent {
@@ -24,25 +26,13 @@ class ViewAddJobComponent {
 
 class ViewAddJobComponentController{
     
-	constructor ($state ,UserService, JobService) {
+	constructor ($state ,UserService, JobService, SkillService) {
         this.UserService = UserService;
 	    this.JobService = JobService;
+	    this.SkillService = SkillService;
 		this.$state = $state;
 	}
 
-  	removeSkill (selectedItem) {
-		let index = this.job.skills.indexOf(selectedItem);
-		this.job.skills.splice(index, 1);
-  	}
-
-	addSkill () {
-		this.job.skills.push({
-			type: this.skill.type,
-			power: this.skill.power,
-		});
-		this.skill = {};
-        this.skill.power = 1;
-	}
 
     back () {
         if (this.UserService.isAuthenticated()) {
@@ -62,7 +52,7 @@ class ViewAddJobComponentController{
     }
 	$onInit(){
 		this.job = JSON.parse(JSON.stringify(this.job))
-
+		console.log(this.job);
 		/*let currentDate = new Date();
 		this.maxStartDate = new Date(
 			currentDate.getFullYear(),
@@ -77,7 +67,7 @@ class ViewAddJobComponentController{
 	}
 	
     static get $inject () {
-      return ['$state',UserService.name, JobService.name];
+      return ['$state',UserService.name, JobService.name, SkillService.name];
     }
 
 }

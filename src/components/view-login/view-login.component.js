@@ -31,7 +31,7 @@ class ViewLoginComponentController{
     }
 
     submit(){
-        let user = this.login.username;
+        let user = this.login.email;
         let password = this.login.password;
 
         this.UserService.login(user,password).then(()=> {

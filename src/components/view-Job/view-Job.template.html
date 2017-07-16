@@ -8,11 +8,6 @@
                     <md-toolbar md-scroll-shrink>
                         <div class="md-toolbar-tools">{{$ctrl.job.title}}</div>
                     </md-toolbar>
-                    <!--<md-input-container md-no-float class="md-block">
-                        <md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
-                        <input ng-model="$ctrl.job.photo" type="file" placeholder="Upload Photo">
-                        &lt;!&ndash;<label>Profile Picture</label>&ndash;&gt;
-                    </md-input-container>-->
 
                     <div layout="column">
                         <div class="h4" flex>Description:</div>
@@ -37,10 +32,10 @@
                 </md-card-content>
                 <md-card-content>
                     <md-list flex>
-                        <md-subheader class="md-no-sticky">Added Skills</md-subheader>
+                        <md-subheader class="md-no-sticky">Skills</md-subheader>
                         <md-list-item class="md-3-line" ng-repeat="skillitem in $ctrl.job.skills">
                             <div class="secondary-button-padding" layout="column">
-                                <h3>{{ skillitem.type }}</h3>
+                                <h3>{{ skillitem.name }}</h3>
                                 <p>{{ skillitem.power }} out of 10</p>
                             </div>
                             <md-divider></md-divider>
