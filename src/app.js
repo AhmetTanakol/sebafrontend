@@ -20,6 +20,8 @@ import moment from 'moment/moment';
 import UserService from './services/user/user';
 import RefugeeService from './services/refugee/refugee';
 import MatchingService from './services/matching/matching';
+import JobService from './services/job/job';
+import SkillService from './services/skill/skill';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -30,10 +32,14 @@ import ViewLogin from './components/view-login/view-login';
 import ViewRegister from './components/view-register/view-register';
 import ViewNotifications from './components/view-notifications/view-notifications';
 import ViewAddResume from './components/view-add-resume/view-add-resume';
+import ViewAddJob from './components/view-add-Job/view-add-Job';
+import ViewJob from './components/view-Job/view-Job';
+import ViewJobs from  './components/view-Jobs/view-Jobs';
 import ViewResume from './components/view-resume/view-resume';
 import ViewAddProfile from './components/view-add-profile/view-add-profile';
 import ViewProfile from './components/view-profile/view-profile';
 import ViewMatching from './components/view-matching/view-matching';
+
 
 let app = angular.module('app', [
     uiRouter,
@@ -43,18 +49,23 @@ let app = angular.module('app', [
     ngMessages,
     uiBootstrap,
     UserService.name,
+    JobService.name,
+    SkillService.name,
     RefugeeService.name,
     MatchingService.name,
     AppContent.name,
     ViewMain.name,
     ViewLogin.name,
     ViewRegister.name,
+    ViewAddJob.name,
     ViewNotifications.name,
-	    ViewAddResume.name,
-	    ViewResume.name,
-        ViewAddProfile.name,
-        ViewProfile.name,
-    ViewMatching.name
+	  ViewAddResume.name,
+	  ViewResume.name,
+      ViewAddProfile.name,
+      ViewProfile.name,
+    ViewMatching.name,
+    ViewJob.name,
+    ViewJobs.name
 ]);
 
 app.constant('API_URL', 'http://localhost:3000/api');

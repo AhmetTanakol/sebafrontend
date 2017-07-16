@@ -1,0 +1,85 @@
+<!--<md-tabs md-dynamic-height md-border-bottom md-center-tabs="true">-->
+
+<div layout="column" layout-gt-sm="row"  layout-margin>
+
+    <form flex class="job-form" name="JobInformation">
+            <md-card>
+                <md-card-content layout="column">
+                    <md-toolbar md-scroll-shrink>
+                        <div class="md-toolbar-tools">JOB DETAILS</div>
+                    </md-toolbar>
+                    <!--<md-input-container md-no-float class="md-block">
+                        <md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
+                        <input ng-model="$ctrl.job.photo" type="file" placeholder="Upload Photo">
+                        &lt;!&ndash;<label>Profile Picture</label>&ndash;&gt;
+                    </md-input-container>-->
+
+                    <md-input-container >
+                        <input ng-model="$ctrl.job.jobTitle" type="text" placeholder="Job Title" ng-required="true">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input ng-model="$ctrl.job.jobDescription" type="text" placeholder="Job Description" ng-required="true">
+                    </md-input-container>
+
+                    <div layout="row" layout-align="space-around">
+
+                        <md-input-container>
+                            <md-datepicker placeholder="Start Date" ng-model="$ctrl.job.startDate" ng-reqired="true"></md-datepicker>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <md-datepicker placeholder="End Date"  ng-model="$ctrl.job.endDate" ng-reqired="true"></md-datepicker>
+                        </md-input-container>
+                    </div>
+
+                </md-card-content>
+                <md-card-content>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">Added Skills</md-subheader>
+                        <md-list-item class="md-3-line" ng-repeat="skillitem in $ctrl.job.skills">
+                            <div class="secondary-button-padding" layout="column">
+                                <h3>{{ skillitem.name }}</h3>
+                                <p>{{ skillitem.power }} out of 10</p>
+                                <md-button class="md-secondary button-delete" ng-click="$ctrl.removeSkill(skillitem)">Delete</md-button>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+    </form>
+
+    <form flex class="job-form" name="SkillForm">
+
+
+        <md-card>
+            <md-card-content layout="column">
+                <md-toolbar md-scroll-shrink>
+                    <div class="md-toolbar-tools">Add New Skills</div>
+                </md-toolbar>
+                <!--<md-subheader class="md-no-sticky">Add New Skill</md-subheader>-->
+
+                <md-input-container >
+                    <label>Skill </label>
+                    <md-select ng-model="$ctrl.skillObj" ng-required="true">
+                        <md-option ng-repeat="skill in $ctrl.skills" ng-value="{{skill}}">
+                            {{skill.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <div layout="column">
+                    Power
+                    <md-slider flex class="md-warn" md-discrete ng-model="$ctrl.skill.power"  step="1" min="1" max="10" aria-label="rating" ng-required="true"></md-slider>
+                </div>
+            </md-card-content>
+            <md-button flex class="button-add" ng-disabled="!SkillForm.$valid" ng-click="$ctrl.addSkill()">Add More Skills</md-button>
+        </md-card>
+
+    </form>
+
+</div>
+<div layout="row" layout-align="end center">
+	<md-button ng-disabled="!JobInformation.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
+</div>
+<!--</md-tabs>-->
