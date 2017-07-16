@@ -27,12 +27,12 @@
 					
 					{{ $ctrl.education.degree | uppercase }}/{{ $ctrl.education.fieldOfStudy | uppercase }}
 					{{ $ctrl.education.school }}
-					{{ $ctrl.education.from | date:'mediumDate' }} - {{ $ctrl.education.to | date:'mediumDate' }}
+					{{ $ctrl.education.from | date:'yyyy' }} - {{ $ctrl.education.to | date:'yyyy' }}
 
 					<md-list-item class="md-2-line" ng-repeat="education in $ctrl.educations">
 						<p>{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}</p>
 						<p>{{ education.school }}</p>
-						<p>{{ education.from | date:'mediumDate' }} - {{ education.to | date:'mediumDate' }}</p>
+						<p>{{ education.from | date:'yyyy' }} - {{ education.to | date:'yyyy' }}</p>
 					</md-list-item>
 					
 					<hr/>
@@ -50,7 +50,7 @@
 					<md-list-item class="md-3-line" ng-repeat="experience in $ctrl.experiences">
 						<div class="work-exp">
 							<div class="work-title">{{ experience.title | uppercase }}</div>
-							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.companyLocation }} / {{ experience.from | date:'mediumDate'  }} - {{ experience.to | date:'mediumDate' }}</div>
+							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.companyLocation }} / {{ experience.from | date:'yyyy'  }} - {{ experience.to | date:'yyyy' }}</div>
 							{{ experience.description }}
 						</div>
 					</md-list-item>

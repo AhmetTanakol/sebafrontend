@@ -141,11 +141,6 @@ class ViewAddResumeComponentController{
 			if (this.isUserRefugee()) {
 			
 				this.refugee = [];
-				
-				this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
-					this.refugee = refugee;
-				});
-								
 				this.languages = [];
 				this.educations = [];
 				this.experiences = [];
@@ -158,6 +153,50 @@ class ViewAddResumeComponentController{
 				this.education = {};
 				this.experience = {};
 				this.skill = {};
+				
+				// get languages
+				this.RefugeeService.listLanguages().then(languages => {
+					this.languagesList = languages;
+					
+					// get skills
+					this.RefugeeService.listSkills().then(skills => {
+						this.skillsList = skills;
+						
+						// get refugee
+						this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
+							this.refugee = refugee;
+							
+							for (var i=0; i<this.refugee.language.length; i++) {
+								var langAlias = this.getNameFromId(this.languagesList, this.refugee.language[i]);
+								this.languages.push({
+									name : this.refugee.language[i],
+									nameAlias : langAlias
+								});
+							}
+							
+							for (var i=0; i<this.refugee.skills.length; i++) {
+								var skillAlias = this.getNameFromId(this.skillsList, this.refugee.skills[i].name);
+								this.skills.push({
+									name : this.refugee.skills[i].name,
+									nameAlias : skillAlias,									
+									power: this.refugee.skills[i].power
+								});
+							}
+						});
+					});
+					
+					
+				});
+				
+				// get country of birth & company location (countries list)
+				this.RefugeeService.listCountries().then(countries => {
+					this.countriesList = countries;
+				});	
+
+				// get Germany cities
+				this.RefugeeService.listLocations().then(cities => {
+					this.cities = cities;
+				});	
 				
 				var currentDate = new Date();
 				
@@ -181,27 +220,7 @@ class ViewAddResumeComponentController{
 					currentDate.getMonth(),
 					currentDate.getDate()
 				);
-				
-				// get languages
-				this.RefugeeService.listLanguages().then(languages => {
-					this.languagesList = languages;
-				});
-				
-				// get country of birth & company location (countries list)
-				this.RefugeeService.listCountries().then(countries => {
-					this.countriesList = countries;
-				});	
 
-				// get Germany cities
-				this.RefugeeService.listLocations().then(cities => {
-					this.cities = cities;
-				});	
-				
-				// get skills
-				this.RefugeeService.listSkills().then(skills => {
-					this.skillsList = skills;
-				});
-				
 			}
 		} else {
 			this.$state.go('login',{});
@@ -209,7 +228,21 @@ class ViewAddResumeComponentController{
 	}
 	
 	save() {
-		 
+		// moving language from local variable languages to refugee model
+		this.refugee.language = [];
+		for (var i=0; i<this.languages.length; i++) {
+			this.refugee.language.push(this.languages[i].name);
+		}
+		
+		// moving skills from local variable skills to refugee model
+		this.refugee.skills = [];
+		for (var i=0; i<this.skills.length; i++) {
+			this.refugee.skills.push({
+				name : this.skills[i].name,
+				power : this.skills[i].power
+			});
+		}
+		
 		this.RefugeeService.updateResume(this.refugee).then(data => {
 			this.result = result;
 		});	

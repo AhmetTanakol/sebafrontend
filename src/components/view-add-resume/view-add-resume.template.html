@@ -126,7 +126,7 @@
 							</div>
 							<md-input-container class="md-block">
 								<label>Description</label>
-								<textarea ng-model="$ctrl.refugee.description" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+								<textarea ng-model="$ctrl.refugee.description" md-maxlength="400" rows="3" md-select-on-focus></textarea>
 							</md-input-container>
 
 						</md-card-content>
@@ -342,7 +342,7 @@
 			</div>
 		</div>
 		<div layout="row" layout-align="end center">
-			<md-button ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Save &nbsp</md-button>
+			<md-button ng-click="$ctrl.save()" class="md-raised md-primary">&nbsp Save &nbsp</md-button>
 			<md-button ng-click="$ctrl.download()" class="md-raised md-primary">&nbsp Download &nbsp</md-button>
 		</div>
 
