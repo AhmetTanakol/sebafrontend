@@ -9,23 +9,22 @@
 							<md-toolbar md-scroll-shrink>
 								<div class="md-toolbar-tools">PERSONAL DETAILS</div>
 							</md-toolbar>
-							<md-input-container md-no-float class="md-block">
-								<md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
-								<input ng-model="$ctrl.resume.photo" type="file" placeholder="Upload Photo">
-								<label>Profile Picture</label>
+							
+							<md-input-container class="md-block">
+								<input ng-model="$ctrl.refugee.photo" type="text" placeholder="Profile Picture Link (aspect ratio 4:5)" ng-required="true">
 							</md-input-container>
 
 							<md-input-container class="md-block">
-								<input ng-model="$ctrl.refugee.name" type="text" placeholder="Full Name" ng-required="true" value="xx">
+								<input ng-model="$ctrl.refugee.name" type="text" placeholder="Full Name" ng-required="true">
 							</md-input-container>
 
 							<div layout-gt-sm="row">
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>Gender</label>
 									<md-select name="type" ng-model="$ctrl.refugee.gender" ng-required="true">
-										<md-option value="Male">Male</md-option>
-										<md-option value="Female">Female</md-option>
-										<md-option value="Other">Other</md-option>
+										<md-option value="male">Male</md-option>
+										<md-option value="female">Female</md-option>
+										<md-option value="other">Other</md-option>
 									</md-select>
 								</md-input-container>
 
@@ -189,13 +188,13 @@
 							</md-input-container>
 
 						</md-card-content>
-						<md-button class="button-add" ng-disabled="!EducationForm.$valid" ng-click="$ctrl.addEducation()">Add More Education</md-button>
+						<md-button class="button-add" ng-disabled="!EducationForm.$valid" ng-click="$ctrl.addEducation()">Add Education</md-button>
 					</md-card>
 				</form>
 			</div>
 		</div>
 		<div layout="row" layout-align="end center">
-			<md-button ng-click="$ctrl.save()" class="md-raised md-primary">&nbsp Save & Next &nbsp</md-button>
+			<md-button ng-click="$ctrl.save()" class="md-raised md-primary">&nbsp Save &nbsp</md-button>
 		</div>
 	</md-tab>
 	<md-tab label="Additional Information">
@@ -254,7 +253,7 @@
 							</md-input-container>
 
 						</md-card-content>
-						<md-button class="button-add" ng-disabled="!ExperienceForm.$valid" ng-click="$ctrl.addExperience()">Add More Experience</md-button>
+						<md-button class="button-add" ng-disabled="!ExperienceForm.$valid" ng-click="$ctrl.addExperience()">Add Experience</md-button>
 					</md-card>
 				</form>
 			</div>
@@ -299,7 +298,7 @@
 							</md-input-container>
 
 						</md-card-content>
-						<md-button class="button-add" ng-disabled="!CertificateForm.$valid" ng-click="$ctrl.addCertificate()">Add More Certification</md-button>
+						<md-button class="button-add" ng-disabled="!CertificateForm.$valid" ng-click="$ctrl.addCertificate()">Add Certification</md-button>
 					</md-card>
 				</form>
 
@@ -336,7 +335,7 @@
 
 						</md-card-content>
 
-						<md-button class="button-add" ng-disabled="!SkillForm.$valid" ng-click="$ctrl.addSkill()">Add More Skills</md-button>
+						<md-button class="button-add" ng-disabled="!SkillForm.$valid" ng-click="$ctrl.addSkill()">Add Skill</md-button>
 					</md-card>
 				</form>
 			</div>

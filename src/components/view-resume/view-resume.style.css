@@ -7,7 +7,7 @@
 }
 
 .view-resume .name-container {
-	background-color: #444;
+	background-color: #709690;
 	color: #fff;
 	font-size: 3em;
 	text-align: center;	
@@ -21,7 +21,7 @@
 .view-resume .left-container {
 	background-color: #1aa8a1;
 	text-align: center;
-	color: #333;
+	color: #eee;
 }
 
 .view-resume .titles {
@@ -48,4 +48,9 @@
 
 .view-resume .work-exp {
 	margin-bottom: 20px;
+}
+
+.view-resume .education {
+	text-align: center;
+	width: 100%;
 }

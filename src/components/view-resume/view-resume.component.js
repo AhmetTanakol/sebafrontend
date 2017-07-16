@@ -56,6 +56,8 @@ class ViewResumeComponentController{
 				this.skillsList = [];
 				this.educations = [];
 				this.experiences = [];
+				this.profilePicture = '';
+				this.languages = [];
 				
 				// get languages collection
 				this.RefugeeService.listLanguages().then(languages => {
@@ -85,7 +87,6 @@ class ViewResumeComponentController{
 				// get refugee education from experience collection with refugee_id param
 				this.RefugeeService.getExperiencesByRefugeeId(this.currentUser.refugee).then(experiences => {
 					this.experiences = experiences;
-					console.log(experiences);
 				});
 				
 				this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
@@ -106,7 +107,26 @@ class ViewResumeComponentController{
 						}
 					}
 					
+					// get skills name from skills id
+					if (typeof this.refugee.language != "undefined") {
+						for (var i=0; i<this.refugee.language.length; i++) {
+							var aliaslang = this.getNameFromId(this.languagesList, this.refugee.language[i]);
+							this.languages.push(aliaslang);
+						}
+					}
+					
+					if (this.refugee.hasOwnProperty("photo") && this.refugee.photo != '') {
+						this.profilePicture = this.refugee.photo;
+					} else {
+						if (this.refugee.gender == 'female') {
+							this.profilePicture = "http://crowdresearch.uwa.edu.au/wp-content/uploads/2016/02/female-profile.gif";
+						} else {
+							this.profilePicture = "http://eatyourveggie.com/images/male_profile.gif";
+						}
+					}
+					
 				});
+				
 				
 				
 			}

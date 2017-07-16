@@ -185,8 +185,7 @@ class ViewAddResumeComponentController{
 								});
 							}
 						});
-					});
-					
+					});					
 					
 				});
 				
@@ -199,6 +198,11 @@ class ViewAddResumeComponentController{
 				this.RefugeeService.listLocations().then(cities => {
 					this.cities = cities;
 				});	
+				
+				// get refugee education from education collection with refugee_id param
+				this.RefugeeService.getEducationsByRefugeeId(this.currentUser.refugee).then(educations => {
+					this.educations = educations;
+				});
 				
 				var currentDate = new Date();
 				

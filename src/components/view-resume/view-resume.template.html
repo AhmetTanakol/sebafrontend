@@ -6,8 +6,8 @@
             <md-card-content class="no-top-padding">
             <div class="row">
 				<div class="col-md-3 left-container">					
-					<div class="profile-picture">
-						<img src="./../../images/noimage.jpeg" alt="Refugee Profile Picture" />
+					<div class="profile-picture" ng-cloak="media_list">
+						<img src="{{ $ctrl.profilePicture }}" alt="Refugee Profile Picture" width="140" height="175" />
 					</div>
 				</div>
 				<div class="col-md-9 name-container">
@@ -22,12 +22,11 @@
 					<div>{{ $ctrl.refugee.email }}</div>
 					<div>{{ $ctrl.refugee.address }}</div>
 					<div>{{ $ctrl.refugee.city }}, {{ $ctrl.refugee.postalCode }}, Germany</div>
-					<div>{{ $ctrl.refugee.maritalStatus }}</div>
 					<hr/>
 					<div class="titles">EDUCATIONS</div>
 					
 					<md-list-item class="md-3-line" ng-repeat="education in $ctrl.educations">
-						<div style="text-align: center;">{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}<br/>
+						<div class="education">{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}<br/>
 						{{ education.school }}<br/>
 						{{ education.from | date:'yyyy' }} - {{ education.to | date:'yyyy' }}</div>
 					</md-list-item>
@@ -36,6 +35,12 @@
 					<div class="titles">SKILLS</div>
 					<md-list-item class="md-1-line" ng-repeat="refugeeSkill in $ctrl.skills">
 						<p>{{ refugeeSkill.name }} {{ refugeeSkill.power }}/10</p>						
+					</md-list-item>
+					
+					<hr />
+					<div class="titles">LANGUAGES</div>
+					<md-list-item class="md-1-line" ng-repeat="language in $ctrl.languages">
+						<p>{{ language }}</p>						
 					</md-list-item>
 				</div>
 				<div class="col-md-9 right-container">
