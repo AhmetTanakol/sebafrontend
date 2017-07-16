@@ -51,7 +51,7 @@
 					<md-list-item class="md-3-line" ng-repeat="experience in $ctrl.experiences">
 						<div class="work-exp">
 							<div class="work-title">{{ experience.title | uppercase }}</div>
-							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.companyLocation }} / {{ experience.from | date:'yyyy'  }} - {{ experience.to | date:'yyyy' }}</div>
+							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.alias }} / {{ experience.from | date:'yyyy'  }} - {{ experience.to | date:'yyyy' }}</div>
 							{{ experience.description }}
 						</div>
 					</md-list-item>
