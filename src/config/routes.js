@@ -9,7 +9,7 @@ import ResumeComponent from './../components/view-resume/view-resume.component';
 import AddProfileComponent from './../components/view-add-profile/view-add-profile.component';
 import ProfileComponent from './../components/view-profile/view-profile.component';
 import MatchingComponent from './../components/view-matching/view-matching.component';
-import AddJobComponent from './../components/view-add-job/view-add-Job.component';
+import AddJobComponent from './../components/view-add-Job/view-add-Job.component';
 import JobComponent from './../components/view-Job/view-Job.component';
 import JobsComponent from './../components/view-Jobs/view-Jobs.component';
 
@@ -26,9 +26,9 @@ function resolveJob($stateParams, JobService) {
 }
 
 
-resolveJobs.$inject = [JobService.name];
-function resolveJobs(JobService) {
-    return JobService.list()
+resolveJobs.$inject = ['$stateParams', JobService.name];
+function resolveJobs($stateParams, JobService) {
+    return JobService.list($stateParams.userid)
 }
 
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
@@ -58,7 +58,7 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
           component: AddResumeComponent.name,
         })
         .state('jobs', {
-            url: '/job/',
+            url: '/job/getJobsForUser/:userid/',
             component: JobsComponent.name,
             resolve: {
                 jobs: resolveJobs

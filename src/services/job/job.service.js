@@ -1,4 +1,5 @@
 'use strict';
+import UserService from './../../services/user/user.service';
 
 
 export default class JobService {
@@ -7,11 +8,11 @@ export default class JobService {
         return ['$http', '$window','API_URL'];
     }
 
-    constructor($http,$window,API_URL) {
+    constructor($http,$window,API_URL,UserService) {
         this.$http = $http;
         this.$window = $window;
         this.resourceUrl = `${ API_URL }/job/`;
-
+        this.UserService = UserService;
     }
 
     static get name(){
@@ -20,8 +21,10 @@ export default class JobService {
 
 
 
-    list() {
-        let url = this.resourceUrl;
+    list(userid) {
+
+        let url = this.resourceUrl+'getJobsForUser/${ userid }';
+        console.log(url);
         return this.$http.get(url).then(response => {
             return new Promise((resolve, reject) => {
                 resolve(response.data);

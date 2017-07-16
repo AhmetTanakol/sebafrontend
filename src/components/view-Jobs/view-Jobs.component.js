@@ -42,7 +42,9 @@ class ViewJobsComponentController{
 	}
 
     back () {
-		this.$state.go('job');
+		this.userid =  this.UserService.getCurrentUser()['_id'];
+		console.log(this.userid);
+		this.$state.go('jobs',this.userid);
 	}
 
 	$onInit(){
