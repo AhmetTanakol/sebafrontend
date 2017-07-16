@@ -34,7 +34,7 @@ class AppHeaderComponentController{
 
     getCurrentUser(){
         let user = this.UserService.getCurrentUser();
-        return user.username;
+        return user.email;
     }
 
     main(){
@@ -68,6 +68,14 @@ class AppHeaderComponentController{
 
     viewResume() {
       this.$state.go('viewResume',{});
+    }
+
+    addProfile() {
+      this.$state.go('addProfile',{});
+    }
+
+    viewProfile() {
+      this.$state.go('viewProfile',{});
     }
 
     makeSearch() {

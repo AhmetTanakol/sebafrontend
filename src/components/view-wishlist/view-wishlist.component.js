@@ -17,7 +17,7 @@ class ViewWishlistComponent {
 
 class ViewWishlistController {
     constructor () {
-      this.companies = [
+      this.jobs = [
         {
           name: 'Google',
           description: 'Hello Google',

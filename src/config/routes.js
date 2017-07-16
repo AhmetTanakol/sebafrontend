@@ -6,6 +6,8 @@ import NotificationComponent from './../components/view-notifications/view-notif
 import MainComponent from './../components/view-main/view-main.component'
 import AddResumeComponent from './../components/view-add-resume/view-add-resume.component';
 import ResumeComponent from './../components/view-resume/view-resume.component';
+import AddProfileComponent from './../components/view-add-profile/view-add-profile.component';
+import ProfileComponent from './../components/view-profile/view-profile.component';
 import MatchingComponent from './../components/view-matching/view-matching.component';
 import AddJobComponent from './../components/view-add-job/view-add-Job.component';
 import JobComponent from './../components/view-Job/view-Job.component';
@@ -86,6 +88,14 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
         .state('viewResume', {
           url: '/view-resume',
           component: ResumeComponent.name,
+        })
+        .state('addProfile', {
+          url: '/add-profile',
+          component: AddProfileComponent.name,
+        })
+        .state('viewProfile', {
+          url: '/view-profile',
+          component: ProfileComponent.name,
         })
         .state('viewMatching', {
           url: '/matching',

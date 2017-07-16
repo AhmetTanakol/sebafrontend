@@ -36,6 +36,8 @@ import ViewAddJob from './components/view-add-Job/view-add-Job';
 import ViewJob from './components/view-Job/view-Job';
 import ViewJobs from  './components/view-Jobs/view-Jobs';
 import ViewResume from './components/view-resume/view-resume';
+import ViewAddProfile from './components/view-add-profile/view-add-profile';
+import ViewProfile from './components/view-profile/view-profile';
 import ViewMatching from './components/view-matching/view-matching';
 
 
@@ -59,6 +61,8 @@ let app = angular.module('app', [
     ViewNotifications.name,
 	  ViewAddResume.name,
 	  ViewResume.name,
+      ViewAddProfile.name,
+      ViewProfile.name,
     ViewMatching.name,
     ViewJob.name,
     ViewJobs.name

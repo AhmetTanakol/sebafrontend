@@ -1,6 +1,7 @@
 'use strict';
 
-/*import UserService from './../../services/user/user.service'; */
+import UserService from './../../services/user/user.service'; 
+import RefugeeService from './../../services/refugee/refugee.service';
 
 import template from './view-add-resume.template.html';
 import './view-add-resume.style.css';
@@ -12,7 +13,9 @@ class ViewAddResumeComponent {
     constructor(){
         this.controller = ViewAddResumeComponentController;
         this.template = template;
-
+		this.bindings = {
+			refugee: '<',
+        }
     }
 
     static get name() {
@@ -23,8 +26,11 @@ class ViewAddResumeComponent {
 
 class ViewAddResumeComponentController{
     
-	constructor ($state) {
+	constructor ($state, UserService, RefugeeService) {
+		this.model = {};
 		this.$state = $state;
+		this.UserService = UserService;
+		this.RefugeeService = RefugeeService;
 	}
 
 	removeCertificate (selectedItem) {
@@ -46,6 +52,11 @@ class ViewAddResumeComponentController{
 		var index = this.skills.indexOf(selectedItem);
 		this.skills.splice(index, 1);
   	}
+	
+	removeLanguage (selectedItem) {
+		var index = this.languages.indexOf(selectedItem);
+		this.languages.splice(index, 1);
+	}
 
 	addCertificate () {
 		this.certificates.push({
@@ -79,39 +90,134 @@ class ViewAddResumeComponentController{
 	}
 
 	addSkill () {
-		this.skills.push({
-			type: this.skill.type,
-			power: this.skill.power,
-		});
-		this.skill = {};
-	}
-
-	$onInit() {
-		this.educations = [];
-		this.experiences = [];
-		this.certificates = [];
-		this.skills = [];
-
-		this.certificate = {};
-		this.education = {};
-		this.experience = {};
-		this.skill = {};
-
-		var currentDate = new Date();
-		this.maxStartDate = new Date(
-			currentDate.getFullYear(),
-			currentDate.getMonth() - 1,
-			currentDate.getDate()
-		);
-		this.maxEndDate = new Date(
-			currentDate.getFullYear(),
-			currentDate.getMonth(),
-			currentDate.getDate()
-		);
+		var validSkill = true;
+		for (var i=0; i<this.skills.length; i++) {
+			if (this.skills[i]._id == this.skill.type) {
+				validSkill = false;
+			}
+		}
+		if (validSkill) {
+			var alias = this.getNameFromId(this.skillsList, this.skill.type);
+			this.skills.push({
+				name: this.skill.type,			
+				power: this.skill.power,
+				nameAlias : alias,
+			});
+			this.skill = {};
+		}
 	}
 	
+	addLanguage () {
+		if ((this.language != '') && (this.languages.indexOf(this.language) == -1)) {
+			var alias = this.getNameFromId(this.languagesList, this.language);
+			this.languages.push({
+				name: this.language,
+				nameAlias : alias,
+			});
+			this.language = '';
+		}
+	}
+	
+	isUserRefugee() {
+		if (this.currentUser.type === 'refugee') {
+		  return true;
+		}
+		return false;
+	}
+
+	getNameFromId(collection, id) {	
+		for (var i=0; i<collection.length; i++) {
+			if (collection[i]._id == id) {
+				return collection[i].name;
+			}
+		}
+		return null;
+	}
+  
+  
+	$onInit() {
+		if (this.UserService.isAuthenticated()) {
+			this.currentUser = this.UserService.getCurrentUser();
+			if (this.isUserRefugee()) {
+			
+				this.refugee = [];
+				
+				this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
+					this.refugee = refugee;
+				});
+								
+				this.languages = [];
+				this.educations = [];
+				this.experiences = [];
+				this.certificates = [];
+				this.skills = [];
+				this.cities = [];
+
+				this.language = '';
+				this.certificate = {};
+				this.education = {};
+				this.experience = {};
+				this.skill = {};
+				
+				var currentDate = new Date();
+				
+				this.minStartDate = new Date(
+					currentDate.getFullYear(),
+					currentDate.getMonth() - 70,
+					currentDate.getDate()
+				);
+				this.minEndDate = new Date(
+					currentDate.getFullYear() - 70,
+					currentDate.getMonth(),
+					currentDate.getDate()
+				);
+				this.maxStartDate = new Date(
+					currentDate.getFullYear(),
+					currentDate.getMonth() - 1,
+					currentDate.getDate()
+				);
+				this.maxEndDate = new Date(
+					currentDate.getFullYear(),
+					currentDate.getMonth(),
+					currentDate.getDate()
+				);
+				
+				// get languages
+				this.RefugeeService.listLanguages().then(languages => {
+					this.languagesList = languages;
+				});
+				
+				// get country of birth & company location (countries list)
+				this.RefugeeService.listCountries().then(countries => {
+					this.countriesList = countries;
+				});	
+
+				// get Germany cities
+				this.RefugeeService.listLocations().then(cities => {
+					this.cities = cities;
+				});	
+				
+				// get skills
+				this.RefugeeService.listSkills().then(skills => {
+					this.skillsList = skills;
+				});
+				
+			}
+		} else {
+			this.$state.go('login',{});
+		}
+	}
+	
+	save() {
+		 
+		this.RefugeeService.updateResume(this.refugee).then(data => {
+			this.result = result;
+		});	
+		
+	};
+	
     static get $inject () {
-      return ['$state'];
+		return ['$state', UserService.name, RefugeeService.name];
     }
 
 }

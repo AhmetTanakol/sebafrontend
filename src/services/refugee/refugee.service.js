@@ -4,13 +4,14 @@
 export default class RefugeeService {
 
     static get $inject(){
-        return ['$http', 'API_URL'];
+        return ['$http', '$window','API_URL'];
     }
 
-    constructor($http,API_URL) {
+    constructor($http, $window, API_URL) {
         this.$http = $http;
+		this.$window = $window;
+        this.API_URL = API_URL;
         this.resourceUrl = `${ API_URL }/refugee/`;
-
     }
 
     static get name(){
@@ -38,8 +39,7 @@ export default class RefugeeService {
             });
 
         })
-    }
-
+    }	
 
     create(refugee) {
         let url = this.resourceUrl;
@@ -74,6 +74,66 @@ export default class RefugeeService {
 
         })
     }
+	
+	updateResume(refugee) {
+      return this.$http.post(`${this.API_URL}/refugee/updateResume`, {
+        params: {
+          refugee: refugee
+        }
+      }).then(response => {
+        return new Promise((resolve, reject) => {
+          resolve(response.data);
+        });
+      });
+    }
 
+	listSkills() {
+      return this.$http.get(`${this.API_URL}/skill/`).then(response => {
+        return new Promise((resolve, reject) => {
+            resolve(response.data);
+        });
+      });
+    }
+	
+	listLocations() {
+		return this.$http.get(`${this.API_URL}/location/`).then(response => {
+		   return new Promise((resolve, reject) => {
+			 resolve(response.data);
+		   });
+		});
+	}
 
+	listLanguages() {
+		return this.$http.get(`${this.API_URL}/language/`).then(response => {
+		   return new Promise((resolve, reject) => {
+			 resolve(response.data);
+		   });
+		});
+	}
+	
+	listCountries() {
+		return this.$http.get(`${this.API_URL}/country/`).then(response => {
+		   return new Promise((resolve, reject) => {
+			 resolve(response.data);
+		   });
+		});
+	}
+	
+	getEducationsByRefugeeId(refugee_id) {
+        //let url = `${this.API_URL}/education/${ refugee_id }`;
+        return this.$http.get(`${this.API_URL}/education/${ refugee_id }`).then(responce => {
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+        });
+    }
+	
+	getExperiencesByRefugeeId(refugee_id) {
+		return this.$http.get(`${this.API_URL}/experience/${ refugee_id }`).then(responce => {
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+        });
+	}
+	
 }

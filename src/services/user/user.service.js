@@ -1,5 +1,6 @@
 'use strict';
 
+
 export default class UserService {
 
     static get $inject(){
@@ -19,15 +20,16 @@ export default class UserService {
 
     register(registerInfo) {
         return this.$http.post(`${ this.API_URL }/user/signup`, {
-            email: registerInfo.user,
+            email: registerInfo.email,
             password: registerInfo.password,
-            type: registerInfo.type
+            type: registerInfo.type,
+            name: registerInfo.name
         });
     }
 
-    login(user, pass) {
+    login(email, pass) {
         return this.$http.post(`${ this.API_URL }/user/login`, {
-            email: user,
+            email: email,
             password: pass
         });
     }

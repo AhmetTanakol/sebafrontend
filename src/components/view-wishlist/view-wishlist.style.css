@@ -1,0 +1,14 @@
+.wishlist-view .md-toolbar-tools {
+	color: #fff;
+	font-weight: 700;
+	background-color: #818791;
+}
+
+.wishlist-view .notification-details {
+	width: 100%;
+}
+
+.wishlist-view .view-more {
+	width: 100%;
+	text-align: right;
+}
