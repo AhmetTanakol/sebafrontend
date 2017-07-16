@@ -37,8 +37,8 @@ class AppHeaderComponentController{
         return user.username;
     }
 
-    goHome(){
-        this.$state.go('/',{});
+    main(){
+        this.$state.go('main',{});
     }
 
     login(){
@@ -46,16 +46,40 @@ class AppHeaderComponentController{
     }
 
     register(){
-      this.$state.go('register',{});
+		this.$state.go('register',{});
     }
 
     getNotifications () {
-      this.$state.go('notifications',{});
+		this.$state.go('notifications',{});
     }
 
     logout(){
         this.UserService.logout();
-        this.$state.go('movies',{});
+        this.$state.go('main',{});
+    }
+
+    openMenu($mdMenu, ev) {
+      $mdMenu.open(ev);
+    }
+
+    addResume() {
+      this.$state.go('addResume',{});
+    }
+
+    viewResume() {
+      this.$state.go('viewResume',{});
+    }
+
+    addProfile() {
+      this.$state.go('addProfile',{});
+    }
+
+    viewProfile() {
+      this.$state.go('viewProfile',{});
+    }
+
+    makeSearch() {
+      this.$state.go('viewMatching', {});
     }
 
     static get $inject(){

@@ -1,12 +1,11 @@
 'use strict';
 
-
 middlewares.$inject = ['$httpProvider','$windowProvider','$qProvider','$stateProvider','API_URL'];
 export default function middlewares ($httpProvider,$windowProvider,$qProvider,$stateProvider,API_URL){
 
     let $window = $windowProvider.$get();
-    let $state = $stateProvider.$get();
     let $q = $qProvider.$get();
+    $qProvider.errorOnUnhandledRejections(false);
 
     //  register the JWT interceptor via an anonymous factory
     $httpProvider.interceptors.push(() => {
@@ -48,15 +47,8 @@ export default function middlewares ($httpProvider,$windowProvider,$qProvider,$s
     $httpProvider.interceptors.push(() => {
         return {
             'responseError': function(rejection) {
-
-                // do something on error
-                if(rejection.status == 400 || rejection.status == 401) {
-                    $state.go('login',{});
-                }
-
                 return $q.reject(rejection);
             }
-
         };
     });
 

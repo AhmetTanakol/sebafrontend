@@ -39,6 +39,46 @@ class ViewMatchesController {
         image: 'http://www.gstatic.com/webp/gallery/1.jpg'
       }
     ];
+	
+	this.candidates = [
+      {
+        name: 'Ricci',
+        description: 'Hello I am Ricci - I live in Garching',
+        image: 'http://www.gstatic.com/webp/gallery/1.jpg'
+      },
+      {
+        name: 'Ahmet',
+        description: 'Hello I am Ricci - I live in Garching',
+        image: 'http://www.gstatic.com/webp/gallery/1.jpg'
+      },
+      {
+        name: 'Zabir',
+        description: 'Hello I am Ricci - I live in Munich',
+        image: 'http://www.gstatic.com/webp/gallery/1.jpg'
+      },
+      {
+        name: 'Jessica',
+        description: 'Hello I am Ricci - I live in Freising',
+        image: 'http://www.gstatic.com/webp/gallery/1.jpg'
+      }
+    ];
+	
+	this.loginAs = 'company'; // company or refugee
+	this.status = 1; // 1 for companies and 2 for refugee
+	this.matched = [];
+	if (this.status == 1) {
+		this.matchTitle = "CANDIDATE";
+		this.matched = this.candidates;
+	} else if (this.status == 2) {
+		this.matchTitle = "JOBS";
+		this.matched = this.companies;
+	}
+
+	
+  }
+  
+  onInit() {
+	
   }
 }
 

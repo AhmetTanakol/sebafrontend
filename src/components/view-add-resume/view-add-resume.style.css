@@ -1,0 +1,57 @@
+.resume-form md-card {
+    padding: 0 !important;
+}
+.resume-form md-card md-card-title {
+    background-color: blue;
+}
+
+.input-row {
+	margin: -25px 0 -25px 0;
+}
+
+.button-add {
+	background-color: #4f6d9e;
+	color: #fff;
+	font-weight: 700;
+}
+
+.button-add:hover:enabled {
+	color: #29374f;
+}
+
+.button-delete {
+	background-color: #bf0d10;
+	color: #fff;
+}
+
+.button-delete:hover {
+	color: #333;
+}
+
+.button-add:disabled {
+    background: #dddddd;
+}
+
+.resume-form .md-toolbar-tools {
+	color: #fff;
+	font-weight: 700;
+	background-color: #818791;
+}
+
+.resume-form .md-datepicker-button {
+	margin-left: -5px !important;
+	margin-right: -10px !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.resume-form .no-row-margin {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.resume-form md-divider {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+

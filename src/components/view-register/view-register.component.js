@@ -39,6 +39,7 @@ class ViewRegisterComponentController{
       };
 
       this.UserService.register(registerInfo).then(()=> {
+        this.$state.go('main',{});
       });
     }
 

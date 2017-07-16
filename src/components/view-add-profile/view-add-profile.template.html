@@ -1,0 +1,68 @@
+<md-tabs md-dynamic-height md-border-bottom md-center-tabs="true">
+
+	<md-tab label = "Company Profile">
+		<div layout="row" layout-xs="column" layout-margin>
+			<div flex>
+				<form class= "profile-form" name="CompanyInformationForm">
+					<md-card>
+						<md-card-content>
+							<md-toolbar md-scroll-shrink>
+								<div class="md-toolbar-tools">Logo and Cover</div>
+							</md-toolbar>
+							<md-input-container md-no-float class="md-block">
+								<md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
+								<input ng-model="$ctrl.profile.logo" type="file" placeholder="Upload Photo">
+								<label>Logo</label>
+							</md-input-container>
+							
+							<md-input-container md-no-float class="md-block">
+								<md-icon><ng-md-icon icon="add_a_photo" ></ng-md-icon></md-icon>
+								<input ng-model="$ctrl.profile.photo" type="file" placeholder="Upload Photo">
+								<label>Cover Picture</label>
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<label>Youtube Video Link</label>
+								<textarea ng-model="$ctrl.profile.video" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+							</md-input-container>
+
+						</md-card-content>
+					</md-card>
+				</form>
+			</div>
+			<div flex>
+				<form class= "profile-form" name="InformationForm">
+					<md-card>
+						<md-card-content>
+							<md-toolbar md-scroll-shrink>
+								<div class="md-toolbar-tools">Information</div>
+							</md-toolbar>
+							
+							<md-input-container class="md-block">
+								<input ng-model="$ctrl.profile.name" type="text" placeholder="Cpmpany Name" ng-required="true">
+							</md-input-container>
+
+							<md-input-container class="md-block">
+								<label>About Company</label>
+								<textarea ng-model="$ctrl.profile.info" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+							</md-input-container>
+							<md-input-container class="md-block">
+								<label>Additional Company Information</label>
+								<textarea ng-model="$ctrl.profile.additionalDescription" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+							</md-input-container>
+
+
+							
+
+						</md-card-content>
+						
+					</md-card>
+				</form>
+			</div>
+		</div>
+		<div layout="row" layout-align="end center">
+			<md-button ng-click="$ctrl.save()" class="md-raised md-primary">&nbsp Save &nbsp</md-button>
+		</div>
+	</md-tab>
+	
+</md-tabs>
