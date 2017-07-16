@@ -3,7 +3,7 @@
     <md-content class="view-resume" layout="row" flex="35">
         <span flex="10"></span>
         <md-card flex="80">
-            <md-card-content>
+            <md-card-content class="no-top-padding">
             <div class="row">
 				<div class="col-md-3 left-container">					
 					<div class="profile-picture">
@@ -22,17 +22,14 @@
 					<div>{{ $ctrl.refugee.email }}</div>
 					<div>{{ $ctrl.refugee.address }}</div>
 					<div>{{ $ctrl.refugee.city }}, {{ $ctrl.refugee.postalCode }}, Germany</div>
+					<div>{{ $ctrl.refugee.maritalStatus }}</div>
 					<hr/>
 					<div class="titles">EDUCATIONS</div>
 					
-					{{ $ctrl.education.degree | uppercase }}/{{ $ctrl.education.fieldOfStudy | uppercase }}
-					{{ $ctrl.education.school }}
-					{{ $ctrl.education.from | date:'yyyy' }} - {{ $ctrl.education.to | date:'yyyy' }}
-
-					<md-list-item class="md-2-line" ng-repeat="education in $ctrl.educations">
-						<p>{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}</p>
-						<p>{{ education.school }}</p>
-						<p>{{ education.from | date:'yyyy' }} - {{ education.to | date:'yyyy' }}</p>
+					<md-list-item class="md-3-line" ng-repeat="education in $ctrl.educations">
+						<div style="text-align: center;">{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}<br/>
+						{{ education.school }}<br/>
+						{{ education.from | date:'yyyy' }} - {{ education.to | date:'yyyy' }}</div>
 					</md-list-item>
 					
 					<hr/>

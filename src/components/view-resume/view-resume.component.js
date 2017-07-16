@@ -76,16 +76,15 @@ class ViewResumeComponentController{
 				this.RefugeeService.listSkills().then(skills => {
 					this.skillsList = skills;
 				});
-				
+
 				// get refugee education from education collection with refugee_id param
 				this.RefugeeService.getEducationsByRefugeeId(this.currentUser.refugee).then(educations => {
-					$this.educations = educations;
-					console.log(educations);
+					this.educations = educations;
 				});
-
+				
 				// get refugee education from experience collection with refugee_id param
 				this.RefugeeService.getExperiencesByRefugeeId(this.currentUser.refugee).then(experiences => {
-					$this.experiences = experiences;
+					this.experiences = experiences;
 					console.log(experiences);
 				});
 				

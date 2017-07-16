@@ -1,6 +1,11 @@
 .view-resume {
 	font-family: Trebuchet Ms;
 }
+
+.view-resume .no-top-padding {
+	padding: 0 16px !important;
+}
+
 .view-resume .name-container {
 	background-color: #444;
 	color: #fff;
@@ -14,7 +19,7 @@
 }
 
 .view-resume .left-container {
-	background-color: #9ca2ad;
+	background-color: #1aa8a1;
 	text-align: center;
 	color: #333;
 }
