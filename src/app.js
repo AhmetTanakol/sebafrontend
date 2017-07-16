@@ -20,6 +20,7 @@ import moment from 'moment/moment';
 import UserService from './services/user/user';
 import RefugeeService from './services/refugee/refugee';
 import MatchingService from './services/matching/matching';
+import CompanyService from './services/company/company';
 import JobService from './services/job/job';
 import SkillService from './services/skill/skill';
 
@@ -52,6 +53,7 @@ let app = angular.module('app', [
     JobService.name,
     SkillService.name,
     RefugeeService.name,
+    CompanyService.name,
     MatchingService.name,
     AppContent.name,
     ViewMain.name,
