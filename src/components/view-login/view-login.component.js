@@ -31,10 +31,11 @@ class ViewLoginComponentController{
     }
 
     submit(){
-        let user = this.login.email;
+
+        let email = this.login.email;
         let password = this.login.password;
 
-        this.UserService.login(user,password).then(()=> {
+        this.UserService.login(email,password).then(()=> {
             this.$state.go('viewMatching',{});
         });
     }

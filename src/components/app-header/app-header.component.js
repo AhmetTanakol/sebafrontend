@@ -34,7 +34,7 @@ class AppHeaderComponentController{
 
     getCurrentUser(){
         let user = this.UserService.getCurrentUser();
-        return user.username;
+        return user.email;
     }
 
     main(){
@@ -80,6 +80,10 @@ class AppHeaderComponentController{
 
     makeSearch() {
       this.$state.go('viewMatching', {});
+    }
+
+    addJob() {
+        this.$state.go('jobAdd', {});
     }
 
     static get $inject(){

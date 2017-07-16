@@ -16,6 +16,10 @@
             <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
             Notifications
         </md-button>
+        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.addJob($event)">
+            <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
+            Create Job
+        </md-button>
         <md-menu-bar ng-if="$ctrl.isAuthenticated()">
             <md-menu>
                 <md-button ng-click="$mdMenu.open()">
@@ -38,7 +42,6 @@
                 </md-menu-content>
             </md-menu>
         </md-menu-bar>
-
         <md-menu-bar> <!--just to see comapny page without login-->
             <md-menu>
                 <md-button ng-click="$mdMenu.open()">
@@ -61,7 +64,6 @@
                 </md-menu-content>
             </md-menu>
         </md-menu-bar>
-
         <md-menu-bar ng-if="$ctrl.isAuthenticated()">
             <md-menu>
                 <md-button ng-click="$mdMenu.open()">

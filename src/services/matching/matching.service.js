@@ -112,4 +112,46 @@ export default class MatchingService {
         });
       });
     }
+	
+	getMatchedJobsAtRefugee(refugee_id) {
+		let url = `${ this.API_URL }/match/getMatchedJobsAtRefugee/${ refugee_id }`;
+        return this.$http.get(url).then(responce => {
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+        })
+	}
+	
+	getJobs(job_ids) {
+      return this.$http.post(`${this.API_URL}/job/getJobs`, {
+        params: {
+          job_ids: job_ids
+        }
+      }).then(response => {
+        return new Promise((resolve, reject) => {
+          resolve(response.data);
+        });
+      });
+    }
+	
+	getMatchedJobsAtCompany(company_id) {
+		let url = `${ this.API_URL }/match/getMatchedJobsAtCompany/${ company_id }`;
+        return this.$http.get(url).then(responce => {
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+        })
+	}
+	
+	getRefugees(refugee_ids) {
+      return this.$http.post(`${this.API_URL}/refugee/refugees`, {
+        params: {
+          refugee_ids: refugee_ids
+        }
+      }).then(response => {
+        return new Promise((resolve, reject) => {
+          resolve(response.data);
+        });
+      });
+    }
 }

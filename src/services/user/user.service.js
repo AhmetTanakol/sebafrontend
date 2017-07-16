@@ -21,15 +21,15 @@ export default class UserService {
     register(registerInfo) {
         return this.$http.post(`${ this.API_URL }/user/signup`, {
             email: registerInfo.email,
-            username: registerInfo.user,
             password: registerInfo.password,
-            type: registerInfo.type
+            type: registerInfo.type,
+            name: registerInfo.name
         });
     }
 
-    login(user, pass) {
+    login(email, pass) {
         return this.$http.post(`${ this.API_URL }/user/login`, {
-            email: user,
+            email: email,
             password: pass
         });
     }
