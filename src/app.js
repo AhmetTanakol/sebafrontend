@@ -20,7 +20,7 @@ import moment from 'moment/moment';
 import UserService from './services/user/user';
 import RefugeeService from './services/refugee/refugee';
 import MatchingService from './services/matching/matching';
-import CompanygService from './services/matching/company';
+import CompanygService from './services/company/company';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
