@@ -75,10 +75,13 @@ export default class RefugeeService {
         })
     }
 	
-	updateResume(refugee) {
+	updateResume(refugee, education, experience, certificate) {
       return this.$http.post(`${this.API_URL}/refugee/updateResume`, {
         params: {
-          refugee: refugee
+          refugee: refugee,
+		  education: education,
+		  experience: experience,
+		  certificate: certificate
         }
       }).then(response => {
         return new Promise((resolve, reject) => {
@@ -130,6 +133,14 @@ export default class RefugeeService {
 	
 	getExperiencesByRefugeeId(refugee_id) {
 		return this.$http.get(`${this.API_URL}/experience/${ refugee_id }`).then(responce => {
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+        });
+	}
+	
+	getCertificatesByRefugeeId(refugee_id) {
+		return this.$http.get(`${this.API_URL}/certificate/${ refugee_id }`).then(responce => {
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
             });

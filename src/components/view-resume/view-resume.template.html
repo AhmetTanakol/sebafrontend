@@ -3,11 +3,11 @@
     <md-content class="view-resume" layout="row" flex="35">
         <span flex="10"></span>
         <md-card flex="80">
-            <md-card-content>
+            <md-card-content class="no-top-padding">
             <div class="row">
 				<div class="col-md-3 left-container">					
-					<div class="profile-picture">
-						<img src="./../../images/noimage.jpeg" alt="Refugee Profile Picture" />
+					<div class="profile-picture" ng-cloak="media_list">
+						<img src="{{ $ctrl.profilePicture }}" alt="Refugee Profile Picture" width="140" height="175" />
 					</div>
 				</div>
 				<div class="col-md-9 name-container">
@@ -25,20 +25,22 @@
 					<hr/>
 					<div class="titles">EDUCATIONS</div>
 					
-					{{ $ctrl.education.degree | uppercase }}/{{ $ctrl.education.fieldOfStudy | uppercase }}
-					{{ $ctrl.education.school }}
-					{{ $ctrl.education.from | date:'mediumDate' }} - {{ $ctrl.education.to | date:'mediumDate' }}
-
-					<md-list-item class="md-2-line" ng-repeat="education in $ctrl.educations">
-						<p>{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}</p>
-						<p>{{ education.school }}</p>
-						<p>{{ education.from | date:'mediumDate' }} - {{ education.to | date:'mediumDate' }}</p>
+					<md-list-item class="md-3-line" ng-repeat="education in $ctrl.educations">
+						<div class="education">{{ education.degree | uppercase }}/{{ education.fieldOfStudy | uppercase }}<br/>
+						{{ education.school }}<br/>
+						{{ education.from | date:'yyyy' }} - {{ education.to | date:'yyyy' }}</div>
 					</md-list-item>
 					
 					<hr/>
 					<div class="titles">SKILLS</div>
 					<md-list-item class="md-1-line" ng-repeat="refugeeSkill in $ctrl.skills">
 						<p>{{ refugeeSkill.name }} {{ refugeeSkill.power }}/10</p>						
+					</md-list-item>
+					
+					<hr />
+					<div class="titles">LANGUAGES</div>
+					<md-list-item class="md-1-line" ng-repeat="language in $ctrl.languages">
+						<p>{{ language }}</p>						
 					</md-list-item>
 				</div>
 				<div class="col-md-9 right-container">
@@ -50,7 +52,7 @@
 					<md-list-item class="md-3-line" ng-repeat="experience in $ctrl.experiences">
 						<div class="work-exp">
 							<div class="work-title">{{ experience.title | uppercase }}</div>
-							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.companyLocation }} / {{ experience.from | date:'mediumDate'  }} - {{ experience.to | date:'mediumDate' }}</div>
+							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.companyLocation }} / {{ experience.from | date:'yyyy'  }} - {{ experience.to | date:'yyyy' }}</div>
 							{{ experience.description }}
 						</div>
 					</md-list-item>

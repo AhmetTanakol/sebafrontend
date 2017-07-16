@@ -60,31 +60,37 @@ class ViewAddResumeComponentController{
 
 	addCertificate () {
 		this.certificates.push({
+			refugee: this.currentUser.refugee,
 			title: this.certificate.title,
-			startDate: moment(this.certificate.startDate).format('YYYY-MM-DD'),
-			endDate: moment(this.certificate.endDate).format('YYYY-MM-DD'),
+			from: moment(this.certificate.from).format('YYYY-MM-DD'),
+			to: moment(this.certificate.to).format('YYYY-MM-DD'),
+			description: this.certificate.description
 		});
 		this.certificate = {};
 	}
 
 	addEducation () {
 		this.educations.push({
-		  schoolName: this.education.schoolName,
+		  refugee: this.currentUser.refugee,
+		  school: this.education.school,
 		  degree: this.education.degree,
-		  startDate: moment(this.education.startDate).format('YYYY-MM-DD'),
-		  endDate: moment(this.education.endDate).format('YYYY-MM-DD'),
-		  schoolDescription: this.education.schoolDescription
+		  fieldOfStudy: this.education.fieldOfStudy,
+		  from: moment(this.education.from).format('YYYY-MM-DD'),
+		  to: moment(this.education.to).format('YYYY-MM-DD'),
+		  description: this.education.description
 		});
 		this.education = {};
 	}
 	
 	addExperience () {
 		this.experiences.push({
-		  company: this.experience.company,
-		  jobTitle: this.experience.jobTitle,
-		  startDate: moment(this.experience.startDate).format('YYYY-MM-DD'),
-		  endDate: moment(this.experience.endDate).format('YYYY-MM-DD'),
-		  jobDescription: this.experience.jobDescription
+		  refugee: this.currentUser.refugee,
+		  companyName: this.experience.companyName,
+		  companyLocation: this.experience.companyLocation,
+		  title: this.experience.title,
+		  from: moment(this.experience.from).format('YYYY-MM-DD'),
+		  to: moment(this.experience.to).format('YYYY-MM-DD'),
+		  description: this.experience.description
 		});
 		this.experience = {};
 	}
@@ -141,11 +147,6 @@ class ViewAddResumeComponentController{
 			if (this.isUserRefugee()) {
 			
 				this.refugee = [];
-				
-				this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
-					this.refugee = refugee;
-				});
-								
 				this.languages = [];
 				this.educations = [];
 				this.experiences = [];
@@ -158,6 +159,64 @@ class ViewAddResumeComponentController{
 				this.education = {};
 				this.experience = {};
 				this.skill = {};
+				
+				// get languages
+				this.RefugeeService.listLanguages().then(languages => {
+					this.languagesList = languages;
+					
+					// get skills
+					this.RefugeeService.listSkills().then(skills => {
+						this.skillsList = skills;
+						
+						// get refugee
+						this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
+							this.refugee = refugee;
+							
+							for (var i=0; i<this.refugee.language.length; i++) {
+								var langAlias = this.getNameFromId(this.languagesList, this.refugee.language[i]);
+								this.languages.push({
+									name : this.refugee.language[i],
+									nameAlias : langAlias
+								});
+							}
+							
+							for (var i=0; i<this.refugee.skills.length; i++) {
+								var skillAlias = this.getNameFromId(this.skillsList, this.refugee.skills[i].name);
+								this.skills.push({
+									name : this.refugee.skills[i].name,
+									nameAlias : skillAlias,									
+									power: this.refugee.skills[i].power
+								});
+							}
+						});
+					});					
+					
+				});
+				
+				// get country of birth & company location (countries list)
+				this.RefugeeService.listCountries().then(countries => {
+					this.countriesList = countries;
+				});	
+
+				// get Germany cities
+				this.RefugeeService.listLocations().then(cities => {
+					this.cities = cities;
+				});	
+				
+				// get refugee education from educations collection with refugee_id param
+				this.RefugeeService.getEducationsByRefugeeId(this.currentUser.refugee).then(educations => {
+					this.educations = educations;
+				});
+				
+				// get refugee experiences from experiences collection with refugee_id param
+				this.RefugeeService.getExperiencesByRefugeeId(this.currentUser.refugee).then(experiences => {
+					this.experiences = experiences;
+				});
+				
+				// get refugee certificates from certificates collection with refugee_id param
+				this.RefugeeService.getCertificatesByRefugeeId(this.currentUser.refugee).then(certificates => {
+					this.certificates = certificates;
+				});				
 				
 				var currentDate = new Date();
 				
@@ -181,27 +240,7 @@ class ViewAddResumeComponentController{
 					currentDate.getMonth(),
 					currentDate.getDate()
 				);
-				
-				// get languages
-				this.RefugeeService.listLanguages().then(languages => {
-					this.languagesList = languages;
-				});
-				
-				// get country of birth & company location (countries list)
-				this.RefugeeService.listCountries().then(countries => {
-					this.countriesList = countries;
-				});	
 
-				// get Germany cities
-				this.RefugeeService.listLocations().then(cities => {
-					this.cities = cities;
-				});	
-				
-				// get skills
-				this.RefugeeService.listSkills().then(skills => {
-					this.skillsList = skills;
-				});
-				
 			}
 		} else {
 			this.$state.go('login',{});
@@ -209,13 +248,29 @@ class ViewAddResumeComponentController{
 	}
 	
 	save() {
-		 
-		this.RefugeeService.updateResume(this.refugee).then(data => {
+		// moving language from local variable languages to refugee model
+		this.refugee.language = [];
+		for (var i=0; i<this.languages.length; i++) {
+			this.refugee.language.push(this.languages[i].name);
+		}
+		
+		// moving skills from local variable skills to refugee model
+		this.refugee.skills = [];
+		for (var i=0; i<this.skills.length; i++) {
+			this.refugee.skills.push({
+				name : this.skills[i].name,
+				power : this.skills[i].power
+			});
+		}
+		
+		this.RefugeeService.updateResume(this.refugee, this.educations, this.experiences, this.certificates).then(data => {
 			this.result = result;
 		});	
 		
+		alert("Resume Saved");
+		
 	};
-	
+		
     static get $inject () {
 		return ['$state', UserService.name, RefugeeService.name];
     }
