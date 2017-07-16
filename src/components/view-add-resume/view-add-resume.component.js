@@ -60,9 +60,11 @@ class ViewAddResumeComponentController{
 
 	addCertificate () {
 		this.certificates.push({
+			refugee: this.currentUser.refugee,
 			title: this.certificate.title,
-			startDate: moment(this.certificate.startDate).format('YYYY-MM-DD'),
-			endDate: moment(this.certificate.endDate).format('YYYY-MM-DD'),
+			from: moment(this.certificate.from).format('YYYY-MM-DD'),
+			to: moment(this.certificate.to).format('YYYY-MM-DD'),
+			description: this.certificate.description
 		});
 		this.certificate = {};
 	}
@@ -82,11 +84,13 @@ class ViewAddResumeComponentController{
 	
 	addExperience () {
 		this.experiences.push({
-		  company: this.experience.company,
-		  jobTitle: this.experience.jobTitle,
-		  startDate: moment(this.experience.startDate).format('YYYY-MM-DD'),
-		  endDate: moment(this.experience.endDate).format('YYYY-MM-DD'),
-		  jobDescription: this.experience.jobDescription
+		  refugee: this.currentUser.refugee,
+		  companyName: this.experience.companyName,
+		  companyLocation: this.experience.companyLocation,
+		  title: this.experience.title,
+		  from: moment(this.experience.from).format('YYYY-MM-DD'),
+		  to: moment(this.experience.to).format('YYYY-MM-DD'),
+		  description: this.experience.description
 		});
 		this.experience = {};
 	}
@@ -199,10 +203,20 @@ class ViewAddResumeComponentController{
 					this.cities = cities;
 				});	
 				
-				// get refugee education from education collection with refugee_id param
+				// get refugee education from educations collection with refugee_id param
 				this.RefugeeService.getEducationsByRefugeeId(this.currentUser.refugee).then(educations => {
 					this.educations = educations;
 				});
+				
+				// get refugee experiences from experiences collection with refugee_id param
+				this.RefugeeService.getExperiencesByRefugeeId(this.currentUser.refugee).then(experiences => {
+					this.experiences = experiences;
+				});
+				
+				// get refugee certificates from certificates collection with refugee_id param
+				this.RefugeeService.getCertificatesByRefugeeId(this.currentUser.refugee).then(certificates => {
+					this.certificates = certificates;
+				});				
 				
 				var currentDate = new Date();
 				
@@ -249,12 +263,14 @@ class ViewAddResumeComponentController{
 			});
 		}
 		
-		this.RefugeeService.updateResume(this.refugee, this.educations).then(data => {
+		this.RefugeeService.updateResume(this.refugee, this.educations, this.experiences, this.certificates).then(data => {
 			this.result = result;
 		});	
 		
+		alert("Resume Saved");
+		
 	};
-	
+		
     static get $inject () {
 		return ['$state', UserService.name, RefugeeService.name];
     }
