@@ -21,7 +21,7 @@ class ViewProfileComponent {
 }
 
 class ViewProfileComponentController{
-    constructor($state,UserService){
+    constructor($state,UserService,CompanyService){
         this.$state = $state;
         this.UserService = UserService;
         this.CompanyService = CompanyService;
