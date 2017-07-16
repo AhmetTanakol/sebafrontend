@@ -9,9 +9,9 @@ import SkillService from './../../services/skill/skill.service';
 
 
 
-class ViewAddJobComponent {
+class ViewJobComponent {
     constructor(){
-        this.controller = ViewAddJobComponentController;
+        this.controller = ViewJobComponentController;
         this.template = template;
         this.bindings = {
         	job: '<',
@@ -24,7 +24,7 @@ class ViewAddJobComponent {
 
 }
 
-class ViewAddJobComponentController{
+class ViewJobComponentController{
     
 	constructor ($state ,UserService, JobService, SkillService) {
         this.UserService = UserService;
@@ -36,8 +36,8 @@ class ViewAddJobComponentController{
 
     back () {
         if (this.UserService.isAuthenticated()) {
-            let _id = this.job['_id'];
-            this.$state.go('jobs',{});
+            //let _id = this.job['_id'];
+            this.$state.go('viewJobs',{});
         } else {
             this.$state.go('login',{});
         }
@@ -73,4 +73,4 @@ class ViewAddJobComponentController{
 }
 
 
-export default ViewAddJobComponent;
+export default ViewJobComponent;
