@@ -61,7 +61,7 @@ class ViewMatchesController {
 					for(var i=0; i<matches.length; i++) {
 						this.jobIds.push(matches[i].job);
 					}
-					console.log('ids',this.jobIds);
+					
 					this.MatchingService.getJobs(this.jobIds).then(jobs => {
 						this.matched = jobs;
 					});
