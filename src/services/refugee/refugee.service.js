@@ -75,10 +75,11 @@ export default class RefugeeService {
         })
     }
 	
-	updateResume(refugee) {
+	updateResume(refugee, education) {
       return this.$http.post(`${this.API_URL}/refugee/updateResume`, {
         params: {
-          refugee: refugee
+          refugee: refugee,
+		  education: education
         }
       }).then(response => {
         return new Promise((resolve, reject) => {

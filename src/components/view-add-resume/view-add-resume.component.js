@@ -69,11 +69,13 @@ class ViewAddResumeComponentController{
 
 	addEducation () {
 		this.educations.push({
-		  schoolName: this.education.schoolName,
+		  refugee: this.currentUser.refugee,
+		  school: this.education.school,
 		  degree: this.education.degree,
-		  startDate: moment(this.education.startDate).format('YYYY-MM-DD'),
-		  endDate: moment(this.education.endDate).format('YYYY-MM-DD'),
-		  schoolDescription: this.education.schoolDescription
+		  fieldOfStudy: this.education.fieldOfStudy,
+		  from: moment(this.education.from).format('YYYY-MM-DD'),
+		  to: moment(this.education.to).format('YYYY-MM-DD'),
+		  description: this.education.description
 		});
 		this.education = {};
 	}
@@ -243,7 +245,7 @@ class ViewAddResumeComponentController{
 			});
 		}
 		
-		this.RefugeeService.updateResume(this.refugee).then(data => {
+		this.RefugeeService.updateResume(this.refugee, this.educations).then(data => {
 			this.result = result;
 		});	
 		
