@@ -67,6 +67,17 @@ class ViewResumeComponentController{
 				// get country of birth & company location (countries list)
 				this.RefugeeService.listCountries().then(countries => {
 					this.countriesList = countries;
+					
+					// get refugee education from experience collection with refugee_id param
+					this.RefugeeService.getExperiencesByRefugeeId(this.currentUser.refugee).then(experiences => {
+						this.experiences = experiences;
+						for (var i=0; i<this.experiences.length; i++) {
+							console.log(this.experiences[i].companyLocation);
+							var aliasloc = this.getNameFromId(this.countriesList, this.experiences[i].companyLocation);
+							this.experiences[i].alias = aliasloc;
+						}
+					});
+					
 				});	
 
 				// get Germany cities collection
@@ -82,11 +93,6 @@ class ViewResumeComponentController{
 				// get refugee education from education collection with refugee_id param
 				this.RefugeeService.getEducationsByRefugeeId(this.currentUser.refugee).then(educations => {
 					this.educations = educations;
-				});
-				
-				// get refugee education from experience collection with refugee_id param
-				this.RefugeeService.getExperiencesByRefugeeId(this.currentUser.refugee).then(experiences => {
-					this.experiences = experiences;
 				});
 				
 				this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
@@ -107,7 +113,7 @@ class ViewResumeComponentController{
 						}
 					}
 					
-					// get skills name from skills id
+					// get language name from language id
 					if (typeof this.refugee.language != "undefined") {
 						for (var i=0; i<this.refugee.language.length; i++) {
 							var aliaslang = this.getNameFromId(this.languagesList, this.refugee.language[i]);
