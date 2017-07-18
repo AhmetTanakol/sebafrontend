@@ -63,8 +63,8 @@ let app = angular.module('app', [
     ViewNotifications.name,
 	  ViewAddResume.name,
 	  ViewResume.name,
-      ViewAddProfile.name,
-      ViewProfile.name,
+    ViewAddProfile.name,
+    ViewProfile.name,
     ViewMatching.name,
     ViewJob.name,
     ViewJobs.name

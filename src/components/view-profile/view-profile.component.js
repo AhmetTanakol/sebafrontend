@@ -21,41 +21,39 @@ class ViewProfileComponent {
 }
 
 class ViewProfileComponentController{
-    constructor($state,UserService,CompanyService){
+    constructor($state, UserService, CompanyService, $sce){
         this.$state = $state;
         this.UserService = UserService;
         this.CompanyService = CompanyService;
+        this.$sce = $sce;
     }
 
 
     isUserCompany() {
-		if (this.currentUser.type === 'company') {
-		  return true;
-		}
-		return false;
-	}
+		  if (this.currentUser.type === 'company') {
+		    return true;
+		  }
+		  return false;
+	  }
 
-	
-	$onInit() {
+    trustSrc(video) {
+      return this.$sce.trustAsResourceUrl(video);
+    }
 
-		if (this.UserService.isAuthenticated()) {
-			this.currentUser = this.UserService.getCurrentUser();
-			if (this.isUserCompany()) {
-				this.company = [];
-				
-				
-				this.CompanyService.get(this.currentUser.company).then(company => {
-					this.company = company;
-						
-				});
-				
-				
-			}
-		}
-	}
-	
+    $onInit() {
+      if (this.UserService.isAuthenticated()) {
+        this.currentUser = this.UserService.getCurrentUser();
+        if (this.isUserCompany()) {
+          this.CompanyService.get(this.currentUser.company).then(company => {
+            this.company = company;
+            this.company.video = this.company.video.replace("watch?v=", "embed/");
+          });
+        }
+      }
+    }
+
     static get $inject(){
-        return ['$state', UserService.name, CompanyService.name];
+        return ['$state', UserService.name, CompanyService.name, '$sce'];
     }
 }
 
