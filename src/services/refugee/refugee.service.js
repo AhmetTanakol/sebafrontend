@@ -9,7 +9,7 @@ export default class RefugeeService {
 
     constructor($http, $window, API_URL) {
         this.$http = $http;
-		this.$window = $window;
+		    this.$window = $window;
         this.API_URL = API_URL;
         this.resourceUrl = `${ API_URL }/refugee/`;
     }
@@ -39,7 +39,7 @@ export default class RefugeeService {
             });
 
         })
-    }	
+    }
 
     create(refugee) {
         let url = this.resourceUrl;
@@ -74,7 +74,7 @@ export default class RefugeeService {
 
         })
     }
-	
+
 	updateResume(refugee, education, experience, certificate) {
       return this.$http.post(`${this.API_URL}/refugee/updateResume`, {
         params: {
@@ -97,7 +97,7 @@ export default class RefugeeService {
         });
       });
     }
-	
+
 	listLocations() {
 		return this.$http.get(`${this.API_URL}/location/`).then(response => {
 		   return new Promise((resolve, reject) => {
@@ -113,7 +113,7 @@ export default class RefugeeService {
 		   });
 		});
 	}
-	
+
 	listCountries() {
 		return this.$http.get(`${this.API_URL}/country/`).then(response => {
 		   return new Promise((resolve, reject) => {
@@ -121,7 +121,7 @@ export default class RefugeeService {
 		   });
 		});
 	}
-	
+
 	getEducationsByRefugeeId(refugee_id) {
         //let url = `${this.API_URL}/education/${ refugee_id }`;
         return this.$http.get(`${this.API_URL}/education/${ refugee_id }`).then(responce => {
@@ -130,7 +130,7 @@ export default class RefugeeService {
             });
         });
     }
-	
+
 	getExperiencesByRefugeeId(refugee_id) {
 		return this.$http.get(`${this.API_URL}/experience/${ refugee_id }`).then(responce => {
             return new Promise((resolve, reject) => {
@@ -138,7 +138,7 @@ export default class RefugeeService {
             });
         });
 	}
-	
+
 	getCertificatesByRefugeeId(refugee_id) {
 		return this.$http.get(`${this.API_URL}/certificate/${ refugee_id }`).then(responce => {
             return new Promise((resolve, reject) => {
@@ -146,5 +146,5 @@ export default class RefugeeService {
             });
         });
 	}
-	
+
 }

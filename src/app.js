@@ -23,6 +23,7 @@ import MatchingService from './services/matching/matching';
 import CompanyService from './services/company/company';
 import JobService from './services/job/job';
 import SkillService from './services/skill/skill';
+import WishlistService from './services/wishlist/wishlist';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -55,6 +56,7 @@ let app = angular.module('app', [
     RefugeeService.name,
     CompanyService.name,
     MatchingService.name,
+	WishlistService.name,
     AppContent.name,
     ViewMain.name,
     ViewLogin.name,
@@ -63,8 +65,8 @@ let app = angular.module('app', [
     ViewNotifications.name,
 	  ViewAddResume.name,
 	  ViewResume.name,
-      ViewAddProfile.name,
-      ViewProfile.name,
+    ViewAddProfile.name,
+    ViewProfile.name,
     ViewMatching.name,
     ViewJob.name,
     ViewJobs.name
