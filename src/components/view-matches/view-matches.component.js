@@ -25,6 +25,10 @@ class ViewMatchesController {
 		this.MatchingService = MatchingService;
 	}
   
+	gotoJob(myjobid) {
+		this.$state.go('viewJob',{ jobId:myjobid });
+	}
+	
 	$onInit() {
 		if (this.UserService.isAuthenticated()) {
 			this.currentUser = this.UserService.getCurrentUser();
