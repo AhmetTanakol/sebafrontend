@@ -48,7 +48,8 @@ class ViewJobsComponentController{
 	}
 
 	$onInit(){
-		this.job = JSON.parse(JSON.stringify(this.job))
+		console.log(this.jobs)
+		this.jobs = JSON.parse(JSON.stringify(this.jobs))
 
 		/*let currentDate = new Date();
 		this.maxStartDate = new Date(

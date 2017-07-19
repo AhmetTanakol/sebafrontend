@@ -23,7 +23,7 @@ export default class JobService {
 
     list(userid) {
 
-        let url = this.resourceUrl+'getJobsForUser/${ userid }';
+        let url = `${this.resourceUrl}getJobsForUser/${userid}`;
         console.log(url);
         return this.$http.get(url).then(response => {
             return new Promise((resolve, reject) => {
@@ -43,7 +43,7 @@ export default class JobService {
     }
 
     get(jobID) {
-        let url = `${ this.resourceUrl }${ jobID }`;
+        let url = `${ this.resourceUrl}${jobID }`;
         return this.$http.get(url).then(response => {
             return new Promise((resolve, reject) => {
                 resolve(response.data);
