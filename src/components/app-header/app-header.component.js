@@ -83,7 +83,8 @@ class AppHeaderComponentController{
     }
 
     viewResume() {
-      this.$state.go('viewResume',{});
+	  this.currentUser = this.UserService.getCurrentUser();
+      this.$state.go('viewResume',{resumeId:this.currentUser.refugee});
     }
 
     addProfile() {

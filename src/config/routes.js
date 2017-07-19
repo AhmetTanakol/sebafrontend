@@ -15,6 +15,7 @@ import JobsComponent from './../components/view-Jobs/view-Jobs.component';
 
 import JobService from './../services/job/job.service'
 import SkillService from './../services/skill/skill.service'
+import RefugeeService from './../services/refugee/refugee.service'
 
 resolveSkills.$inject = [SkillService.name];
 function resolveSkills( SkillService) {
@@ -23,6 +24,10 @@ function resolveSkills( SkillService) {
 resolveJob.$inject = ['$stateParams', JobService.name];
 function resolveJob($stateParams, JobService) {
     return JobService.get($stateParams.jobId)
+}
+resolveResume.$inject = ['$stateParams', RefugeeService.name];
+function resolveResume($stateParams, RefugeeService) {
+    return RefugeeService.get($stateParams.resumeId)
 }
 
 
@@ -86,8 +91,11 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
             }
         })
         .state('viewResume', {
-          url: '/view-resume',
+          url: '/view-resume/:resumeId',
           component: ResumeComponent.name,
+		  resolve: {
+            resume : resolveResume
+          }
         })
         .state('addProfile', {
           url: '/add-profile',
