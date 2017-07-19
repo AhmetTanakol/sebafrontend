@@ -26,7 +26,38 @@
 					{{ $ctrl.company.info }}
 					<hr/>
 					<div class="titles">COMPANY INFORMATION</div>
-					{{ $ctrl.company.info }}
+					<div class="row">
+						<div class="col-md-12">
+							<div class="small-titles">Phone</div>
+							{{ $ctrl.company.phone }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="small-titles">Email</div>
+							{{ $ctrl.company.email }}
+						</div>
+					</div>
+
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="small-titles">Locations</div>
+							<div class="" ng-repeat="location in $ctrl.company.location">
+								{{ location.name }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="small-titles">Industry</div>
+							<div class="" ng-repeat="industry in $ctrl.company.industry">
+								{{ industry.name }}
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						
+					</div>
 
 				</div>
 				<div class="col-md-4 right-container">
