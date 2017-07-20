@@ -37,7 +37,8 @@ class ViewJobComponentController{
     back () {
         if (this.UserService.isAuthenticated()) {
             //let _id = this.job['_id'];
-            this.$state.go('viewJobs',{});
+            this.userid = this.UserService.getCurrentUser()['_id']
+            this.$state.go('jobs',{userid: this.userid});
         } else {
             this.$state.go('login',{});
         }

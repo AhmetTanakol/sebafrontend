@@ -99,8 +99,14 @@ class AppHeaderComponentController{
       this.$state.go('viewMatching', {});
     }
 
-    addJob() {
-        this.$state.go('jobAdd', {});
+    viewJobs() {
+        if (this.UserService.isAuthenticated()) {
+            //let _id = this.job['_id'];
+            this.userid = this.UserService.getCurrentUser()['_id']
+            this.$state.go('jobs',{userid: this.userid});
+        } else {
+            this.$state.go('login',{});
+        }
     }
 
     static get $inject(){

@@ -2,28 +2,29 @@
 
 import UserService from './../../services/user/user.service';
 
-import template from './view-add-job.template.html';
-import './view-add-job.style.css';
+import template from './view-edit-job.template.html';
+import './view-edit-job.style.css';
 import JobService from './../../services/job/job.service';
 import SkillService from './../../services/skill/skill.service';
 
 
-class ViewAddJobComponent {
+class ViewEditJobComponent {
     constructor(){
-        this.controller = ViewAddJobComponentController;
+        this.controller = ViewEditJobComponentController;
         this.template = template;
         this.bindings = {
         	skills: '<',
+			job: '<'
 		}
     }
 
     static get name() {
-        return 'viewAddJob';
+        return 'viewEditJob';
     }
 
 }
 
-class ViewAddJobComponentController{
+class ViewEditJobComponentController{
     
 	constructor ($state ,UserService, JobService, SkillService) {
 	    this.job ={};
@@ -39,30 +40,32 @@ class ViewAddJobComponentController{
 		this.job.skills.splice(index, 1);
   	}
 
-	addSkill () {
-		this.job.skills.push({
+    addSkill () {
+        this.job.skills.push({
             _id: this.skillObj['_id'],
             name: this.skillObj['name'],
             power: this.skill.power,
         });
-		console.log(this.job.skills);
-		this.skill = {};
+        console.log(this.job.skills);
+        this.skill = {};
         this.skill.power = 1;
-	}
+    }
 
 	submit () {
 	    let user = this.UserService.getCurrentUser();
 		let jobInfo = {
+		    _id: this.job._id,
             user: user['_id'],
-            title: this.job.jobTitle,
-            description: this.job.jobDescription,
+            title: this.job.title,
+            description: this.job.description,
             startDate: this.job.startDate,
             endDate: this.job.endDate,
             skills: this.job.skills
 		};
         // this.job['user'] = user['_id'];
 		console.log(jobInfo);
-        this.JobService.create(jobInfo).then(data => {
+        this.JobService.update(jobInfo).then(data => {
+        	console.log('going to job');
             let _id = data['_id'];
             this.$state.go('job',{ jobId:_id});
         	//todo go to Job-View
@@ -79,7 +82,6 @@ class ViewAddJobComponentController{
         }
     }
 
-
     /*getCurrentUser () {
         let token = this.$window.localStorage['jwtToken'];
         if (!token) return {};
@@ -90,26 +92,22 @@ class ViewAddJobComponentController{
     }*/
 
 	$onInit(){
-		this.job.skills = [];
-
-		this.skill = {};
-		this.skill.power = 1;
-        this.job.startDate = new Date();
-        this.job.endDate = new Date();
-
-		console.log(this.skills);
-
-		/*this.currentDate = new Date();
-		this.maxStartDate = new Date(
-			currentDate.getFullYear(),
-			currentDate.getMonth() - 1,
-			currentDate.getDate()
-		);
-		this.maxEndDate = new Date(
-			currentDate.getFullYear(),
-			currentDate.getMonth(),
-			currentDate.getDate()
-		);*/
+        console.dir('to parse job: '+this.job);
+        this.job = JSON.parse(JSON.stringify(this.job));
+		console.dir('parsed job: '+this.job);
+        console.dir(this.job);
+        console.log(this.skills);
+        /*this.currentDate = new Date();
+        this.maxStartDate = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() - 1,
+            currentDate.getDate()
+        );
+        this.maxEndDate = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate()
+        );*/
 	}
 	
     static get $inject () {
@@ -119,4 +117,4 @@ class ViewAddJobComponentController{
 }
 
 
-export default ViewAddJobComponent;
+export default ViewEditJobComponent;
