@@ -8,8 +8,8 @@
 			<div class="md-list-item-text notification-details">
 				<h3>{{ matched.title }}</h3>
 				<p>{{ matched.description }}</p>
-				<div class="view-more">
-					<p><a ng-href="/job/{{ matched._id }}">More</a></p>
+				<div class="view-more">				
+					<p><a ng-href="/#/{{ $ctrl.linkTo }}/{{ matched._id }}">More</a></p>
 				</div>
 			</div>
 			

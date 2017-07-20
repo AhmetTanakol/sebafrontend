@@ -26,57 +26,55 @@
 					{{ $ctrl.company.info }}
 					<hr/>
 					<div class="titles">COMPANY INFORMATION</div>
-					{{ $ctrl.company.info }}
+					<div class="row">
+						<div class="col-md-12">
+							<div class="small-titles">Phone</div>
+							{{ $ctrl.company.phone }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="small-titles">Email</div>
+							{{ $ctrl.company.email }}
+						</div>
+					</div>
+
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="small-titles">Locations</div>
+							<div class="" ng-repeat="location in $ctrl.company.location">
+								{{ location.name }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="small-titles">Industry</div>
+							<div class="" ng-repeat="industry in $ctrl.company.industry">
+								{{ industry.name }}
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						
+					</div>
 
 				</div>
 				<div class="col-md-4 right-container">
 					<div class="titles">Job Offers</div>
 
 					<hr/>
-					<div class="row">
+
+					<div class="row"  ng-repeat="jobitem in $ctrl.jobs">
 						<div class="col-md-10">
-							<div class="small-titles">Job Position 1</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							<div class="small-titles">{{ jobitem.title }}</div>
+							{{ jobitem.description}}
 						</div>
 						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
+							<md-button ng-click="$ctrl.edit()" class="md-raised md-primary">&nbsp Edit &nbsp</md-button
+							<md-button class="md-secondary button-delete" ng-click="$ctrl.deleteJob(jobitem)">Delete</md-button>
 						</div>
 					</div>
-
-					<div class="row">
-						<div class="col-md-10">
-							<div class="small-titles">Job Position 2</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						</div>
-						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-10">
-							<div class="small-titles">Job Position 3</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						</div>
-						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-10">
-							<div class="small-titles">Job Position 4</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						</div>
-						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
-						</div>
-					</div>
-
 				</div>
 			</div>
             </md-card-content>
