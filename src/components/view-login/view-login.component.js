@@ -31,6 +31,7 @@ class ViewLoginComponentController{
     }
 
     submit(){
+
         let email = this.login.email;
         let password = this.login.password;
 

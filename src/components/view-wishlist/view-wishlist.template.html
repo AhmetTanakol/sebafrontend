@@ -1,15 +1,15 @@
 <md-card>
 	<md-card-content class="wishlist-view">
 		<md-toolbar md-scroll-shrink>
-			<div class="md-toolbar-tools">LIKED JOBS</div>
+			<div class="md-toolbar-tools">WISHLIST JOBS</div>
 		</md-toolbar>
-		<md-list-item class="md-2-line" ng-repeat="jobs in $ctrl.jobs" ng-click="null">
-			<img ng-src="{{jobs.image}}" class="md-avatar" />
+		<md-list-item class="md-2-line" ng-repeat="jobs in $ctrl.wishlist">
+			<img src="./../../images/noimage.jpeg" alt="Job" class="md-avatar"/>
 			<div class="md-list-item-text notification-details">
-				<h3>{{ jobs.name }}</h3>
+				<h3>{{ jobs.title }}</h3>
 				<p>{{ jobs.description }}</p>
 				<div class="view-more">
-					<p><a href="#">More</a></p>
+					<p><a ng-href="/#/job/{{ jobs._id }}">More</a></p>
 				</div>
 			</div>
 		</md-list-item>

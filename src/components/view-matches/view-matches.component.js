@@ -25,6 +25,10 @@ class ViewMatchesController {
 		this.MatchingService = MatchingService;
 	}
   
+	gotoJob(myjobid) {
+		this.$state.go('viewJob',{ jobId:myjobid });
+	}
+	
 	$onInit() {
 		if (this.UserService.isAuthenticated()) {
 			this.currentUser = this.UserService.getCurrentUser();
@@ -37,6 +41,7 @@ class ViewMatchesController {
 			this.matched = [];
 			if (this.loginAs == 'company') {
 				this.matchTitle = "CANDIDATE";
+				this.linkTo = "view-resume";
 				
 				this.MatchingService.getMatchedJobsAtCompany(this.currentUser.company).then(matches => {
 
@@ -54,6 +59,7 @@ class ViewMatchesController {
 				
 			} else if (this.loginAs == 'refugee') {
 				this.matchTitle = "JOBS";
+				this.linkTo = "job";
 				
 				this.MatchingService.getMatchedJobsAtRefugee(this.currentUser.refugee).then(matches => {
 					this.jobIds = [];
@@ -61,7 +67,7 @@ class ViewMatchesController {
 					for(var i=0; i<matches.length; i++) {
 						this.jobIds.push(matches[i].job);
 					}
-					console.log('ids',this.jobIds);
+					
 					this.MatchingService.getJobs(this.jobIds).then(jobs => {
 						this.matched = jobs;
 					});

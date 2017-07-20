@@ -11,8 +11,7 @@
 					</div>
 				</div>
 				<div class="col-md-9 name-container">
-					<div>{{ $ctrl.refugee.name }}</div>
-					<div class="title">TITLE</div>
+					<div>{{ $ctrl.refugee.name }}</div>					
 				</div>
 			</div>
 			<div class="row">
@@ -40,7 +39,7 @@
 					<hr />
 					<div class="titles">LANGUAGES</div>
 					<md-list-item class="md-1-line" ng-repeat="language in $ctrl.languages">
-						<p>{{ language }}</p>						
+						<p>{{ language }}</p>	
 					</md-list-item>
 				</div>
 				<div class="col-md-9 right-container">
@@ -52,7 +51,7 @@
 					<md-list-item class="md-3-line" ng-repeat="experience in $ctrl.experiences">
 						<div class="work-exp">
 							<div class="work-title">{{ experience.title | uppercase }}</div>
-							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.companyLocation }} / {{ experience.from | date:'yyyy'  }} - {{ experience.to | date:'yyyy' }}</div>
+							<div class="work-subtitle">{{ experience.companyName }} / {{ experience.alias }} / {{ experience.from | date:'yyyy'  }} - {{ experience.to | date:'yyyy' }}</div>
 							{{ experience.description }}
 						</div>
 					</md-list-item>

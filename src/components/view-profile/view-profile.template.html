@@ -5,7 +5,7 @@
         <md-card flex="80">
             <md-card-content>
             <div class="row">
-				
+
 				<div class="col-md-12 name-container">
 					<img src="./../../images/noimage.jpeg" alt="Company Profile Picture" />
 				</div>
@@ -13,70 +13,68 @@
 			<div class="row">
 				<div class="col-md-4 left-container">
 					<div class="logo-picture">
-						<img src="./../../images/logo_dummy.jpg" alt="Company Profile Picture" />	
+						<img src="./../../images/logo_dummy.jpg" alt="Company Profile Picture" />
 					</div>
-					
-					<div class="titles">Company Name</div>
-					
-					<iframe width="100%" height="315" src="https://www.youtube.com/embed/Bs7VCV7MreA" frameborder="0" allowfullscreen></iframe>
+
+					<div class="titles">{{ $ctrl.company.name }}</div>
+
+					<iframe width="100%" height="315" src="{{$ctrl.trustSrc($ctrl.company.video)}}" frameborder="0" allowfullscreen></iframe>
 					<br/><br/>
 				</div>
 				<div class="col-md-4 middle-container">
 					<div class="titles">ABOUT COMPANY</div>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur finibus tincidunt. Donec iaculis odio eget nibh sodales fermentum. Pellentesque condimentum neque sit amet lorem sodales, eget interdum ex dictum. Praesent ultricies, dolor eget semper cursus, justo eros facilisis lacus, eget rhoncus lorem nisl sit amet metus. Mauris luctus, erat et sollicitudin elementum, ex nisi consequat dui, id ornare est sem nec ante. Nam laoreet feugiat vulputate. Aliquam eu aliquam leo. Nullam dignissim laoreet risus, at tempor mauris ornare at. Maecenas sit amet metus magna. Cras vel rhoncus ante. Sed fringilla, tortor in dapibus commodo, nibh urna rutrum augue, sit amet efficitur turpis dolor eu nisi.
+					{{ $ctrl.company.info }}
 					<hr/>
 					<div class="titles">COMPANY INFORMATION</div>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur finibus tincidunt. Donec iaculis odio eget nibh sodales fermentum. Pellentesque condimentum neque sit amet lorem sodales, eget interdum ex dictum. Praesent ultricies, dolor eget semper cursus, justo eros facilisis lacus, eget rhoncus lorem nisl sit amet metus. Mauris luctus, erat et sollicitudin elementum, ex nisi consequat dui, id ornare est sem nec ante. Nam laoreet feugiat vulputate. Aliquam eu aliquam leo. Nullam dignissim laoreet risus, at tempor mauris ornare at. Maecenas sit amet metus magna. Cras vel rhoncus ante. Sed fringilla, tortor in dapibus commodo, nibh urna rutrum augue, sit amet efficitur turpis dolor eu nisi.
+					<div class="row">
+						<div class="col-md-12">
+							<div class="small-titles">Phone</div>
+							{{ $ctrl.company.phone }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="small-titles">Email</div>
+							{{ $ctrl.company.email }}
+						</div>
+					</div>
+
 					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="small-titles">Locations</div>
+							<div class="" ng-repeat="location in $ctrl.company.location">
+								{{ location.name }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="small-titles">Industry</div>
+							<div class="" ng-repeat="industry in $ctrl.company.industry">
+								{{ industry.name }}
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						
+					</div>
+
 				</div>
 				<div class="col-md-4 right-container">
 					<div class="titles">Job Offers</div>
-					
+
 					<hr/>
-					<div class="row">
-						<div class="col-md-10">
-							<div class="small-titles">Job Position 1</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						</div>
-						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
-						</div>
-					</div>
 
-					<div class="row">
+					<div class="row"  ng-repeat="jobitem in $ctrl.jobs">
 						<div class="col-md-10">
-							<div class="small-titles">Job Position 2</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							<div class="small-titles">{{ jobitem.title }}</div>
+							{{ jobitem.description}}
 						</div>
 						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
+							<md-button ng-click="$ctrl.edit()" class="md-raised md-primary">&nbsp Edit &nbsp</md-button
+							<md-button class="md-secondary button-delete" ng-click="$ctrl.deleteJob(jobitem)">Delete</md-button>
 						</div>
 					</div>
-
-					<div class="row">
-						<div class="col-md-10">
-							<div class="small-titles">Job Position 3</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						</div>
-						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-10">
-							<div class="small-titles">Job Position 4</div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						</div>
-						<div class="col-md-2">
-							<md-icon md-menu-align-target><ng-md-icon icon="edit" ></ng-md-icon></md-icon>
-							<md-icon md-menu-align-target><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
-						</div>
-					</div>
-					
 				</div>
 			</div>
             </md-card-content>

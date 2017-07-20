@@ -6,16 +6,6 @@
             <md-card-content>
                 <form name="RegisterForm">
                     <md-input-container class="md-block">
-                        <md-icon class="name"><ng-md-icon icon="person" ></ng-md-icon></md-icon>
-                        <input ng-model="$ctrl.register.name" type="text" placeholder="Full Name (required)" ng-required="true">
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <md-icon class="phone"><ng-md-icon icon="phone" ></ng-md-icon></md-icon>
-                        <input ng-model="$ctrl.register.phone" type="text" placeholder="Phone Number">
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
                         <md-icon class="email"><ng-md-icon icon="email" ></ng-md-icon></md-icon>
                         <input ng-model="$ctrl.register.email" type="email" placeholder="Email (required)" ng-required="true">
                     </md-input-container>
@@ -23,6 +13,16 @@
                     <md-input-container class="md-block">
                         <md-icon class="password"><ng-md-icon icon="lock_outline" ></ng-md-icon></md-icon>
                         <input ng-model="$ctrl.register.password" type="password" placeholder="Password (required)" ng-required="true" md-maxlength="64">
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <md-icon class="name"><ng-md-icon icon="person" ></ng-md-icon></md-icon>
+                        <input ng-model="$ctrl.register.name" type="text" placeholder="Full Name (required)" ng-required="true">
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <md-icon class="phone"><ng-md-icon icon="phone" ></ng-md-icon></md-icon>
+                        <input ng-model="$ctrl.register.phone" type="text" placeholder="Phone Number">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex="50">

@@ -31,6 +31,22 @@ class AppHeaderComponentController{
     isAuthenticated(){
         return this.UserService.isAuthenticated();
     }
+	
+	isUserRefugee() {
+		this.currentUser = this.UserService.getCurrentUser();
+		if (this.currentUser.type === 'refugee') {
+		  return true;
+		}
+		return false;
+	}
+	
+	isUserCompany() {
+		this.currentUser = this.UserService.getCurrentUser();
+		if (this.currentUser.type === 'company') {
+		  return true;
+		}
+		return false;
+	}
 
     getCurrentUser(){
         let user = this.UserService.getCurrentUser();
@@ -67,7 +83,8 @@ class AppHeaderComponentController{
     }
 
     viewResume() {
-      this.$state.go('viewResume',{});
+	  this.currentUser = this.UserService.getCurrentUser();
+      this.$state.go('viewResume',{resumeId:this.currentUser.refugee});
     }
 
     addProfile() {
