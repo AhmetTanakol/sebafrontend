@@ -10,7 +10,9 @@ class ViewResumeComponent {
     constructor(){
         this.controller = ViewResumeComponentController;
         this.template = template;
-
+		this.bindings = {
+            resume: '<',
+        }
     }
 
     static get name() {
@@ -47,8 +49,19 @@ class ViewResumeComponentController{
 
 		if (this.UserService.isAuthenticated()) {
 			this.currentUser = this.UserService.getCurrentUser();
-			if (this.isUserRefugee()) {
-				this.refugee = [];
+			this.canDisplay = false;
+			this.refugee = [];
+			if (angular.isObject(this.resume)) {
+				this.canDisplay = true;
+				this.refugee_id = this.resume._id;
+				this.refugee = this.resume;
+			}/* else if (this.isUserRefugee()) {
+				this.canDisplay = true;
+				this.refugee_id = this.currentUser.refugee;
+			}*/
+
+			if (this.canDisplay) {
+				//this.refugee = [];
 				this.skills = [];
 				this.languagesList = [];
 				this.countriesList = [];
@@ -62,6 +75,14 @@ class ViewResumeComponentController{
 				// get languages collection
 				this.RefugeeService.listLanguages().then(languages => {
 					this.languagesList = languages;
+					
+					// get language name from language id
+					if (typeof this.refugee.language != "undefined") {
+						for (var i=0; i<this.refugee.language.length; i++) {
+							var aliaslang = this.getNameFromId(this.languagesList, this.refugee.language[i]);
+							this.languages.push(aliaslang);
+						}
+					}
 				});
 				
 				// get country of birth & company location (countries list)
@@ -69,10 +90,9 @@ class ViewResumeComponentController{
 					this.countriesList = countries;
 					
 					// get refugee education from experience collection with refugee_id param
-					this.RefugeeService.getExperiencesByRefugeeId(this.currentUser.refugee).then(experiences => {
+					this.RefugeeService.getExperiencesByRefugeeId(this.refugee_id).then(experiences => {
 						this.experiences = experiences;
 						for (var i=0; i<this.experiences.length; i++) {
-							console.log(this.experiences[i].companyLocation);
 							var aliasloc = this.getNameFromId(this.countriesList, this.experiences[i].companyLocation);
 							this.experiences[i].alias = aliasloc;
 						}
@@ -83,24 +103,15 @@ class ViewResumeComponentController{
 				// get Germany cities collection
 				this.RefugeeService.listLocations().then(cities => {
 					this.cities = cities;
+					
+					// get city name from id
+					var alias = this.getNameFromId(this.cities, this.refugee.city);
+					this.refugee.city = alias;
 				});	
 				
 				// get skills collection
 				this.RefugeeService.listSkills().then(skills => {
 					this.skillsList = skills;
-				});
-
-				// get refugee education from education collection with refugee_id param
-				this.RefugeeService.getEducationsByRefugeeId(this.currentUser.refugee).then(educations => {
-					this.educations = educations;
-				});
-				
-				this.RefugeeService.get(this.currentUser.refugee).then(refugee => {
-					this.refugee = refugee;
-					
-					// get city name from id
-					var alias = this.getNameFromId(this.cities, this.refugee.city);
-					this.refugee.city = alias;
 					
 					// get skills name from skills id
 					if (typeof this.refugee.skills != "undefined") {
@@ -112,15 +123,15 @@ class ViewResumeComponentController{
 							});
 						}
 					}
-					
-					// get language name from language id
-					if (typeof this.refugee.language != "undefined") {
-						for (var i=0; i<this.refugee.language.length; i++) {
-							var aliaslang = this.getNameFromId(this.languagesList, this.refugee.language[i]);
-							this.languages.push(aliaslang);
-						}
-					}
-					
+				});
+
+				// get refugee education from education collection with refugee_id param
+				this.RefugeeService.getEducationsByRefugeeId(this.refugee_id).then(educations => {
+					this.educations = educations;
+				});
+				
+				
+				if (angular.isObject(this.refugee)) {
 					if (this.refugee.hasOwnProperty("photo") && this.refugee.photo != '') {
 						this.profilePicture = this.refugee.photo;
 					} else {
@@ -130,11 +141,8 @@ class ViewResumeComponentController{
 							this.profilePicture = "http://eatyourveggie.com/images/male_profile.gif";
 						}
 					}
-					
-				});
-				
-				
-				
+				}
+			
 			}
 		}
 	}
