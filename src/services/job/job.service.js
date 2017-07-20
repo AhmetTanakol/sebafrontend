@@ -51,6 +51,16 @@ export default class JobService {
         })
     }
 
+    update(job) {
+        let url = `${ this.resourceUrl}${job._id}/edit`;
+        delete job._id;
+        return this.$http.put(url, job).then(response => {
+            return new Promise((resolve, reject) => {
+                resolve(response.data);
+            });
+        })
+    }
+
     delete(jobID) {
         let url = `${ this.resourceUrl }${ jobID }`;
         return this.$http.delete(url).then(response => {

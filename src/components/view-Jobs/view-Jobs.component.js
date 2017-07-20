@@ -37,7 +37,7 @@ class ViewJobsComponentController{
 
     deleteJob (selectedItem) {
         let index = this.jobs.indexOf(selectedItem);
-        this.job.skills.splice(index, 1);
+        this.jobs.splice(index, 1);
         this.JobService.delete(selectedItem._id);
 	}
 
@@ -45,6 +45,16 @@ class ViewJobsComponentController{
 		this.userid =  this.UserService.getCurrentUser()['_id'];
 		console.log(this.userid);
 		this.$state.go('jobs',this.userid);
+	}
+
+    addJob() {
+        this.$state.go('jobAdd', {});
+    }
+
+    goToJob(job) {
+		console.log('going to job: '+job['_id']);
+		this.jobid = job['_id'];
+		this.$state.go('job', { jobId:this.jobid});
 	}
 
 	$onInit(){

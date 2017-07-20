@@ -16,9 +16,9 @@
             <md-icon md-menu-align-target><ng-md-icon icon="notifications" ></ng-md-icon></md-icon>
             Notifications
         </md-button>
-        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.addJob($event)">
+        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.viewJobs($event)">
             <md-icon md-menu-align-target><ng-md-icon icon="work" ></ng-md-icon></md-icon>
-            Create Job
+            Joblist
         </md-button>
         <md-menu-bar ng-if="$ctrl.isAuthenticated()">
             <md-menu>

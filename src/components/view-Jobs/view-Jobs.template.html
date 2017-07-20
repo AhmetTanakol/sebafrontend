@@ -2,14 +2,14 @@
 
 <div layout="column" layout-gt-sm="row"  layout-margin>
 
-        <md-card>
+        <md-card flex>
             <md-card-content>
                 <md-toolbar md-scroll-shrink>
                     <div class="md-toolbar-tools">My Jobs </div>
                 </md-toolbar>
                 <md-list flex>
                     <!--<md-subheader class="md-no-sticky">Added Skills</md-subheader>-->
-                    <md-list-item class="md-3-line" ng-repeat="jobitem in $ctrl.jobs">
+                    <md-list-item class="md-3-line" ng-repeat="jobitem in $ctrl.jobs" ng-click="$ctrl.goToJob(jobitem)">
                         <div class="secondary-button-padding" layout="column">
                             <h3>{{ jobitem.title }}</h3>
                             <p>{{ jobitem.startDate | date }}</p>
@@ -24,7 +24,6 @@
 
 </div>
 <div layout="row" layout-align="end center">
-    <md-button ng-click="$ctrl.edit()" class="md-raised md-primary">&nbsp Edit &nbsp</md-button>
-    <md-button ng-click="$ctrl.back()" class="md-raised md-primary">&nbsp Back &nbsp</md-button>
+    <md-button ng-click="$ctrl.addJob()" class="md-raised md-primary">&nbsp New &nbsp</md-button>
 </div>
 <!--</md-tabs>-->
