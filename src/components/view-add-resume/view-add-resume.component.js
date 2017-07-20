@@ -26,9 +26,10 @@ class ViewAddResumeComponent {
 
 class ViewAddResumeComponentController{
 
-	constructor ($state, UserService, RefugeeService) {
+	constructor ($state, UserService, RefugeeService, $mdDialog) {
 		this.model = {};
 		this.$state = $state;
+		this.$mdDialog = $mdDialog;
 		this.UserService = UserService;
 		this.RefugeeService = RefugeeService;
 	}
@@ -267,12 +268,21 @@ class ViewAddResumeComponentController{
 			this.result = result;
 		});
 
-		alert("Resume Saved");
+		this.$mdDialog.show(
+          this.$mdDialog.alert()
+            .clickOutsideToClose(true)
+            .title('Resume Saved')
+            .textContent('Resume has been saved')
+            .ariaLabel('Left to right demo')
+            .ok('Ok')
+            .openFrom('#left')
+            .closeTo(angular.element(document.querySelector('#right')))
+        );		
 
 	};
 
     static get $inject () {
-		return ['$state', UserService.name, RefugeeService.name];
+		return ['$state', UserService.name, RefugeeService.name, '$mdDialog'];
     }
 
 }
